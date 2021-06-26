@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/user/:email', getUser);
 router.get('/mountain', getAllMountains);
 router.get('/explore', getExplore);
-router.get('./mountain/:id', getMountainById);
+router.get('/mountain/:id', getMountainById);
 
 router.post('/login', login);
 
