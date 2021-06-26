@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": ""
+    "lint": "yarn eslint . --ext .js,.ts"
   },
   "author": "",
   "license": "ISC",
