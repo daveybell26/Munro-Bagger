@@ -8,13 +8,13 @@ import Startpoint from './Startpoint';
 export default class Mountain extends Model implements MountainInterface {
   public name!: string;
 
-  public imageURL!: string;
+  public imageUrl!: string;
 
   public readonly status?: Status[];
 
   public readonly picture?: Picture[];
 
-  public readonly peaks?: Peak[];
+  public readonly peaks?: Peak;
 
   public readonly startpoint?: Startpoint[];
 

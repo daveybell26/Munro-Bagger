@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 interface UserInterface {
   email: string;
-  imageURL: string;
+  imageUrl: string;
 }
 
 interface StatusInterface {
@@ -11,11 +11,11 @@ interface StatusInterface {
 
 interface MountainInterface {
   name: string;
-  imageURL: string;
+  imageUrl: string;
 }
 
 interface PictureInterface {
-  imageURL: string;
+  imageUrl: string;
 }
 
 interface PeakInterface {

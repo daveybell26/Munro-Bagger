@@ -7,7 +7,7 @@ export default class Startpoint extends Model implements StartpointInterface {
 
   public longitude!: number;
 
-  public readonly mountain?: Mountain[];
+  public readonly mountain?: Mountain;
 
   public static associations: {
     mountain: Association<Startpoint, Mountain>;

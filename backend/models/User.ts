@@ -6,7 +6,7 @@ import Picture from './Picture';
 export default class User extends Model implements UserInterface {
   public email!: string;
 
-  public imageURL!: string;
+  public imageUrl!: string;
 
   public readonly status?: Status[];
 

@@ -9,7 +9,7 @@ export default class Peak extends Model implements PeakInterface {
 
   public elevation!: number;
 
-  public readonly mountain?: Mountain[];
+  public readonly mountain?: Mountain;
 
   public static associations: {
     mountain: Association<Peak, Mountain>;

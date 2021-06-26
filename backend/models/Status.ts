@@ -8,9 +8,9 @@ export default class Status extends Model implements StatusInterface {
 
   public climbed!: boolean;
 
-  public readonly user?: User[];
+  public readonly user?: User;
 
-  public readonly mountain?: Mountain[];
+  public readonly mountain?: Mountain;
 
   public static associations: {
     user: Association<Status, User>;
