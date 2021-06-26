@@ -55,5 +55,6 @@ module.exports = {
     await queryInterface.bulkDelete('Users', null, {});
     await queryInterface.bulkDelete('Mountains', null, {});
     await queryInterface.bulkDelete('Peaks', null, {});
+    await queryInterface.bulkDelete('Pictures', null, {});
   },
 };
