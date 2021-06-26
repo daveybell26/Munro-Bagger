@@ -1,12 +1,9 @@
-import express from 'express';
-import getExplore from './controllers/explore';
-import getAllMountains from './controllers/mountain';
-import getUser from './controllers/user';
+import express from "express";
 
 const router = express.Router();
 
-router.get('/user', getUser);
-router.get('/mountain', getAllMountains);
-router.get('/explore', getExplore);
+router.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 export default router;
