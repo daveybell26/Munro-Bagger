@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
+import sequelize from '../models/sequelize';
 
-const getUser = (req: Request, res: Response) => {
+const getUser = async (req: Request, res: Response) => {
   try {
-    res.json({});
+    const { email } = req.params;
+    const data = await sequelize.models.User.findOne({ where: { email } });
+    res.json(data);
   } catch (e) {
     res.json({ error: e });
   }

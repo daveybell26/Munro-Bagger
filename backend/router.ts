@@ -5,7 +5,7 @@ import getUser from './controllers/user';
 
 const router = express.Router();
 
-router.get('/user', getUser);
+router.get('/user/:email', getUser);
 router.get('/mountain', getAllMountains);
 router.get('/explore', getExplore);
 
