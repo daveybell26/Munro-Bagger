@@ -7,10 +7,4 @@ cache:
     - frontend/node_modules
     - backend/node_modules
 before_script:
-  - cd frontend && yarn
-  - cd ../backend && yarn
-script:
-  - cd frontend && yarn tsc
-  - yarn lint
-  - cd ../backend && yarn tsc
-  - yarn lint
+  - cd frontend && yarn && cd backend && yarn
