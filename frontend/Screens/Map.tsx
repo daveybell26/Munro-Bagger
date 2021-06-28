@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Nav from '../Components/nav';
+import NavFooter from '../Components/NavFooter';
 
 const Map = () => (
   <View>
     <Text>Map Screen</Text>
-    <Nav />
+    <NavFooter />
   </View>
 );
 
