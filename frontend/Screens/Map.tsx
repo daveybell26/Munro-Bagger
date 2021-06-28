@@ -4,6 +4,11 @@ import MapView, { Marker } from 'react-native-maps';
 import styles from './styles/mapStyles';
 import { getAllMountains } from '../mockMunros.json';
 
+const scotland: object = {
+  latitude: 56.490669,
+  longitude: -4.202646,
+};
+
 const listOfMarkers = getAllMountains.map((location) => {
   const markerLocation = {
     latitude: location.Peak.latitude,
@@ -22,7 +27,15 @@ const listOfMarkers = getAllMountains.map((location) => {
 const Map = () => (
   <View style={styles.container}>
     <Text>Munros Map</Text>
-    <MapView style={styles.map}>
+    <MapView
+      region={{
+        latitude: 56.490669,
+        longitude: -4.202646,
+        latitudeDelta: 5,
+        longitudeDelta: 0,
+      }}
+      style={styles.map}
+    >
       {listOfMarkers}
     </MapView>
   </View>
