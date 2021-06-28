@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Op, QueryTypes } from 'sequelize';
+import { QueryTypes } from 'sequelize';
 import sequelize from '../models/sequelize';
 
 export const getExploreUnclimbed = async (req: Request, res: Response) => {
@@ -8,14 +8,16 @@ export const getExploreUnclimbed = async (req: Request, res: Response) => {
     const data = await sequelize.models.Mountain.findAll({
       attributes: ['name', 'imageUrl'],
       include: [{
-        attributes: [],
+        attributes: ['climbed'],
         model: sequelize.models.Status,
-        where: { [Op.and]: [{ climbed: false }, { UserId }] },
+        where: { UserId },
+        required: false,
       }],
       order: sequelize.random(),
-      limit: 6,
     });
-    res.json(data);
+    const filteredData = data.filter((mountain: any) => mountain.Statuses[0]?.climbed !== true)
+      .slice(0, 6);
+    res.json(filteredData);
   } catch (e) {
     res.json({ error: e });
   }
@@ -37,7 +39,8 @@ export const getExploreRandom = async (req: Request, res: Response) => {
              "createdAt"
       FROM latest
       WHERE rn = 1
-      ORDER BY "createdAt" DESC limit 10`,
+      ORDER BY "createdAt" DESC
+      LIMIT 10`,
       { type: QueryTypes.SELECT, model: sequelize.models.Pictures, mapToModel: true },
     );
     res.json(data);
