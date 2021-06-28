@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 
@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
 const NavFooter = () => {
   const history = useHistory();
   return (
-    <View style={styles.navFooter}>
+    <SafeAreaView style={styles.navFooter}>
       <MaterialIcons name="home" size={28} onPress={() => history.push('/explore')} />
-      <MaterialIcons name="terrain" size={28} onPress={() => history.push('/mountain')} />
+      <MaterialIcons name="terrain" size={28} onPress={() => history.push('/map')} />
       <MaterialIcons name="person" size={28} onPress={() => history.push('/profile')} />
-    </View>
+    </SafeAreaView>
   );
 };
 

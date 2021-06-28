@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 
 const UserProfile = () => (
-  <View>
+  <SafeAreaView style={{ flex: 1 }}>
     <Text>User Profile Screen</Text>
     <NavFooter />
-  </View>
+  </SafeAreaView>
 );
 
 export default UserProfile;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 
 const Explore = () => (
-  <View>
+  <SafeAreaView style={{ flex: 1 }}>
     <Text>Explore Screen</Text>
     <NavFooter />
-  </View>
+  </SafeAreaView>
 );
 
 export default Explore;
