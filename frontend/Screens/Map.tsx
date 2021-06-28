@@ -3,6 +3,8 @@ import { View, Text, Alert } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { styles, customMap } from './styles/mapStyles';
 import { getAllMountains } from '../mockMunros.json';
+import GreenTriangle from '../assets/greenTriangle.png';
+import RedTriangle from '../assets/redTriangle.png';
 
 const listOfMarkers = getAllMountains.map((location) => {
   const markerLocation = {
@@ -15,8 +17,7 @@ const listOfMarkers = getAllMountains.map((location) => {
       // onPress={() => Alert.alert(location.name)}
       key={location.id}
       coordinate={markerLocation}
-      // eslint-disable-next-line global-require
-      icon={location.Statuses[0].climbed ? require('../assets/greenHiker.png') : require('../assets/redHiker.png')}
+      icon={location.Statuses[0].climbed ? GreenTriangle : RedTriangle}
     >
       <Callout>
         <Text>{location.name}</Text>
