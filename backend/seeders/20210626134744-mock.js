@@ -34,9 +34,12 @@ module.exports = {
       })),
       {},
     );
+    const pics = [];
+    pics.length = 20000;
+    pics.fill(0);
     await queryInterface.bulkInsert(
       'Pictures',
-      mountains.map(() => {
+      pics.map(() => {
         const UserId = Math.ceil(users.length * Math.random());
         const MountainId = Math.ceil(mountains.length * Math.random());
         const randomDate = new Date(Math.floor(new Date() * Math.random()));

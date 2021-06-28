@@ -26,7 +26,19 @@ export const getMountainById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const data = await sequelize.models.Mountain.findOne({
       where: { id },
-      include: [sequelize.models.Peak],
+      include: [
+        {
+          attributes: ['latitude', 'longitude', 'elevation'],
+          model: sequelize.models.Peak,
+        },
+        {
+          attributes: ['imageUrl'],
+          model: sequelize.models.Picture,
+          order: sequelize.random(),
+          limit: 12,
+        },
+
+      ],
     });
     res.json(data);
   } catch (e) {
