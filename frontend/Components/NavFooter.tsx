@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: 'grey',
+    backgroundColor: '#427AA1',
+    position: 'absolute',
+    bottom: 0,
   },
 });
 
