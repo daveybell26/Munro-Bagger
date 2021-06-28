@@ -16,7 +16,7 @@ const listOfMarkers = getAllMountains.map((location) => {
       key={location.id}
       coordinate={markerLocation}
       // eslint-disable-next-line global-require
-      icon={require('../assets/greenHiker.png')}
+      icon={location.Statuses[0].climbed ? require('../assets/greenHiker.png') : require('../assets/redHiker.png')}
     >
       <Callout>
         <Text>{location.name}</Text>
