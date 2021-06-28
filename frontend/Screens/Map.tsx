@@ -24,10 +24,10 @@ const Map = () => (
     <Text>Munros Map</Text>
     <MapView
       region={{
-        latitude: 56.490669,
-        longitude: -4.202646,
-        latitudeDelta: 5,
-        longitudeDelta: 0,
+        latitude: 57.534404,
+        longitude: -4.670202,
+        latitudeDelta: 4,
+        longitudeDelta: 1,
       }}
       style={styles.map}
     >
