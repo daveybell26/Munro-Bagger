@@ -15,6 +15,8 @@ export const getAllMountains = () => axios.get(`${baseUrl}/mountain`);
 
 export const getMountainById = (id: number) => axios.get(`${baseUrl}/mountain/${id}`);
 
-export const getExploreUnclimbed = (UserId: number) => axios.get(`${baseUrl}/explore/unclimbed`, UserId);
+export const getExploreUnclimbed = (UserId: number) => axios.get(
+  `${baseUrl}/explore/unclimbed`, UserId,
+);
 
 export const getExploreRandom = () => axios.get(`${baseUrl}/explore/random`);
