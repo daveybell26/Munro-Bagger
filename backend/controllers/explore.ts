@@ -25,10 +25,14 @@ export const getExploreRandom = async (req: Request, res: Response) => {
   try {
     const data = await sequelize.query(
       `WITH latest AS
-      ( SELECT "Pictures".*,
+      ( SELECT "Pictures".*, 
+               "Mountains".name,
                Row_number() OVER (partition BY "Pictures"."MountainId" ORDER BY "Pictures"."createdAt" DESC) AS rn
-        FROM   "Pictures")
-      SELECT "MountainId",
+        FROM   "Pictures"
+        INNER JOIN "Mountains"
+          ON "Mountains".id = "Pictures"."MountainId")
+      SELECT "MountainId" as "id",
+             "name",
              "imageUrl",
              "createdAt"
       FROM latest
