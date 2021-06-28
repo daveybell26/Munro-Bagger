@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   map: {
-    width: Dimensions.get('window').width - 10,
-    height: Dimensions.get('window').height - 10,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height - 30,
   },
 });
 
