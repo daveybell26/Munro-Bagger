@@ -41,7 +41,7 @@ User.init(
 
 Status.init(
   {
-    whishlist: {
+    wishlist: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },

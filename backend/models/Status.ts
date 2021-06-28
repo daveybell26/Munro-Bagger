@@ -4,7 +4,7 @@ import User from './User';
 import Mountain from './Mountain';
 
 export default class Status extends Model implements StatusInterface {
-  public whishlist!: boolean;
+  public wishlist!: boolean;
 
   public climbed!: boolean;
 
