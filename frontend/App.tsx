@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Map from './Screens/Map';
+
+import NavFooter from './Components/NavFooter';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +20,7 @@ export default function App() {
 
       <Map />
       <StatusBar />
+      <NavFooter />
     </View>
   );
 }
