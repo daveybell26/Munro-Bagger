@@ -4,7 +4,7 @@ import sequelize from '../models/sequelize';
 
 export const getExploreUnclimbed = async (req: Request, res: Response) => {
   try {
-    const { UserId } = req.body;
+    const { UserId } = req.query;
     const data = await sequelize.models.Mountain.findAll({
       attributes: ['name', 'imageUrl'],
       include: [{
