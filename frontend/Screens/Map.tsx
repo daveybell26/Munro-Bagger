@@ -15,6 +15,8 @@ const listOfMarkers = getAllMountains.map((location) => {
       onPress={() => Alert.alert(location.name)}
       key={location.id}
       coordinate={markerLocation}
+      // eslint-disable-next-line global-require
+      icon={require('../assets/greenHiker.png')}
     />
   );
 });
