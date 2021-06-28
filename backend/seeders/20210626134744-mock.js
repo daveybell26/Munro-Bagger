@@ -49,6 +49,20 @@ module.exports = {
       }),
       {},
     );
+    users.forEach((user, i) => {
+      await queryInterface.bulkInsert(
+        'Statuses',
+        mountains.map((mountain, j) => ({
+          wishlist: false,
+          climbed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          UserId: i + 1,
+          MountainId: j + 1,
+        })),
+        {},
+      );
+    });
   },
 
   down: async (queryInterface) => {
@@ -56,5 +70,6 @@ module.exports = {
     await queryInterface.bulkDelete('Mountains', null, {});
     await queryInterface.bulkDelete('Peaks', null, {});
     await queryInterface.bulkDelete('Pictures', null, {});
+    await queryInterface.bulkDelete('Statuses', null, {});
   },
 };
