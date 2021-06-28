@@ -15,7 +15,8 @@ export const getExploreUnclimbed = async (req: Request, res: Response) => {
       }],
       order: sequelize.random(),
     });
-    const filteredData = data.filter((mountain: any) => mountain.Statuses[0]?.climbed !== true);
+    const filteredData = data.filter((mountain: any) => mountain.Statuses[0]?.climbed !== true)
+      .slice(0, 6);
     res.json(filteredData);
   } catch (e) {
     res.json({ error: e });
