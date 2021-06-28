@@ -39,30 +39,30 @@ module.exports = {
       mountains.map(() => {
         const UserId = Math.ceil(users.length * Math.random());
         const MountainId = Math.ceil(mountains.length * Math.random());
+        const randomDate = new Date(Math.floor(new Date() * Math.random()));
         return {
           imageUrl: 'https://picsum.photos/200',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          createdAt: randomDate,
+          updatedAt: randomDate,
           UserId,
           MountainId,
         };
       }),
       {},
     );
-    users.forEach((user, i) => {
-      await queryInterface.bulkInsert(
-        'Statuses',
-        mountains.map((mountain, j) => ({
-          wishlist: false,
-          climbed: false,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          UserId: i + 1,
-          MountainId: j + 1,
-        })),
-        {},
-      );
-    });
+    // Fix to work for all mock users
+    await queryInterface.bulkInsert(
+      'Statuses',
+      mountains.map((mountain, j) => ({
+        wishlist: false,
+        climbed: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        UserId: 1,
+        MountainId: j + 1,
+      })),
+      {},
+    );
   },
 
   down: async (queryInterface) => {
