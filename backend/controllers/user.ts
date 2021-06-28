@@ -3,7 +3,7 @@ import sequelize from '../models/sequelize';
 
 const getRandomUserPics = async (req: Request, res: Response) => {
   try {
-    const { UserId } = req.body;
+    const { UserId } = req.query;
     const data = await sequelize.models.Picture.findAll({
       where: { UserId },
       order: sequelize.random(),
