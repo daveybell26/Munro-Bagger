@@ -5,7 +5,7 @@ interface UserInterface {
 }
 
 interface StatusInterface {
-  whishlist: boolean;
+  wishlist: boolean;
   climbed: boolean;
 }
 
