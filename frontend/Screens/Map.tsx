@@ -27,7 +27,7 @@ const Map = () => (
         latitude: 57.3017,
         longitude: -4.60763,
         latitudeDelta: 4.5,
-        longitudeDelta: 0,
+        longitudeDelta: 1,
       }}
       style={styles.map}
     >
