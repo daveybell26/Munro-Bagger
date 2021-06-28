@@ -1,12 +1,12 @@
 import express from 'express';
 import { getExploreUnclimbed, getExploreRandom } from './controllers/explore';
 import { getAllMountains, getMountainById } from './controllers/mountain';
-import getUser from './controllers/user';
+import getRandomUserPics from './controllers/user';
 import login from './controllers/login';
 
 const router = express.Router();
 
-router.get('/user/:email', getUser);
+router.get('/me', getRandomUserPics);
 
 router.get('/mountain', getAllMountains);
 router.get('/mountain/:id', getMountainById);
