@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import styles from './styles/mapStyles';
+import MapView, { Marker, Callout } from 'react-native-maps';
+import { styles, customMap } from './styles/mapStyles';
 import { getAllMountains } from '../mockMunros.json';
 
 const listOfMarkers = getAllMountains.map((location) => {
@@ -12,12 +12,16 @@ const listOfMarkers = getAllMountains.map((location) => {
 
   return (
     <Marker
-      onPress={() => Alert.alert(location.name)}
+      // onPress={() => Alert.alert(location.name)}
       key={location.id}
       coordinate={markerLocation}
       // eslint-disable-next-line global-require
       icon={require('../assets/greenHiker.png')}
-    />
+    >
+      <Callout>
+        <Text>{location.name}</Text>
+      </Callout>
+    </Marker>
   );
 });
 
@@ -32,6 +36,7 @@ const Map = () => (
         longitudeDelta: 1,
       }}
       style={styles.map}
+      customMapStyle={customMap}
     >
       {listOfMarkers}
     </MapView>
