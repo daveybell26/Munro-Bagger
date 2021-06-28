@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store/index';
 import Counter from './components/counter';
+import Posts from './components/posts';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,7 @@ export default function App () {
       <View style={styles.container}>
         <Counter />
         <Text>Open up App.tsx to start working on your app!!!</Text>
-        <StatusBar />
+        <Posts />
       </View>
     </Provider>
   );

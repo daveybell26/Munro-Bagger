@@ -1,6 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getAllMountains } from '../services/apiService';
 
-const initialCounterState = { counter: 0, showCounter: true };
+const getMountains = createAsyncThunk('counter/getMountains', async () => getAllMountains());
+
+const initialCounterState = { counter: 0, showCounter: true, mountains: [] };
 const counterSlice = createSlice({
   name: 'counter',
   initialState: initialCounterState,
@@ -19,7 +23,6 @@ const counterSlice = createSlice({
     },
   },
 });
-
 
 export const counterActions = counterSlice.actions;
 export default counterSlice.reducer;
