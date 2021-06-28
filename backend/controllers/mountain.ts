@@ -28,10 +28,11 @@ export const getMountainById = async (req: Request, res: Response) => {
       where: { id },
       include: [
         {
-          attributes: ['id', 'latitude', 'longitude', 'elevation'],
+          attributes: ['latitude', 'longitude', 'elevation'],
           model: sequelize.models.Peak,
         },
         {
+          attributes: ['imageUrl'],
           model: sequelize.models.Picture,
           order: sequelize.random(),
           limit: 12,
