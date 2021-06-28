@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { Op } from 'sequelize';
+import { Op, QueryTypes } from 'sequelize';
 import sequelize from '../models/sequelize';
 
-const getExploreUnclimbed = async (req: Request, res: Response) => {
+export const getExploreUnclimbed = async (req: Request, res: Response) => {
   try {
     const { UserId } = req.body;
     const data = await sequelize.models.Mountain.findAll({
@@ -21,4 +21,23 @@ const getExploreUnclimbed = async (req: Request, res: Response) => {
   }
 };
 
-export default getExploreUnclimbed;
+export const getExploreRandom = async (req: Request, res: Response) => {
+  try {
+    const data = await sequelize.query(
+      `WITH latest AS
+      ( SELECT "Pictures".*,
+               Row_number() OVER (partition BY "Pictures"."MountainId" ORDER BY "Pictures"."createdAt" DESC) AS rn
+        FROM   "Pictures")
+      SELECT "MountainId",
+             "imageUrl",
+             "createdAt"
+      FROM latest
+      WHERE rn = 1
+      ORDER BY "createdAt" DESC limit 10`,
+      { type: QueryTypes.SELECT, model: sequelize.models.Pictures, mapToModel: true },
+    );
+    res.json(data);
+  } catch (e) {
+    res.json({ error: e });
+  }
+};

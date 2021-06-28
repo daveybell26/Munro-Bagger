@@ -1,5 +1,5 @@
 import express from 'express';
-import getExploreUnclimbed from './controllers/explore';
+import { getExploreUnclimbed, getExploreRandom } from './controllers/explore';
 import { getAllMountains, getMountainById } from './controllers/mountain';
 import getUser from './controllers/user';
 import login from './controllers/login';
@@ -11,6 +11,7 @@ router.get('/user/:email', getUser);
 router.get('/mountain', getAllMountains);
 router.get('/mountain/:id', getMountainById);
 
+router.get('/explore/random', getExploreRandom);
 router.get('/explore/unclimbed', getExploreUnclimbed);
 
 router.post('/login', login);
