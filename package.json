@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/daveybell26/Munro-Bagger/issues"
   },
-  "homepage": "https://github.com/daveybell26/Munro-Bagger#readme"
+  "homepage": "https://github.com/daveybell26/Munro-Bagger#readme",
+  "dependencies": {
+    "@expo/vector-icons": "^12.0.5"
+  }
 }
