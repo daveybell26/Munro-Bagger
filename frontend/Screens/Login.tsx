@@ -1,10 +1,22 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import NavFooter from '../Components/NavFooter';
+import Header from '../Components/Header';
+
+const styles = StyleSheet.create({
+  title: {
+    marginTop: '20%',
+    width: '100%',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
 
 const Login = () => (
   <SafeAreaView style={{ flex: 1 }}>
-    <Text>Login Screen</Text>
+    <Header />
+    <Text style={styles.title}>Login Screen</Text>
     <NavFooter />
   </SafeAreaView>
 );
