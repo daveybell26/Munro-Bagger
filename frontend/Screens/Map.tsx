@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+import NavFooter from '../Components/NavFooter';
 
 const Map = () => (
-  <View>
+  <SafeAreaView style={{ flex: 1 }}>
     <Text>Map Screen</Text>
-  </View>
+    <NavFooter />
+  </SafeAreaView>
 );
 
 export default Map;

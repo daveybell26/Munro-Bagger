@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useHistory } from 'react-router-native';
 
 const styles = StyleSheet.create({
   navFooter: {
@@ -15,12 +16,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const NavFooter = () => (
-  <View style={styles.navFooter}>
-    <MaterialIcons name="home" size={28} />
-    <MaterialIcons name="terrain" size={28} />
-    <MaterialIcons name="person" size={28} />
-  </View>
-);
+const NavFooter = () => {
+  const history = useHistory();
+  return (
+    <SafeAreaView style={styles.navFooter}>
+      <MaterialIcons name="home" size={28} onPress={() => history.push('/explore')} />
+      <MaterialIcons name="terrain" size={28} onPress={() => history.push('/map')} />
+      <MaterialIcons name="person" size={28} onPress={() => history.push('/profile')} />
+    </SafeAreaView>
+  );
+};
 
 export default NavFooter;
