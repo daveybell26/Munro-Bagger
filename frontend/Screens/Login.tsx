@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {
-  SafeAreaView, Text, Button, StyleSheet, TextInput, ImageBackground,
+  SafeAreaView, Text, StyleSheet, TextInput,
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
+import CustomButton from '../Components/customButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#427AA1',
   },
 });
-
 const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ const Login = () => {
         placeholder="example@google.com"
         onChangeText={changeHandler}
       />
-      <Button style={styles.loginButton} onPress={() => submitHandler(email)} title="Login" />
+      <CustomButton text="login" onPress={submitHandler} />
     </SafeAreaView>
 
   );
