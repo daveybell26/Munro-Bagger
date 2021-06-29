@@ -9,13 +9,13 @@ import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
 
 const MapComponent = () => {
-  const mountainList = useSelector((state:any) => state.allMountains.mountainList);
+  const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const listOfMarkers = [];
+  let listOfMarkers;
   if (mountainList.length) {
-    listOfMarkers.push(mountainList.map((location: any) => {
+    listOfMarkers = mountainList.map((location: any) => {
       const markerLocation = {
         latitude: location.Peak.latitude,
         longitude: location.Peak.longitude,
@@ -33,7 +33,7 @@ const MapComponent = () => {
           </Callout>
         </Marker>
       );
-    }));
+    });
   }
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const MapComponent = () => {
         style={styles.map}
         customMapStyle={customMap}
       >
-        {listOfMarkers[0]}
+        {listOfMarkers}
       </MapView>
     </View>
   );
