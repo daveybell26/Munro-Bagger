@@ -9,11 +9,11 @@ import {
 } from 'react-native-elements';
 import { getOneMountain } from '../store/getOneMountain.store';
 
-function OneMountain () {
-  const listItems = useSelector((state) => state.oneMountain.mountain);
-  const listStatus = useSelector((state) => state.oneMountain.status);
+function OneMountain() {
+  // TODO: remove any's
+  const listItems = useSelector((state: any) => state.oneMountain.mountain);
+  const listStatus = useSelector((state: any) => state.oneMountain.loading);
   const { name } = listItems;
-  console.log(listItems);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,16 +22,10 @@ function OneMountain () {
 
   return (
     <View>
-      <Text>
-        one mountain
-        {' '}
-        {listStatus}
-        {name}
-
-      </Text>
-
+      <Text>one mountain</Text>
+      <Text>{listStatus}</Text>
+      <Text>{name}</Text>
     </View>
-
   );
 }
 

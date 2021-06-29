@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getMountainById } from '../services/apiService';
 
@@ -7,26 +8,31 @@ export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', asy
   return data;
 });
 
-const initialMountainState = {
+interface MountainState {
+  mountain: {}
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+}
+
+const initialMountainState: MountainState = {
   mountain: {},
-  status: null,
+  loading: 'idle',
 };
 
 const oneMountainSlice = createSlice({
   name: 'oneMountain',
   initialState: initialMountainState,
   reducers: {},
-  extraReducers: {
-    [getOneMountain.pending]: (state, action) => {
-      state.status = 'loading';
-    },
-    [getOneMountain.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getOneMountain.pending, (state) => {
+      state.loading = 'pending';
+    });
+    builder.addCase(getOneMountain.fulfilled, (state, action) => {
       state.mountain = action.payload;
-      state.status = 'success';
-    },
-    [getOneMountain.rejected]: (state, action) => {
-      state.status = 'failed';
-    },
+      state.loading = 'succeeded';
+    });
+    builder.addCase(getOneMountain.rejected, (state) => {
+      state.loading = 'failed';
+    });
   },
 });
 

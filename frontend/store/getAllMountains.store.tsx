@@ -1,33 +1,37 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getAllMountains } from '../services/apiService';
 
-const callBack = async () => {
+export const getMountains = createAsyncThunk('allMountains/getMountains', async () => {
   const { data } = await getAllMountains();
   return data;
-};
+});
 
-export const getMountains = createAsyncThunk('allMountains/getMountains', callBack);
+interface MountainListState {
+  mountainList: []
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+}
 
-const initialMountainState = {
+const initialMountainState: MountainListState = {
   mountainList: [],
-  status: 'this is not running',
+  loading: 'idle',
 };
 
 const allMountainsSlice = createSlice({
   name: 'allMountains',
   initialState: initialMountainState,
   reducers: {},
-  extraReducers: {
-    [getMountains.pending]: (state, action) => {
-      state.status = 'loading';
-    },
-    [getMountains.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getMountains.pending, (state) => {
+      state.loading = 'pending';
+    });
+    builder.addCase(getMountains.fulfilled, (state, action) => {
       state.mountainList = action.payload;
-      state.status = 'success';
-    },
-    [getMountains.rejected]: (state, action) => {
-      state.status = 'failed';
-    },
+      state.loading = 'succeeded';
+    });
+    builder.addCase(getMountains.rejected, (state) => {
+      state.loading = 'failed';
+    });
   },
 });
 

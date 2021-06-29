@@ -1,20 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import authReducer from './auth';
+import { useDispatch } from 'react-redux';
 import mountainsReducer from './getAllMountains.store';
 import oneMountainReducer from './getOneMountain.store';
 
-//  Same as Create store, with the ability to add several reducers in at once
-// import { createStore } from "redux";
-// const store = createStore(counterReducer);
-
 const store = configureStore({
   reducer: {
-    // counter: counterReducer,
-    // auth: authReducer,
     allMountains: mountainsReducer,
     oneMountain: oneMountainReducer,
   },
-
 });
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
