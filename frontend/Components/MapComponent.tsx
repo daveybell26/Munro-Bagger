@@ -17,7 +17,7 @@ const MapComponent = () => {
 
     return (
       <Marker
-        onPress={() => history.push('/mountain')}
+        onPress={() => history.push(`/mountain/${location.id}`)}
         key={location.id}
         coordinate={markerLocation}
         icon={location.Statuses[0].climbed ? GreenMountain : RedMountain}

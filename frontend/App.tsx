@@ -23,7 +23,7 @@ export default function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/explore" component={Explore} />
           <Route exact path="/map" component={Map} />
-          <Route exact path="/mountain" component={MountainProfile} />
+          <Route exact path="/mountain/:id" component={MountainProfile} />
           <Route exact path="/profile" component={UserProfile} />
         </Switch>
       </View>
