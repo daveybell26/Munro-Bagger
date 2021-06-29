@@ -1,9 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counter';
-import authReducer from './auth';
-import { postsSlice } from './posts';
-
-const postsReducer = postsSlice.reducer;
+// import authReducer from './auth';
+import mountainsReducer from './getAllMountains.store';
+import oneMountainReducer from './getOneMountain.store';
 
 //  Same as Create store, with the ability to add several reducers in at once
 // import { createStore } from "redux";
@@ -11,9 +9,10 @@ const postsReducer = postsSlice.reducer;
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    auth: authReducer,
-    posts: postsReducer,
+    // counter: counterReducer,
+    // auth: authReducer,
+    allMountains: mountainsReducer,
+    oneMountain: oneMountainReducer,
   },
 
 });

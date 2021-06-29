@@ -7,23 +7,26 @@ import {
 import {
   Text,
 } from 'react-native-elements';
-import { getMountains } from '../store/getAllMountains.store';
+import { getOneMountain } from '../store/getOneMountain.store';
 
-function Posts () {
-  const listItems = useSelector((state) => state.allMountains.mountainList);
-  const listStatus = useSelector((state) => state.allMountains.status);
-  // const { body } = listItems[0];
+function OneMountain () {
+  const listItems = useSelector((state) => state.oneMountain.mountain);
+  const listStatus = useSelector((state) => state.oneMountain.status);
+  const { name } = listItems;
   console.log(listItems);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMountains());
+    dispatch(getOneMountain());
   }, [dispatch]);
 
   return (
     <View>
       <Text>
+        one mountain
+        {' '}
         {listStatus}
+        {name}
 
       </Text>
 
@@ -32,4 +35,4 @@ function Posts () {
   );
 }
 
-export default Posts;
+export default OneMountain;
