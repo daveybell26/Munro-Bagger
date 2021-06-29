@@ -1,5 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import { useParams } from 'react-router-native';
+import { getAllMountains } from '../mockMunros.json';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 
@@ -13,12 +15,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const MountainProfile = () => (
-  <SafeAreaView style={{ flex: 1 }}>
-    <Header />
-    <Text style={styles.title}>Mountain Profile Screen</Text>
-    <NavFooter />
-  </SafeAreaView>
-);
+const MountainProfile = () => {
+  const { id } = useParams<{ id: string }>();
+  // fetching mockData to be replaced with api call
+  const [mountainToDisplay] = getAllMountains.filter((mountain) => mountain.id === +id);
+  const { name } = mountainToDisplay;
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header />
+      <Text style={styles.title}>Mountain Profile Screen</Text>
+      <Text>{name}</Text>
+      <NavFooter />
+    </SafeAreaView>
+  );
+};
 
 export default MountainProfile;
