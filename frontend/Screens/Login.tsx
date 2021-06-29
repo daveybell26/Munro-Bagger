@@ -6,6 +6,24 @@ import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/customButton';
 
+const users = [
+  {
+    email: 'jon@example.com',
+  },
+  {
+    email: 'kostas@example.com',
+  },
+  {
+    email: 'dave@example.com',
+  },
+  {
+    email: 'steffen@example.com',
+  },
+  {
+    email: 'ian@example.com',
+  },
+];
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,10 +38,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 8,
   },
-  loginButton: {
-    width: '50%',
-    backgroundColor: '#427AA1',
-  },
 });
 const Login = () => {
   const history = useHistory();
@@ -33,8 +47,13 @@ const Login = () => {
     setEmail(val);
   };
 
-  const submitHandler = (useremail: string) => {
-    history.push('/explore');
+  const submitHandler = () => {
+    users.forEach((user) => {
+      if (user.email === email) {
+        setEmail('');
+        history.push('/explore');
+      }
+    });
   };
 
   return (
