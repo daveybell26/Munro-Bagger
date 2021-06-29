@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  View,
+  View, Text,
 } from 'react-native';
-import {
-  Text,
-} from 'react-native-elements';
 import { getOneMountain } from '../store/getOneMountain.store';
 
 function OneMountain() {

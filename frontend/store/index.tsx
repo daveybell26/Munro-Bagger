@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import mountainsReducer from './getAllMountains.store';
 import oneMountainReducer from './getOneMountain.store';
+import randomUserPicsReducer from './getRandomUserPics.store';
 
 const store = configureStore({
   reducer: {
     allMountains: mountainsReducer,
     oneMountain: oneMountainReducer,
+    randomUserPics: randomUserPicsReducer,
   },
 });
 

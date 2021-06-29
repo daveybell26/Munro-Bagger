@@ -1,32 +1,38 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomUserPics } from '../services/apiService';
 
 export const getUserPicsRandomly = createAsyncThunk('randomUserPics/getUserPicsRandomly', async () => {
-  // TODO: make getMountainById parameter dynamic
-  const { data } = await getRandomUserPics();
+  // TODO: make getRandomUserPics parameter dynamic
+  const { data } = await getRandomUserPics(1);
   return data;
 });
 
-const initialRandomPictureState = {
-  pictures: {},
-  status: null,
+interface RandomUserPicsState {
+  pictures: []
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+}
+
+const initialRandomUserPicsState: RandomUserPicsState = {
+  pictures: [],
+  loading: 'idle',
 };
 
 const randomUserPicsSlice = createSlice({
   name: 'randomUserPics',
-  initialState: initialRandomPictureState,
+  initialState: initialRandomUserPicsState,
   reducers: {},
-  extraReducers: {
-    [getUserPicsRandomly.pending]: (state, action) => {
-      state.status = 'loading';
-    },
-    [getUserPicsRandomly.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getUserPicsRandomly.pending, (state) => {
+      state.loading = 'pending';
+    });
+    builder.addCase(getUserPicsRandomly.fulfilled, (state, action) => {
       state.pictures = action.payload;
-      state.status = 'success';
-    },
-    [getUserPicsRandomly.rejected]: (state, action) => {
-      state.status = 'failed';
-    },
+      state.loading = 'succeeded';
+    });
+    builder.addCase(getUserPicsRandomly.rejected, (state) => {
+      state.loading = 'failed';
+    });
   },
 });
 
