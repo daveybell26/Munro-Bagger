@@ -19,17 +19,21 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 8,
   },
+  loginButton: {
+    width: '50%',
+    backgroundColor: '#427AA1',
+  },
 });
 
 const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
 
-  const changeHandler = (val) => {
+  const changeHandler = (val: string) => {
     setEmail(val);
   };
 
-  const submitHandler = (email) => {
+  const submitHandler = (email: string) => {
     history.push('/explore');
   };
 
@@ -42,7 +46,7 @@ const Login = () => {
         placeholder="example@google.com"
         onChangeText={changeHandler}
       />
-      <Button onPress={() => submitHandler(email)} title="Login" />
+      <Button style={styles.loginButton} onPress={() => submitHandler(email)} title="Login" />
     </SafeAreaView>
 
   );
