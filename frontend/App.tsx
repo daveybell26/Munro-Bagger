@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store/index';
 import { StyleSheet, View } from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native';
+import store from './store/index';
 import Explore from './Screens/Explore';
 import Login from './Screens/Login';
 import Map from './Screens/Map';

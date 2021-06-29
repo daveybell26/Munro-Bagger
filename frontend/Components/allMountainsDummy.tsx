@@ -9,11 +9,9 @@ import {
 } from 'react-native-elements';
 import { getMountains } from '../store/getAllMountains.store';
 
-function Posts () {
-  const listItems = useSelector((state) => state.allMountains.mountainList);
-  const listStatus = useSelector((state) => state.allMountains.status);
+function Posts() {
+  const listStatus = useSelector((state:any) => state.allMountains.status);
   // const { body } = listItems[0];
-  console.log(listItems);
 
   const dispatch = useDispatch();
   useEffect(() => {
