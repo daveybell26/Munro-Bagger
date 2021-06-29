@@ -4,23 +4,18 @@ import { View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
 import { styles, customMap } from './styles/mapStyles';
-// import { getAllMountains } from '../mockMunros.json';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
 
 const MapComponent = () => {
   const mountainList = useSelector((state:any) => state.allMountains.mountainList);
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getMountains());
-  }, [dispatch]);
+  const history = useHistory();
 
   const listOfMarkers = [];
   if (mountainList.length) {
     listOfMarkers.push(mountainList.map((location: any) => {
-      const history = useHistory();
       const markerLocation = {
         latitude: location.Peak.latitude,
         longitude: location.Peak.longitude,
@@ -40,6 +35,10 @@ const MapComponent = () => {
       );
     }));
   }
+
+  useEffect(() => {
+    dispatch(getMountains());
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>
