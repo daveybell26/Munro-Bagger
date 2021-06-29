@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { styles, customMap } from './styles/mapStyles';
 import { getAllMountains } from '../mockMunros.json';
-import GreenTriangle from '../assets/greenTriangle.png';
-import RedTriangle from '../assets/redTriangle.png';
+import GreenMountain from '../assets/greenMountain.png';
+import RedMountain from '../assets/redMountain.png';
 
 const listOfMarkers = getAllMountains.map((location) => {
   const markerLocation = {
@@ -14,10 +14,10 @@ const listOfMarkers = getAllMountains.map((location) => {
 
   return (
     <Marker
-      // onPress={() => Alert.alert(location.name)}
+      // onPress={}
       key={location.id}
       coordinate={markerLocation}
-      icon={location.Statuses[0].climbed ? GreenTriangle : RedTriangle}
+      icon={location.Statuses[0].climbed ? GreenMountain : RedMountain}
     >
       <Callout>
         <Text>{location.name}</Text>
