@@ -33,7 +33,7 @@ const Login = () => {
     setEmail(val);
   };
 
-  const submitHandler = (email: string) => {
+  const submitHandler = (useremail: string) => {
     history.push('/explore');
   };
 
