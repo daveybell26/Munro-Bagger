@@ -1,22 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView, Text, StyleSheet, TextInput, ImageBackground,
+  SafeAreaView, Text, Button, StyleSheet, TextInput, ImageBackground,
 } from 'react-native';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
-import NavFooter from '../Components/NavFooter';
+import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
-
-const styles = StyleSheet.create({
-  title: {
-    marginTop: '20%',
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
-
-const image = {};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,22 +21,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const Login = () => (
-<<<<<<< HEAD
-  <SafeAreaView style={styles.container}>
-    <Text>Login Screen</Text>
-    <Text> Enter E-mail</Text>
-    <TextInput
-      style={styles.emailInput}
-      placeholder="example@google.com"
-    />
-=======
-  <SafeAreaView style={{ flex: 1 }}>
-    <Header />
-    <Text style={styles.title}>Login Screen</Text>
->>>>>>> main
-    <NavFooter />
-  </SafeAreaView>
-);
+const Login = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState('');
 
+  const changeHandler = (val) => {
+    setEmail(val);
+  };
+
+  const submitHandler = (email) => {
+    history.push('/explore');
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header />
+      <Text> Enter E-mail</Text>
+      <TextInput
+        style={styles.emailInput}
+        placeholder="example@google.com"
+        onChangeText={changeHandler}
+      />
+      <Button onPress={() => submitHandler(email)} title="Login" />
+    </SafeAreaView>
+
+  );
+};
 export default Login;
