@@ -17,12 +17,14 @@ const styles = StyleSheet.create({
 
 const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
+  // fetching mockData to be replaced with api call
   const [mountainToDisplay] = getAllMountains.filter((mountain) => mountain.id === +id);
+  const { name } = mountainToDisplay;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header />
       <Text style={styles.title}>Mountain Profile Screen</Text>
-      <Text>{mountainToDisplay.name}</Text>
+      <Text>{name}</Text>
       <NavFooter />
     </SafeAreaView>
   );

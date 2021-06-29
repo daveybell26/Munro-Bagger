@@ -20,7 +20,7 @@ const MapComponent = () => {
         onPress={() => history.push(`/mountain/${location.id}`)}
         key={location.id}
         coordinate={markerLocation}
-        icon={location.Statuses[0].climbed ? GreenMountain : RedMountain}
+        image={location.Statuses[0].climbed ? GreenMountain : RedMountain}
       >
         <Callout>
           <Text>{location.name}</Text>
