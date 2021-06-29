@@ -18,8 +18,8 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <Map />
       <StatusBar />
+      <Map />
       <NavFooter />
     </View>
   );
