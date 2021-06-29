@@ -1,9 +1,10 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 
 const Login = () => (
   <SafeAreaView style={{ flex: 1 }}>
+    <Text>Login Screen</Text>
     <NavFooter />
   </SafeAreaView>
 );
