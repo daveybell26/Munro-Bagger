@@ -1,33 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
 import { styles, customMap } from './styles/mapStyles';
-import { getAllMountains } from '../mockMunros.json';
+// import { getAllMountains } from '../mockMunros.json';
+import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
 
 const MapComponent = () => {
-  const listOfMarkers = getAllMountains.map((location) => {
-    const history = useHistory();
-    const markerLocation = {
-      latitude: location.Peak.latitude,
-      longitude: location.Peak.longitude,
-    };
+  const mountainList = useSelector((state:any) => state.allMountains.mountainList);
 
-    return (
-      <Marker
-        onPress={() => history.push(`/mountain/${location.id}`)}
-        key={location.id}
-        coordinate={markerLocation}
-        image={location.Statuses[0].climbed ? GreenMountain : RedMountain}
-      >
-        <Callout>
-          <Text>{location.name}</Text>
-        </Callout>
-      </Marker>
-    );
-  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMountains());
+  }, [dispatch]);
+
+  const listOfMarkers = [];
+  if (mountainList.length) {
+    listOfMarkers.push(mountainList.map((location: any) => {
+      const history = useHistory();
+      const markerLocation = {
+        latitude: location.Peak.latitude,
+        longitude: location.Peak.longitude,
+      };
+
+      return (
+        <Marker
+          onPress={() => history.push(`/mountain/${location.id}`)}
+          key={location.id}
+          coordinate={markerLocation}
+          image={location.Statuses[0].climbed ? GreenMountain : RedMountain}
+        >
+          <Callout>
+            <Text>{location.name}</Text>
+          </Callout>
+        </Marker>
+      );
+    }));
+  }
 
   return (
     <View style={styles.container}>
@@ -42,7 +54,7 @@ const MapComponent = () => {
         style={styles.map}
         customMapStyle={customMap}
       >
-        {listOfMarkers}
+        {listOfMarkers[0]}
       </MapView>
     </View>
   );
