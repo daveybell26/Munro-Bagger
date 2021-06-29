@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+import NavFooter from '../Components/NavFooter';
 
 const Login = () => (
-  <View>
-    <Text> Login Screen</Text>
-  </View>
+  <SafeAreaView style={{ flex: 1 }}>
+    <Text>Login Screen</Text>
+    <NavFooter />
+  </SafeAreaView>
 );
 
 export default Login;
