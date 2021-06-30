@@ -13,17 +13,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    flex: 1,
-    marginTop: '20%',
+    marginTop: '10%',
     width: '100%',
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  name: {
-    flex: 1,
-    width: '100%',
-    fontSize: 12,
     textAlign: 'center',
   },
 });
@@ -40,8 +33,7 @@ const MountainProfile = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>Mountain Profile Screen</Text>
-      <Text>{name}</Text>
+      <Text style={styles.title}>{name}</Text>
       <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
