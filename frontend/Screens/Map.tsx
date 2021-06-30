@@ -1,23 +1,19 @@
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 import MapComponent from '../Components/MapComponent';
 import Header from '../Components/Header';
 
 const styles = StyleSheet.create({
-  title: {
-    marginTop: '20%',
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
 });
 
 const Map = () => (
-  <SafeAreaView style={{ flex: 1 }}>
+  <SafeAreaView style={styles.safeArea}>
     <Header />
-    <Text style={styles.title}>Map Screen</Text>
     <MapComponent />
     <NavFooter />
   </SafeAreaView>

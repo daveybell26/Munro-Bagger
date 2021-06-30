@@ -8,8 +8,12 @@ import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   title: {
-    marginTop: '20%',
+    marginTop: '10%',
     width: '100%',
     fontSize: 20,
     fontWeight: 'bold',
@@ -27,10 +31,9 @@ const MountainProfile = () => {
   }, [dispatch]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>Mountain Profile Screen</Text>
-      <Text>{name}</Text>
+      <Text style={styles.title}>{name}</Text>
       <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
