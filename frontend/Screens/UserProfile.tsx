@@ -9,14 +9,18 @@ import Header from '../Components/Header';
 const heroImage = require('../assets/hotChick.jpeg');
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   title: {
+    flex: 1,
+    marginTop: '20%',
+    width: '100%',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
 
-  },
-  safeArea: {
-    flex: 1,
   },
   userProfileHeroSection: {
     flexDirection: 'row',
@@ -26,7 +30,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     padding: 20,
     marginTop: 35,
-
   },
   userImage: {
     width: 100,
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
 });
 
 const UserProfile = () => (
-  <SafeAreaView style={styles.safeArea}>
+  <SafeAreaView style={{ flex: 1 }}>
     <Header />
     <View style={styles.userProfileHeroSection}>
       <Image style={styles.userImage} source={heroImage} />

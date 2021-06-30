@@ -4,7 +4,12 @@ import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   title: {
+    flex: 1,
     marginTop: '20%',
     width: '100%',
     fontSize: 20,
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 const Login = () => (
-  <SafeAreaView style={{ flex: 1 }}>
+  <SafeAreaView style={styles.safeArea}>
     <Header />
     <Text style={styles.title}>Login Screen</Text>
     <NavFooter />

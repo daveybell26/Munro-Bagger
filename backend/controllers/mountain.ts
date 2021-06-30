@@ -32,10 +32,14 @@ export const getMountainById = async (req: Request, res: Response) => {
           model: sequelize.models.Peak,
         },
         {
-          attributes: ['imageUrl'],
+          attributes: ['id', 'imageUrl'],
           model: sequelize.models.Picture,
           order: sequelize.random(),
           limit: 12,
+        },
+        {
+          attributes: ['climbed', 'wishlist'],
+          model: sequelize.models.Status,
         },
 
       ],

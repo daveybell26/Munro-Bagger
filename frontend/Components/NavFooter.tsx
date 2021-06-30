@@ -1,12 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 
 const styles = StyleSheet.create({
   navFooter: {
     width: '100%',
-    height: '10%',
+    height: 65,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
 const NavFooter = () => {
   const history = useHistory();
   return (
-    <SafeAreaView style={styles.navFooter}>
-      <MaterialIcons name="home" size={28} onPress={() => history.push('/explore')} />
-      <MaterialIcons name="terrain" size={28} onPress={() => history.push('/map')} />
-      <MaterialIcons name="person" size={28} onPress={() => history.push('/profile')} />
+    <SafeAreaView>
+      <View style={styles.navFooter}>
+        <MaterialIcons name="home" size={35} onPress={() => history.push('/explore')} />
+        <MaterialIcons name="terrain" size={35} onPress={() => history.push('/map')} />
+        <MaterialIcons name="person" size={35} onPress={() => history.push('/profile')} />
+      </View>
     </SafeAreaView>
   );
 };

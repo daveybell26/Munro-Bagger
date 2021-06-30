@@ -1,30 +1,67 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import {
+  SafeAreaView, Text, StyleSheet, Image, View,
+} from 'react-native';
 import { useParams } from 'react-router-native';
-import { getAllMountains } from '../mockMunros.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
+import ImageGrid from '../Components/ImageGrid';
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   title: {
-    marginTop: '20%',
     width: '100%',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  imageContainer: {
+    flex: 0,
+  },
 });
 
 const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
-  // fetching mockData to be replaced with api call
-  const [mountainToDisplay] = getAllMountains.filter((mountain) => mountain.id === +id);
-  const { name } = mountainToDisplay;
+  const {
+    name, imageUrl, Pictures, Peak, Statuses,
+  } = useSelector((state:any) => state.oneMountain.mountain);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOneMountain(+id));
+  }, [dispatch]);
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>Mountain Profile Screen</Text>
-      <Text>{name}</Text>
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={{ width: '100%', height: 200 }}
+        />
+      </View>
+      <Text style={styles.title}>
+        Information about
+        {' '}
+        {name}
+      </Text>
+      <Text>
+        Elevation:
+        {' '}
+        {Peak?.elevation}
+        m
+      </Text>
+      <Text>
+        Status:
+        {' '}
+        {Statuses?.climbed ? 'Climbed' : 'Not Climbed'}
+      </Text>
+      <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
   );
