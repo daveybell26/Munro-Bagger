@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import mountainsReducer from './getAllMountains.store';
 import oneMountainReducer from './getOneMountain.store';
 import randomUserPicsReducer from './getRandomUserPics.store';
-import loginReducer from './login.store'
+import loginReducer from './login.store';
 
 const store = configureStore({
   reducer: {
