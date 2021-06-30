@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { BACKEND_URL } from '@env';
 
-const baseUrl = BACKEND_URL;
+const baseUrl = 'http://192.168.0.55:8080';
 
 export const login = (email: string) => axios.post(
-  `${baseUrl}/login`, email,
+  `${baseUrl}/login`, { email },
 );
 
 export const getRandomUserPics = (UserId: number) => axios.get(

@@ -1,28 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, ImageBackground } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/customButton';
+import { postLogin } from '../store/login.store';
 
 const backGroundImage = require('../assets/background.jpg');
-
-const users = [
-  {
-    email: 'jon@example.com',
-  },
-  {
-    email: 'kostas@example.com',
-  },
-  {
-    email: 'dave@example.com',
-  },
-  {
-    email: 'steffen@example.com',
-  },
-  {
-    email: 'ian@example.com',
-  },
-];
 
 const styles = StyleSheet.create({
   container: {
@@ -43,18 +27,19 @@ const styles = StyleSheet.create({
 const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const userDetails = useSelector((state: any) => state.login.userDetails);
 
   const changeHandler = (val: string) => {
     setEmail(val);
   };
+  console.log('userDetails line 36', userDetails);
 
   const submitHandler = () => {
-    users.forEach((user) => {
-      if (user.email === email) {
-        setEmail('');
-        history.push('/explore');
-      }
-    });
+    console.log('firing');
+    dispatch(postLogin());
+    setEmail('');
+    history.push('/explore');
   };
 
   return (

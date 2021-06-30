@@ -3,10 +3,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login } from '../services/apiService';
 
 export const postLogin = createAsyncThunk('login/postLogin', async () => {
-  const { data } = await login("steffen@example.com");
+  console.log('inside Postlogin');
+  const { data } = await login('steffen@example.com');
+  console.log(data);
   return data;
 });
-
 
 interface LoginState {
   userDetails: {}
