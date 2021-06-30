@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import {
+  SafeAreaView, Text, StyleSheet, Image,
+} from 'react-native';
 import { useParams } from 'react-router-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneMountain } from '../store/getOneMountain.store';
@@ -19,9 +21,8 @@ const styles = StyleSheet.create({
 
 const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
-  const { name, Pictures } = useSelector((state:any) => state.oneMountain.mountain);
+  const { name, imageUrl, Pictures } = useSelector((state:any) => state.oneMountain.mountain);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getOneMountain(+id));
   }, [dispatch]);
@@ -31,6 +32,10 @@ const MountainProfile = () => {
       <Header />
       <Text style={styles.title}>Mountain Profile Screen</Text>
       <Text>{name}</Text>
+      <Image
+        source={{ uri: imageUrl }}
+        style={{ width: 200, height: 200, margin: 10 }}
+      />
       <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
