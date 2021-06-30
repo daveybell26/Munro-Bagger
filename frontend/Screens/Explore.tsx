@@ -13,10 +13,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    flex: 1,
-    marginTop: '20%',
+    flex: 0,
+    marginTop: '5%',
+    marginBottom: '5%',
     width: '100%',
     fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  pictureTitle: {
+    marginTop: '2%',
+    marginBottom: '2%',
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -28,7 +36,7 @@ const Explore = () => {
 
   const randomMountainImage = (name:string, uri: string) => (
     <View>
-      <Text>{ name }</Text>
+      <Text style={styles.pictureTitle}>{ name }</Text>
       <Image
         source={{ uri }}
         style={{ width: '100%', height: 200 }}
@@ -49,7 +57,6 @@ const Explore = () => {
         data={list}
         renderItem={({ item }) => randomMountainImage(item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={1}
       />
       <NavFooter />
     </SafeAreaView>
