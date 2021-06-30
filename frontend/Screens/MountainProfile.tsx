@@ -19,9 +19,8 @@ const styles = StyleSheet.create({
 
 const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
-  const mountainToDisplay = useSelector((state:any) => state.oneMountain.mountain);
+  const { name, Pictures } = useSelector((state:any) => state.oneMountain.mountain);
   const dispatch = useDispatch();
-  const { name, Pictures } = mountainToDisplay;
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
