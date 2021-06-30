@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  SafeAreaView, StyleSheet, Text, View, Image,
+  SafeAreaView, StyleSheet, Text, Image, View, FlatList,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRandomMountains } from '../store/explore.store';
@@ -25,27 +25,32 @@ const styles = StyleSheet.create({
 const Explore = () => {
   const list = useSelector((state:any) => state.exploreRandomMountains.randomMountainsList);
   const dispatch = useDispatch();
-  const listOfRandomMountains = list ? list.map((mountain: any) => {
-    const { name, imageUrl } = mountain;
-    return (
-      <View>
-        <Text>{name}</Text>
-        <Image source={{ uri: imageUrl }} />
-      </View>
-    );
-  }) : null;
+
+  const randomMountainImage = (name:string, uri: string) => (
+    <View>
+      <Text>{ name }</Text>
+      <Image
+        source={{ uri }}
+        style={{ width: '100%', height: 200 }}
+      />
+    </View>
+
+  );
 
   useEffect(() => {
     dispatch(getRandomMountains());
   }, [dispatch]);
 
-  // TODO: remove this console.log
-  console.log(list[0]);
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
       <Text style={styles.title}>Explore Screen</Text>
+      <FlatList
+        data={list}
+        renderItem={({ item }) => randomMountainImage(item.name, item.imageUrl)}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={1}
+      />
       <NavFooter />
     </SafeAreaView>
   );
