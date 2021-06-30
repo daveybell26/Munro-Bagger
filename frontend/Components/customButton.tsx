@@ -5,7 +5,7 @@ import {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 8,
+    borderRadius: 20,
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#427AA1',

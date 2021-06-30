@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView, Text, StyleSheet, TextInput, ImageBackground,
-} from 'react-native';
+import { StyleSheet, TextInput, ImageBackground } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/customButton';
+
+const backGroundImage = require('../assets/background.jpg');
 
 const users = [
   {
@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   return (
-    <ImageBackground source={require('../assets/background.jpg')} style={styles.container}>
+    <ImageBackground source={backGroundImage} style={styles.container}>
       <Header />
       <TextInput
         style={styles.emailInput}
