@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import { useParams } from 'react-router-native';
-import { getAllMountains } from '../mockMunros.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 
@@ -17,9 +18,14 @@ const styles = StyleSheet.create({
 
 const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
-  // fetching mockData to be replaced with api call
-  const [mountainToDisplay] = getAllMountains.filter((mountain) => mountain.id === +id);
+  const mountainToDisplay = useSelector((state:any) => state.oneMountain.mountain);
+  const dispatch = useDispatch();
   const { name } = mountainToDisplay;
+
+  useEffect(() => {
+    dispatch(getOneMountain(+id));
+  }, [dispatch]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header />
