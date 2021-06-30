@@ -21,8 +21,6 @@ const MountainProfile = () => {
   const mountainToDisplay = useSelector((state:any) => state.oneMountain.mountain);
   const dispatch = useDispatch();
   const { name } = mountainToDisplay;
-  const { Pictures } = mountainToDisplay;
-  console.log(typeof Pictures);
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
