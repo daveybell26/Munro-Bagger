@@ -3,7 +3,6 @@ import sequelize from '../models/sequelize';
 
 export const getAllMountains = async (req: Request, res: Response) => {
   try {
-    console.log('here');
     const data = await sequelize.models.Mountain.findAll({
       include: [
         {

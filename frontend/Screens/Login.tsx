@@ -9,7 +9,6 @@ import { postLogin } from '../store/login.store';
 const backGroundImage = require('../assets/background.jpg');
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -23,19 +22,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 8,
     backgroundColor: 'white',
-=======
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  title: {
-    flex: 1,
-    marginTop: '20%',
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
->>>>>>> main
   },
 });
 const Login = () => {
@@ -43,20 +29,20 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
   const userDetails = useSelector((state: any) => state.login.userDetails);
+  console.log('USER DETAILS !!!!!!!!!!!!!!!!', userDetails);
 
   const changeHandler = (val: string) => {
     setEmail(val);
   };
-  console.log('userDetails line 36', userDetails);
 
-  const submitHandler = () => {
-    console.log('firing');
-    dispatch(postLogin());
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+    console.log('Inside submit', email);
+    dispatch(postLogin(email));
     setEmail('');
-    history.push('/explore');
+    // history.push('/explore');
   };
 
-<<<<<<< HEAD
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
       <Header />
@@ -67,15 +53,6 @@ const Login = () => {
       />
       <CustomButton text="login" onPress={submitHandler} />
     </ImageBackground>
-=======
-const Login = () => (
-  <SafeAreaView style={styles.safeArea}>
-    <Header />
-    <Text style={styles.title}>Login Screen</Text>
-    <NavFooter />
-  </SafeAreaView>
-);
->>>>>>> main
 
   );
 };
