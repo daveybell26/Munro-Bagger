@@ -1,29 +1,40 @@
 import React from 'react';
 import {
   Image, Modal, Pressable,
+  StyleSheet,
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 
+const styles = StyleSheet.create({
+  blur: {
+    flex: 1, alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%',
+  },
+  image: {
+    width: 300, height: 300, borderRadius: 10,
+  },
+  pressable: {
+    flex: 1, alignItems: 'center', justifyContent: 'center',
+  },
+});
+
 const ImageModal = ({ modal, setModal }: { modal: any, setModal: any }) => (
-  <Modal visible={!!modal.id} animationType="fade" transparent>
+  <Modal
+    visible={!!modal.id}
+    animationType="fade"
+    transparent
+  >
     <Pressable
-      style={{
-        flex: 1, alignItems: 'center', justifyContent: 'center',
-      }}
-      onPress={() => { setModal({}); }}
+      style={styles.pressable}
+      onPress={() => setModal({})}
     >
       <BlurView
         intensity={100}
         tint="dark"
-        style={{
-          flex: 1, alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%',
-        }}
+        style={styles.blur}
       >
         <Image
           source={{ uri: modal.imageUrl }}
-          style={{
-            width: 300, height: 300, borderRadius: 10,
-          }}
+          style={styles.image}
         />
       </BlurView>
     </Pressable>
