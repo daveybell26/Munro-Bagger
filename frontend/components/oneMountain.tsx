@@ -14,7 +14,7 @@ function OneMountain() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOneMountain());
+    dispatch(getOneMountain(1));
   }, [dispatch]);
 
   return (

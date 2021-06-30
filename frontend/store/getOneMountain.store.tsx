@@ -2,9 +2,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getMountainById } from '../services/apiService';
 
-export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', async () => {
+export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', async (id: number) => {
   // TODO: make getMountainById parameter dynamic
-  const { data } = await getMountainById(1);
+  const { data } = await getMountainById(id);
   return data;
 });
 
