@@ -2,9 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login } from '../services/apiService';
 
-export const postLogin = createAsyncThunk('login/postLogin', async (email, thunkAPI) => {
+export const postLogin = createAsyncThunk('login/postLogin', async (email) => {
   const { data } = await login(email);
-  console.log(data);
   return data;
 });
 

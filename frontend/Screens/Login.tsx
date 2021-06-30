@@ -29,15 +29,13 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
   const userDetails = useSelector((state: any) => state.login.userDetails);
-  console.log('USER DETAILS !!!!!!!!!!!!!!!!', userDetails);
+  console.log('here', userDetails);
 
   const changeHandler = (val: string) => {
     setEmail(val);
   };
 
-  const submitHandler = (e: any) => {
-    e.preventDefault();
-    console.log('Inside submit', email);
+  const submitHandler = () => {
     dispatch(postLogin(email));
     setEmail('');
     // history.push('/explore');
