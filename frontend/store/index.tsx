@@ -4,6 +4,7 @@ import mountainsReducer from './getAllMountains.store';
 import oneMountainReducer from './getOneMountain.store';
 import randomUserPicsReducer from './getRandomUserPics.store';
 import loginReducer from './login.store';
+import exploreMountainsReducer from './explore.store';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     oneMountain: oneMountainReducer,
     randomUserPics: randomUserPicsReducer,
     login: loginReducer,
+    exploreRandomMountains: exploreMountainsReducer,
   },
 });
 
