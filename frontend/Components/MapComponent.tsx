@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
 import { styles, customMap } from './styles/mapStyles';
@@ -37,8 +37,7 @@ const MapComponent = () => {
   }, [dispatch]);
 
   return (
-    <View style={styles.container}>
-      <Text>Munros Map</Text>
+    <SafeAreaView style={styles.container}>
       <MapView
         region={{
           latitude: 57.3017,
@@ -51,7 +50,7 @@ const MapComponent = () => {
       >
         {listOfMarkers}
       </MapView>
-    </View>
+    </SafeAreaView>
   );
 };
 

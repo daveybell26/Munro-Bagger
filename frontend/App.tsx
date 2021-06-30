@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native';
+import { SafeAreaView } from 'react-native';
 import store from './store/index';
 import Explore from './Screens/Explore';
 import Login from './Screens/Login';
@@ -9,19 +9,11 @@ import Map from './Screens/Map';
 import MountainProfile from './Screens/MountainProfile';
 import UserProfile from './Screens/UserProfile';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-});
-
 export default function App() {
   return (
-    <Provider store={store}>
-      <NativeRouter>
-        <View style={styles.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#427AA1' }}>
+      <Provider store={store}>
+        <NativeRouter>
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/explore" component={Explore} />
@@ -29,8 +21,8 @@ export default function App() {
             <Route exact path="/mountain/:id" component={MountainProfile} />
             <Route exact path="/profile" component={UserProfile} />
           </Switch>
-        </View>
-      </NativeRouter>
-    </Provider>
+        </NativeRouter>
+      </Provider>
+    </SafeAreaView>
   );
 }
