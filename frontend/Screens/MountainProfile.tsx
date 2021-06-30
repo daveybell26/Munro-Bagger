@@ -30,8 +30,8 @@ const MountainProfile = () => {
   const {
     name, imageUrl, Pictures, Peak, Statuses,
   } = useSelector((state:any) => state.oneMountain.mountain);
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getOneMountain(+id));
   }, [dispatch]);

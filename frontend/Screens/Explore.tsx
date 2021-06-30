@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import {
+  SafeAreaView, StyleSheet, Text, View, Image,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRandomMountains } from '../store/explore.store';
 import NavFooter from '../Components/NavFooter';
@@ -22,8 +24,17 @@ const styles = StyleSheet.create({
 
 const Explore = () => {
   const list = useSelector((state:any) => state.exploreRandomMountains.randomMountainsList);
-
   const dispatch = useDispatch();
+  const listOfRandomMountains = list ? list.map((mountain: any) => {
+    const { name, imageUrl } = mountain;
+    return (
+      <View>
+        <Text>{name}</Text>
+        <Image source={{ uri: imageUrl }} />
+      </View>
+    );
+  }) : null;
+
   useEffect(() => {
     dispatch(getRandomMountains());
   }, [dispatch]);
