@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
-  FlatList, Image, Modal, Pressable, SafeAreaView,
+  FlatList, Image, Pressable, SafeAreaView,
 } from 'react-native';
-import { BlurView } from 'expo-blur';
+import ImageModal from './ImageModal';
 
 const ImageGrid = ({ list }: { list:any }) => {
-  const [modal, setModal] = useState({});
+  const [modal, setModal] = useState<any>({});
 
   const singleImage = (item: any) => (
     <Pressable onPress={() => setModal(item)}>
@@ -18,33 +18,9 @@ const ImageGrid = ({ list }: { list:any }) => {
     </Pressable>
   );
 
-  const isVisable = !!modal.id;
-
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-      <Modal visible={isVisable} animationType="fade" transparent>
-        <Pressable
-          style={{
-            flex: 1, alignItems: 'center', justifyContent: 'center',
-          }}
-          onPress={() => { setModal({}); }}
-        >
-          <BlurView
-            intensity={100}
-            tint="dark"
-            style={{
-              flex: 1, alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%',
-            }}
-          >
-            <Image
-              source={{ uri: modal.imageUrl }}
-              style={{
-                width: 300, height: 300, borderRadius: 10,
-              }}
-            />
-          </BlurView>
-        </Pressable>
-      </Modal>
+      <ImageModal modal={modal} setModal={setModal} />
       <FlatList
         data={list}
         renderItem={({ item }) => singleImage(item)}
