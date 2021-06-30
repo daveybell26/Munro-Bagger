@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  StyleSheet, Text, SafeAreaView, TouchableOpacity,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const CustomButton = ({ text, onPress }) => (
+const CustomButton = ({ onPress, children }: any) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={styles.button}>
-      <Text style={styles.buttonText}>{ text }</Text>
-    </View>
+    <SafeAreaView style={styles.button}>
+      <Text style={styles.buttonText}>{children}</Text>
+    </SafeAreaView>
   </TouchableOpacity>
 );
 

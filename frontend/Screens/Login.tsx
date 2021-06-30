@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, TextInput, ImageBackground } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
@@ -29,7 +29,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
   const userDetails = useSelector((state: any) => state.login.userDetails);
-  console.log('here', userDetails);
+  useEffect(() => {
+    if (userDetails.id) history.push('/explore');
+  }, [userDetails]);
 
   const changeHandler = (val: string) => {
     setEmail(val);
@@ -37,8 +39,6 @@ const Login = () => {
 
   const submitHandler = () => {
     dispatch(postLogin(email));
-    setEmail('');
-    // history.push('/explore');
   };
 
   return (
@@ -49,7 +49,7 @@ const Login = () => {
         placeholder="example@google.com"
         onChangeText={changeHandler}
       />
-      <CustomButton text="login" onPress={submitHandler} />
+      <CustomButton onPress={submitHandler}>Login</CustomButton>
     </ImageBackground>
 
   );
