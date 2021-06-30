@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
 import { styles, customMap } from './styles/mapStyles';
@@ -30,8 +30,7 @@ const MapComponent = () => {
   });
 
   return (
-    <View style={styles.container}>
-      <Text>Munros Map</Text>
+    <SafeAreaView style={styles.container}>
       <MapView
         region={{
           latitude: 57.3017,
@@ -44,7 +43,7 @@ const MapComponent = () => {
       >
         {listOfMarkers}
       </MapView>
-    </View>
+    </SafeAreaView>
   );
 };
 
