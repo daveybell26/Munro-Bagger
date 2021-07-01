@@ -16,13 +16,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const Picture = ({ picture } :any, { retakePicture }: any) => {
+const Picture = ({
+  picture,
+  retakePicture,
+}: {
+  picture: any;
+  retakePicture: any;
+}) => {
   const history = useHistory();
 
   return (
     <View style={styles.container}>
       <ImageBackground source={{ uri: picture.uri }} style={styles.image} />
-      <MaterialIcons onPress={retakePicture()} name="photo-camera" size={24} color="black" />
+      <MaterialIcons onPress={() => retakePicture()} name="photo-camera" size={24} color="black" />
       <MaterialIcons onPress={() => history.push('/camera')} name="arrow-back-ios" size={24} color="black" />
     </View>
   );

@@ -57,7 +57,14 @@ const CameraScreen = () => {
       {previewVisible && capturedImage ? (
         <Picture picture={capturedImage} retakePicture={retakePicture} />
       ) : (
-        <Camera style={styles.camera} type={type} ratio="16:9">
+        <Camera
+          ref={(reference) => {
+            camera = reference;
+          }}
+          style={styles.camera}
+          type={type}
+          ratio="16:9"
+        >
           <View style={styles.takePictureButton}>
             <TouchableOpacity onPress={takePicture}>
               <MaterialIcons name="photo-camera" size={24} color="black" />
