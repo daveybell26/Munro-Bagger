@@ -44,7 +44,7 @@ const Picture = ({
           </TouchableOpacity>
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => history.push({ pathname: '/uploadPicture', state: picture.uri })}>
+          <TouchableOpacity onPress={() => history.push('/uploadPicture', { picture: picture.uri })}>
             <MaterialIcons name="check-circle-outline" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>

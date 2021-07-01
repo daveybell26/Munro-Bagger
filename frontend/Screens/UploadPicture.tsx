@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
 
 const UploadPicture = (state : any) => {
   const history = useHistory();
-  console.log(state);
+  const { history: { location: { state: { picture } } } } = state;
+  console.log(picture);
   return (
     <SafeAreaView style={styles.container}>
       <Text>We upload here</Text>
