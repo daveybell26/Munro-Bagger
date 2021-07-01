@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useHistory } from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +19,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     borderRadius: 35,
-    height: Dimensions.get('screen').height * 0.08,
-    width: Dimensions.get('screen').width * 0.2,
+    height: Dimensions.get('screen').height * 0.06,
+    width: Dimensions.get('screen').width * 0.15,
     position: 'absolute',
     bottom: '2%',
     left: '2%',
@@ -30,16 +31,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     borderRadius: 35,
-    height: Dimensions.get('screen').height * 0.08,
-    width: Dimensions.get('screen').width * 0.2,
+    height: Dimensions.get('screen').height * 0.06,
+    width: Dimensions.get('screen').width * 0.15,
     position: 'absolute',
     bottom: '3%',
-    right: '40%',
+    right: '42.5%',
+  },
+  backButton: {
+    backgroundColor: '#FFFFFE',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    borderRadius: 35,
+    height: Dimensions.get('screen').height * 0.06,
+    width: Dimensions.get('screen').width * 0.15,
+    position: 'absolute',
+    bottom: '3%',
+    right: '2%',
   },
 
 });
 
 const CameraScreen = () => {
+  const history = useHistory();
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -75,6 +89,9 @@ const CameraScreen = () => {
             size={24}
             color="black"
           />
+        </View>
+        <View style={styles.backButton}>
+          <MaterialIcons onPress={() => history.push('/profile')} name="arrow-back-ios" size={24} color="black" />
         </View>
 
       </Camera>
