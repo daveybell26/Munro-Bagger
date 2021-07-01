@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface PermissionInfo {
   status: 'granted' | 'undetermined' | 'denied';
@@ -30,10 +30,8 @@ const permissionSlice = createSlice({
   name: 'permission',
   initialState,
   reducers: {
-    setPermission(state) {
-      state.status = 'granted';
-      state.granted = !state.granted;
-      state.expires = 'never';
+    setPermission(state, action: PayloadAction<boolean>) {
+      state.granted = action.payload;
     },
   },
 });

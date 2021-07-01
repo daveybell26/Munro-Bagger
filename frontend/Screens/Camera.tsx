@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  View, Text, TouchableOpacity, SafeAreaView,
+} from 'react-native';
 import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 import styles from './styles/camera';
-import Picture from '../Components/previewPicture';
+import Picture from '../Components/PreviewPicture';
 
 const CameraScreen = () => {
   const history = useHistory();
@@ -53,7 +55,7 @@ const CameraScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {previewVisible && capturedImage ? (
         <Picture picture={capturedImage} retakePicture={retakePicture} />
       ) : (
@@ -65,11 +67,6 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
-          <View style={styles.takePictureButton}>
-            <TouchableOpacity onPress={takePicture}>
-              <MaterialIcons name="photo-camera" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
           <View style={styles.switchCameraButton}>
             <TouchableOpacity onPress={() => {
               setType(
@@ -85,7 +82,11 @@ const CameraScreen = () => {
                 color="black"
               />
             </TouchableOpacity>
-
+          </View>
+          <View style={styles.takePictureButton}>
+            <TouchableOpacity onPress={takePicture}>
+              <MaterialIcons name="photo-camera" size={24} color="black" />
+            </TouchableOpacity>
           </View>
           <View style={styles.backButton}>
             <TouchableOpacity onPress={() => history.push('/profile')}>
@@ -94,7 +95,7 @@ const CameraScreen = () => {
           </View>
         </Camera>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
