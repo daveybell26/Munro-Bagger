@@ -12,7 +12,7 @@ import ImageGrid from '../Components/ImageGrid';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EBF2FA',
   },
   title: {
     width: '100%',

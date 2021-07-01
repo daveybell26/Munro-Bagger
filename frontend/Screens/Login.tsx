@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
-import CustomButton from '../Components/customButton';
+import CustomButton from '../Components/CustomButton';
 import { postLogin } from '../store/login.store';
 
 const backGroundImage = require('../assets/background.jpg');
@@ -13,7 +13,7 @@ const backGroundImage = require('../assets/background.jpg');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EBF2FA',
   },
   emailInput: {
     borderWidth: 1,
@@ -46,6 +46,7 @@ const Login = () => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <TextInput
           style={styles.emailInput}
+          keyboardType="email-address"
           placeholder="user@example.com"
           onChangeText={changeHandler}
         />
