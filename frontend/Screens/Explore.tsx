@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import {
-  SafeAreaView, StyleSheet, Text, Image, View, FlatList,
+  FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-native';
 import { getRandomMountains } from '../store/explore.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
@@ -10,7 +11,7 @@ import Header from '../Components/Header';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EBF2FA',
   },
   title: {
     flex: 0,
@@ -22,25 +23,31 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pictureTitle: {
-    marginTop: '2%',
-    marginBottom: '2%',
+    marginBottom: 20,
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  list: {
+    marginBottom: 80,
   },
 });
 
 const Explore = () => {
   const list = useSelector((state:any) => state.exploreRandomMountains.randomMountainsList);
-  const dispatch = useDispatch();
 
-  const randomMountainImage = (name:string, uri: string) => (
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const randomMountainImage = (id: number, name:string, uri: string) => (
     <View>
-      <Text style={styles.pictureTitle}>{ name }</Text>
-      <Image
-        source={{ uri }}
-        style={{ width: '100%', height: 200 }}
-      />
+      <Pressable onPress={() => history.push(`/mountain/${id}`)}>
+        <Image
+          source={{ uri }}
+          style={{ width: '100%', height: 200 }}
+        />
+        <Text style={styles.pictureTitle}>{ name }</Text>
+      </Pressable>
     </View>
 
   );
@@ -55,8 +62,9 @@ const Explore = () => {
       <Text style={styles.title}>Explore Screen</Text>
       <FlatList
         data={list}
-        renderItem={({ item }) => randomMountainImage(item.name, item.imageUrl)}
+        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
+        style={styles.list}
       />
       <NavFooter />
     </SafeAreaView>
