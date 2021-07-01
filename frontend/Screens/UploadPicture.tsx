@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,
+  SafeAreaView, Text, StyleSheet, TouchableOpacity, View,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useHistory } from 'react-router-native';
@@ -53,10 +53,11 @@ const UploadPicture = (pictureToBeUploaded : any) => {
 
   if (pickers?.length) console.log(picture);
 
+  if (selectedMountain) console.log(selectedMountain);
   return (
     <SafeAreaView style={styles.container}>
       <Text>Pick a Mountain</Text>
-      <TouchableWithoutFeedback>
+      <View style={{ flex: 1, padding: 0, margin: 0 }}>
         <Picker
           selectedValue={selectedMountain}
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -64,7 +65,7 @@ const UploadPicture = (pictureToBeUploaded : any) => {
         >
           {pickers}
         </Picker>
-      </TouchableWithoutFeedback>
+      </View>
       <TouchableOpacity onPress={() => history.push('/camera')}>
         <MaterialIcons name="highlight-remove" size={24} color="black" />
       </TouchableOpacity>
