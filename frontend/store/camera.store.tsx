@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface PermissionInfo {
   status: 'granted' | 'undetermined' | 'denied';
@@ -30,9 +30,13 @@ const permissionSlice = createSlice({
   initialState,
   reducers: {
     setPermission(state) {
-      state.status = 'granted',
-      state.granted = !state.granted,
-      state.expires = 'never',
+      state.status = 'granted';
+      state.granted = !state.granted;
+      state.expires = 'never';
     },
-  }
-})
+  },
+});
+
+export const { setPermission } = permissionSlice.actions;
+
+export default permissionSlice.reducer;
