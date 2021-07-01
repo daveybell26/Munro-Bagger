@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, TouchableOpacity, SafeAreaView,
+  SafeAreaView, View, Text, TouchableOpacity,
 } from 'react-native';
 import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -67,7 +67,7 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
-          <View style={styles.switchCameraButton}>
+          <SafeAreaView style={styles.switchCameraButton}>
             <TouchableOpacity onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -82,17 +82,17 @@ const CameraScreen = () => {
                 color="black"
               />
             </TouchableOpacity>
-          </View>
-          <View style={styles.takePictureButton}>
+          </SafeAreaView>
+          <SafeAreaView style={styles.takePictureButton}>
             <TouchableOpacity onPress={takePicture}>
               <MaterialIcons name="photo-camera" size={24} color="black" />
             </TouchableOpacity>
-          </View>
-          <View style={styles.backButton}>
-            <TouchableOpacity onPress={() => history.push('/profile')}>
-              <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+          </SafeAreaView>
+          <SafeAreaView style={styles.backButton}>
+            <TouchableOpacity onPress={() => history.goBack()}>
+              <MaterialIcons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
-          </View>
+          </SafeAreaView>
         </Camera>
       )}
     </SafeAreaView>
