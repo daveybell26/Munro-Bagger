@@ -58,9 +58,9 @@ const Explore = () => {
       <Header />
       <Text style={styles.title}>Explore Screen</Text>
       <FlatList
-        data={list}
+        data={unclimbedArr}
         renderItem={({ item }) => randomMountainImage(item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.name.toString()}
       />
       <NavFooter />
     </SafeAreaView>
