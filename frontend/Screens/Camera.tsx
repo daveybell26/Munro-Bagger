@@ -25,7 +25,7 @@ const CameraScreen = () => {
   }
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type} ratio="16:9">
         <View style={styles.takePictureButton}>
           <MaterialIcons name="photo-camera" size={24} color="black" />
         </View>
