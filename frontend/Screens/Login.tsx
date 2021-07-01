@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
 });
 
 const Login = () => {
-  // TODO: remove useState and instead put into redux
   const [email, setEmail] = useState('');
   const userDetails = useSelector((state: any) => state.login.userDetails);
 
