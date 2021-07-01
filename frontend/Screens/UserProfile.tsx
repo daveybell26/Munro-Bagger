@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  SafeAreaView, StyleSheet, Text, TouchableOpacity, Dimensions,
+  SafeAreaView, StyleSheet, Text,
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';

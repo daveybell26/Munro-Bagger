@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity,
+  StyleSheet, View, Text, TouchableOpacity, Dimensions,
 } from 'react-native';
 import { Camera } from 'expo-camera';
 
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1,
   },
   camera: {
-
+    height: Dimensions.get('window').height,
   },
   buttonContainer: {
 
