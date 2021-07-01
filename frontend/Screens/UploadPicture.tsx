@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView, Text, StyleSheet, TouchableOpacity,
+  SafeAreaView, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useHistory } from 'react-router-native';
@@ -10,9 +10,9 @@ import { getMountains } from '../store/getAllMountains.store';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     justifyContent: 'space-around',
     padding: 25,
   },
@@ -51,23 +51,24 @@ const UploadPicture = (pictureToBeUploaded : any) => {
   // eslint-disable-next-line max-len
   const pickers = mountainList ? mountainList.map((location: any) => <Picker.Item key={location.id} label={location.name} value={location.id} />) : null;
 
-  if (pickers?.length) console.log(pickers);
+  if (pickers?.length) console.log(picture);
 
   return (
     <SafeAreaView style={styles.container}>
       <Text>Pick a Mountain</Text>
-      <Picker
-        selectedValue={selectedMountain}
+      <TouchableWithoutFeedback>
+        <Picker
+          selectedValue={selectedMountain}
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        onValueChange={(itemValue, itemIndex) => setSelectedMountain(itemValue)}
-      >
-        {pickers}
-      </Picker>
-      <SafeAreaView style={styles.button}>
-        <TouchableOpacity onPress={() => history.push('/camera')}>
-          <MaterialIcons name="highlight-remove" size={24} color="black" />
-        </TouchableOpacity>
-      </SafeAreaView>
+          onValueChange={(itemValue, itemIndex) => setSelectedMountain(itemValue)}
+        >
+          {pickers}
+        </Picker>
+      </TouchableWithoutFeedback>
+      <TouchableOpacity onPress={() => history.push('/camera')}>
+        <MaterialIcons name="highlight-remove" size={24} color="black" />
+      </TouchableOpacity>
+
     </SafeAreaView>
   );
 };
