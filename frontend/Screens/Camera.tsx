@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity, Dimensions,
+  StyleSheet, View, Text, Dimensions,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,14 +12,29 @@ const styles = StyleSheet.create({
   camera: {
     height: Dimensions.get('window').height,
   },
-  buttonContainer: {
-
+  switchCameraButton: {
+    backgroundColor: '#FFFFFE',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    borderRadius: 35,
+    height: Dimensions.get('screen').height * 0.08,
+    width: Dimensions.get('screen').width * 0.2,
+    position: 'absolute',
+    bottom: '2%',
+    left: '2%',
   },
-  button: {
-
-  },
-  text: {
-
+  takePictureButton: {
+    backgroundColor: '#FFFFFE',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    borderRadius: 35,
+    height: Dimensions.get('screen').height * 0.08,
+    width: Dimensions.get('screen').width * 0.2,
+    position: 'absolute',
+    bottom: '3%',
+    right: '40%',
   },
 
 });
@@ -43,9 +59,11 @@ const CameraScreen = () => {
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
+        <View style={styles.takePictureButton}>
+          <MaterialIcons name="photo-camera" size={24} color="black" />
+        </View>
+        <View style={styles.switchCameraButton}>
+          <MaterialIcons
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -53,10 +71,12 @@ const CameraScreen = () => {
                   : Camera.Constants.Type.back,
               );
             }}
-          >
-            <Text style={styles.text}> Flip </Text>
-          </TouchableOpacity>
+            name="flip-camera-ios"
+            size={24}
+            color="black"
+          />
         </View>
+
       </Camera>
     </View>
   );
