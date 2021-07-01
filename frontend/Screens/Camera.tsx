@@ -1,22 +1,65 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import Camera from 'expo-camera';
+import React, { useEffect } from 'react';
+import {
+  StyleSheet, View, Text, TouchableOpacity,
+} from 'react-native';
+import { Camera } from 'expo-camera';
 
-function App() {
-  const [permission, askForPermission] = usePermissions(Permissions.CAMERA, { ask: true });
+const styles = StyleSheet.create({
+  container: {
 
-  if (!permission || permission.status !== 'granted') {
-    return (
-      <View>
-        <Text>Permission is not granted</Text>
-        <TouchableOpacity onPress={askForPermission} />
-      </View>
-    );
+  },
+  camera: {
+
+  },
+  buttonContainer: {
+
+  },
+  button: {
+
+  },
+  text: {
+
+  },
+
+});
+
+const CameraScreen = () => {
+  const [hasPermission, setHasPermission] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
   }
-
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
   return (
-    <View>
-      <Camera />
+    <View style={styles.container}>
+      <Camera style={styles.camera} type={type}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back,
+              );
+            }}
+          >
+            <Text style={styles.text}> Flip </Text>
+          </TouchableOpacity>
+        </View>
+      </Camera>
     </View>
   );
-}
+};
+
+export default CameraScreen;

@@ -1,3 +1,18 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+interface PermissionInfo {
+  status: 'granted' | 'undetermined' | 'denied';
+  granted: boolean;
+  expires: 'never' | number;
+  canAskAgain: boolean;
+  ios?: {
+    scope: 'whenInUse' | 'always';
+  };
+  android?: {
+    scope: 'fine' | 'coarse' | 'none';
+  };
+}
+
 interface PermissionResponse {
   status: 'granted' | 'undetermined' | 'denied';
   granted: boolean;
@@ -7,3 +22,17 @@ interface PermissionResponse {
     [permissionType: string]: PermissionInfo;
   };
 }
+
+const initialState = { status: 'undetermined' } as PermissionResponse;
+
+const permissionSlice = createSlice({
+  name: 'permission',
+  initialState,
+  reducers: {
+    setPermission(state) {
+      state.status = 'granted',
+      state.granted = !state.granted,
+      state.expires = 'never',
+    },
+  }
+})
