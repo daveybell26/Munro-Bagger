@@ -34,19 +34,19 @@ const styles = StyleSheet.create({
 });
 
 const Explore = () => {
-  const list = useSelector((state:any) => state.exploreRandomMountains.randomMountainsList);
+  const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const randomMountainImage = (id: number, name:string, uri: string) => (
+  const randomMountainImage = (id: number, name: string, uri: string) => (
     <View>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <Image
           source={{ uri }}
           style={{ width: '100%', height: 200 }}
         />
-        <Text style={styles.pictureTitle}>{ name }</Text>
+        <Text style={styles.pictureTitle}>{name}</Text>
       </Pressable>
     </View>
 
