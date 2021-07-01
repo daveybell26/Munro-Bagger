@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
+    justifyContent: 'center',
+    marginTop: '20%',
   },
   button: {
     backgroundColor: '#FFF',
@@ -21,6 +23,22 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     margin: 5,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  listContainer: {
+    flex: 1,
+    padding: 0,
+    margin: 0,
+  },
+  text: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 20,
+    flexDirection: 'row',
   },
 });
 
@@ -49,8 +67,8 @@ const UploadPicture = (pictureToBeUploaded : any) => {
   if (selectedMountain) console.log(selectedMountain);
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Pick a Mountain</Text>
-      <View style={{ flex: 1, padding: 0, margin: 0 }}>
+      <Text style={styles.text}>Pick a Mountain</Text>
+      <View style={styles.listContainer}>
         <Picker
           selectedValue={selectedMountain}
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -59,16 +77,19 @@ const UploadPicture = (pictureToBeUploaded : any) => {
           {pickers}
         </Picker>
       </View>
-      <SafeAreaView style={styles.button}>
-        <TouchableOpacity>
-          <MaterialIcons name="check-circle-outline" size={24} color="black" />
-        </TouchableOpacity>
-      </SafeAreaView>
-      <SafeAreaView style={styles.button}>
-        <TouchableOpacity onPress={() => history.push('/camera')}>
-          <MaterialIcons name="highlight-remove" size={24} color="black" />
-        </TouchableOpacity>
-      </SafeAreaView>
+      <View style={styles.buttonContainer}>
+        <SafeAreaView style={styles.button}>
+          <TouchableOpacity>
+            <MaterialIcons name="check-circle-outline" size={24} color="black" />
+          </TouchableOpacity>
+        </SafeAreaView>
+        <SafeAreaView style={styles.button}>
+          <TouchableOpacity onPress={() => history.push('/camera')}>
+            <MaterialIcons name="highlight-remove" size={24} color="black" />
+          </TouchableOpacity>
+        </SafeAreaView>
+      </View>
+
     </SafeAreaView>
   );
 };

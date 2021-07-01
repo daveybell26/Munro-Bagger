@@ -89,7 +89,7 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </SafeAreaView>
           <SafeAreaView style={styles.button}>
-            <TouchableOpacity onPress={() => history.goBack()}>
+            <TouchableOpacity onPress={() => history.push('/profile')}>
               <MaterialIcons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
           </SafeAreaView>

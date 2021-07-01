@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   button: {
+
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -46,11 +47,6 @@ const Picture = ({
         <SafeAreaView style={styles.button}>
           <TouchableOpacity onPress={() => history.push('/uploadPicture', { pictureToBeUploaded: picture.uri })}>
             <MaterialIcons name="check-circle-outline" size={24} color="black" />
-          </TouchableOpacity>
-        </SafeAreaView>
-        <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => history.push('/camera')}>
-            <MaterialIcons name="highlight-remove" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>
       </ImageBackground>
