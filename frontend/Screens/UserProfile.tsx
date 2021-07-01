@@ -10,6 +10,7 @@ import ImageGrid from '../Components/ImageGrid';
 import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import { getMountains } from '../store/getAllMountains.store';
+import { globalStyles } from '../GlobalStyles';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
 
@@ -67,7 +68,7 @@ const UserProfile = () => {
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={heroImageUrl} />
-          <Text style={styles.title}>
+          <Text style={globalStyles.header}>
             Hot Chick
           </Text>
           <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
@@ -78,10 +79,10 @@ const UserProfile = () => {
         <View style={styles.lineBreaks} />
 
         <View style={styles.userStatsSection}>
-          <Text style={styles.title}>
-            Munroes Climbed
+          <Text style={globalStyles.stats}>
+            Munroes Climbed:
           </Text>
-          <Text style={styles.title}>
+          <Text style={globalStyles.stats}>
             {numberOfMunroesClimbed}
             /
             {totalMunroes}
@@ -92,7 +93,7 @@ const UserProfile = () => {
         <View style={styles.lineBreaks} />
 
         <View style={styles.userMunroePics}>
-          <Text style={styles.title}>
+          <Text style={globalStyles.subHeaders}>
             Pictures From Mountains Climbed.
           </Text>
         </View>

@@ -8,6 +8,7 @@ import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
+import { globalStyles } from '../GlobalStyles';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -45,18 +46,18 @@ const MountainProfile = () => {
           style={{ width: '100%', height: 200 }}
         />
       </View>
-      <Text style={styles.title}>
+      <Text style={globalStyles.subHeaders}>
         Information about
         {' '}
         {name}
       </Text>
-      <Text>
+      <Text style={globalStyles.stats}>
         Elevation:
         {' '}
         {Peak?.elevation}
         m
       </Text>
-      <Text>
+      <Text style={globalStyles.stats}>
         Status:
         {' '}
         {Statuses?.climbed ? 'Climbed' : 'Not Climbed'}

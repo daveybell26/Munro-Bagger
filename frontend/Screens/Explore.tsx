@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-native';
 import { getRandomMountains } from '../store/explore.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
+import { globalStyles } from '../GlobalStyles';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -46,7 +47,7 @@ const Explore = () => {
           source={{ uri }}
           style={{ width: '100%', height: 200 }}
         />
-        <Text style={styles.pictureTitle}>{name}</Text>
+        <Text style={globalStyles.subHeaders}>{name}</Text>
       </Pressable>
     </View>
 
@@ -59,7 +60,7 @@ const Explore = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>Explore Screen</Text>
+      <Text style={globalStyles.header}>Explore Screen</Text>
       <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
