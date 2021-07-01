@@ -9,6 +9,7 @@ import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
+import { getMountains } from '../store/getAllMountains.store';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
 
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    // marginTop: '20%',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -32,13 +32,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 40,
     padding: 20,
-    // marginTop: 35,
   },
   userStatsSection: {
     margin: 20,
   },
   userMunroePics: {
-    // marginTop: 5,
   },
   lineBreaks: {
     borderBottomWidth: 1,
@@ -50,10 +48,21 @@ const styles = StyleSheet.create({
 const UserProfile = () => {
   const userPicList = useSelector((state:any) => state.randomUserPics.pictures);
 
+  const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
+  console.log(mountainList)
+
+  const totalMunroes = mountainList.length;
+  const numberOfMunroesClimbed = ;
+
+  // create a get all mountains array. get length and assign to total mountains.
+  // filter all mountains that have Statuses[0]?.climbed
+  // return the length of filtered array.
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserPicsRandomly());
+    dispatch(getMountains());
   }, [dispatch]);
 
   return (
@@ -96,19 +105,5 @@ const UserProfile = () => {
   );
 };
 
-// TODO
-// user profile hero section --> display: flexbox justify: space between
-// Profile pic --> img with 50% radius (coming from redux)
-// User Name --> Text (coming from redux)
-// cameraIcon --> img from Material icons
-// userStats section --> display: block
-// munroes climbed --> Text
-// userMunroeStats --> Text ---> 70/282 (coming from redux)
-// status bar ---> html CSS JavaScript (dependent on userMunroeStats state)
-// userMountainsClimbed Profile section
-// mountains climbed heading
-// grid picture list component
-// grid picture list item
-// flat grid like assembly of pictures taken by users of munroes---> (coming from redux)
 
 export default UserProfile;
