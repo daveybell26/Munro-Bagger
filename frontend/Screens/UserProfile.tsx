@@ -1,5 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import {
+  SafeAreaView, StyleSheet, Text, TouchableOpacity, Dimensions,
+} from 'react-native';
+import { useHistory } from 'react-router-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 
@@ -18,12 +22,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserProfile = () => (
-  <SafeAreaView style={styles.safeArea}>
-    <Header />
-    <Text style={styles.title}>User Profile Screen</Text>
-    <NavFooter />
-  </SafeAreaView>
-);
+const UserProfile = () => {
+  const history = useHistory();
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <Header />
+      <MaterialIcons name="photo-camera" size={35} onPress={() => history.push('/camera')} />
+      <Text style={styles.title}>User Profile Screen</Text>
+      <NavFooter />
+    </SafeAreaView>
+  );
+};
 
 export default UserProfile;
