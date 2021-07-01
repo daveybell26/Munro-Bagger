@@ -52,7 +52,7 @@ const UserProfile = () => {
   console.log(mountainList);
 
   const totalMunroes = mountainList.length;
-  const numberOfMunroesClimbed;
+  const numberOfMunroesClimbed = mountainList;
 
   // create a get all mountains array. get length and assign to total mountains.
   // filter all mountains that have Statuses[0]?.climbed
