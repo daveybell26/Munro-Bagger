@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  SafeAreaView, Text, StyleSheet, View, Image,
+  SafeAreaView, Text, StyleSheet, View,
 } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
+import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 
-const heroImage = require('../assets/hotChick.jpeg');
+const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
 
 const styles = StyleSheet.create({
 
@@ -32,13 +33,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     padding: 20,
     // marginTop: 35,
-  },
-  userImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    padding: 0,
-    margin: 0,
   },
   userStatsSection: {
     margin: 20,
@@ -67,7 +61,7 @@ const UserProfile = () => {
       <Header />
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
-          <Image style={styles.userImage} source={heroImage} />
+          <CircularThumbnailImage imageUrl={heroImageUrl} />
           <Text style={styles.title}>
             Hot Chick
           </Text>
