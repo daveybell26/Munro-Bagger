@@ -1,10 +1,12 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView, Text, StyleSheet, TouchableOpacity,
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMountains } from '../store/getAllMountains.store';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,13 +31,38 @@ const styles = StyleSheet.create({
   },
 });
 
-const UploadPicture = (state : any) => {
+const UploadPicture = (pictureToBeUploaded : any) => {
+  const [selectedMountain, setSelectedMountain] = useState();
+  const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
+  const dispatch = useDispatch();
   const history = useHistory();
-  const { history: { location: { state: { picture } } } } = state;
-  console.log(picture);
+  const {
+    history: {
+      location: {
+        state: { pictureToBeUploaded: picture },
+      },
+    },
+  } = pictureToBeUploaded;
+
+  useEffect(() => {
+    dispatch(getMountains());
+  }, [dispatch]);
+
+  // eslint-disable-next-line max-len
+  const pickers = mountainList ? mountainList.map((location: any) => <Picker.Item key={location.id} label={location.name} value={location.id} />) : null;
+
+  if (pickers?.length) console.log(pickers);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>We upload here</Text>
+      <Text>Pick a Mountain</Text>
+      <Picker
+        selectedValue={selectedMountain}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        onValueChange={(itemValue, itemIndex) => setSelectedMountain(itemValue)}
+      >
+        {pickers}
+      </Picker>
       <SafeAreaView style={styles.button}>
         <TouchableOpacity onPress={() => history.push('/camera')}>
           <MaterialIcons name="highlight-remove" size={24} color="black" />
