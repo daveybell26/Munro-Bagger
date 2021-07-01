@@ -54,6 +54,14 @@ const Explore = () => {
     </View>
 
   );
+  const unClimbedMountainImage = (id: number, uri: string) => (
+    <View>
+      <Pressable onPress={() => history.push(`/mountain/${id}`)}>
+        <CircularThumbnailImage imageUrl={uri} />
+      </Pressable>
+    </View>
+
+  );
 
   useEffect(() => {
     dispatch(getRandomMountains());
@@ -67,10 +75,8 @@ const Explore = () => {
       <FlatList
         horizontal
         data={unclimbedArr}
-        renderItem={({ item }) => (
-          <CircularThumbnailImage imageUrl={item.imageUrl} />
-        )}
-        keyExtractor={(item) => item.name.toString()}
+        renderItem={({ item }) => unClimbedMountainImage(item.id, item.imageUrl)}
+        keyExtractor={(item) => item.id.toString()}
         style={styles.list}
       />
       <FlatList
