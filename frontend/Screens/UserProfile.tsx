@@ -49,10 +49,10 @@ const UserProfile = () => {
   const userPicList = useSelector((state:any) => state.randomUserPics.pictures);
 
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
-  console.log(mountainList)
+  console.log(mountainList);
 
   const totalMunroes = mountainList.length;
-  const numberOfMunroesClimbed = ;
+  const numberOfMunroesClimbed;
 
   // create a get all mountains array. get length and assign to total mountains.
   // filter all mountains that have Statuses[0]?.climbed
@@ -104,6 +104,5 @@ const UserProfile = () => {
     </SafeAreaView>
   );
 };
-
 
 export default UserProfile;
