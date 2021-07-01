@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
 const Explore = () => {
   const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
   const userId = useSelector((state: any) => state.login.userDetails.id);
-  const unclimbedArr = useSelector((state: any) => state.unclimbedMountains.unclimbedMountainsList);
+  // hook broken into 2 line due to esLINT
+  // const unclimbedArr = useSelector((state: any) =>
+  // state.unclimbedMountains.unclimbedMountainsList);
   const dispatch = useDispatch();
 
   const randomMountainImage = (name: string, uri: string) => (
