@@ -4,11 +4,11 @@ import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 import styles from './styles/camera';
-import Picture from '../Components/PreviewPicture';
+import Picture from '../Components/previewPicture';
 
 const CameraScreen = () => {
   const history = useHistory();
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState({});
