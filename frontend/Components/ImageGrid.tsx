@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import ImageModal from './ImageModal';
 
-const ImageGrid = ({ list }: { list:any }) => {
+const ImageGrid = ({ list }: { list: any }) => {
   const [modal, setModal] = useState<any>({});
 
   const singleImage = (item: any) => (
