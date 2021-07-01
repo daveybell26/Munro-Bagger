@@ -9,6 +9,7 @@ import Map from './Screens/Map';
 import MountainProfile from './Screens/MountainProfile';
 import UserProfile from './Screens/UserProfile';
 import CameraScreen from './Screens/Camera';
+import UploadPicture from './Screens/UploadPicture';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             <Route exact path="/mountain/:id" component={MountainProfile} />
             <Route exact path="/profile" component={UserProfile} />
             <Route exact path="/camera" component={CameraScreen} />
+            <Route exact path="/uploadPicture" component={UploadPicture} />
           </Switch>
         </NativeRouter>
       </Provider>

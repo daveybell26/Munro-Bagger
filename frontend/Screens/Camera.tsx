@@ -67,7 +67,7 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
-          <SafeAreaView style={styles.switchCameraButton}>
+          <SafeAreaView style={styles.button}>
             <TouchableOpacity onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -83,12 +83,12 @@ const CameraScreen = () => {
               />
             </TouchableOpacity>
           </SafeAreaView>
-          <SafeAreaView style={styles.takePictureButton}>
+          <SafeAreaView style={styles.button}>
             <TouchableOpacity onPress={takePicture}>
               <MaterialIcons name="photo-camera" size={24} color="black" />
             </TouchableOpacity>
           </SafeAreaView>
-          <SafeAreaView style={styles.backButton}>
+          <SafeAreaView style={styles.button}>
             <TouchableOpacity onPress={() => history.goBack()}>
               <MaterialIcons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>

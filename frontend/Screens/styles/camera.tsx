@@ -11,23 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 25,
   },
-  switchCameraButton: {
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 35,
-    height: 50,
-    width: 50,
-  },
-  takePictureButton: {
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 35,
-    height: 50,
-    width: 50,
-  },
-  backButton: {
+  button: {
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView, ImageBackground, StyleSheet,
-} from 'react-native';
+
+import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -28,24 +27,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const Picture = ({
-  picture,
-  retakePicture,
-}: {
-  picture: any;
-  retakePicture: any;
-}) => {
+const UploadPicture = () => {
   const history = useHistory();
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={{ uri: picture.uri }} style={styles.image} />
-      <SafeAreaView style={styles.button}>
-        <MaterialIcons onPress={() => retakePicture()} name="photo-camera" size={24} color="black" />
-      </SafeAreaView>
-      <SafeAreaView style={styles.button}>
-        <MaterialIcons onPress={() => history.push('/uploadPicture')} name="check-circle-outline" size={24} color="black" />
-      </SafeAreaView>
+      <Text>We upload here</Text>
       <SafeAreaView style={styles.button}>
         <MaterialIcons onPress={() => history.push('/camera')} name="highlight-remove" size={24} color="black" />
       </SafeAreaView>
@@ -53,4 +40,4 @@ const Picture = ({
   );
 };
 
-export default Picture;
+export default UploadPicture;
