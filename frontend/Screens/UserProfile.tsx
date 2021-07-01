@@ -49,14 +49,10 @@ const UserProfile = () => {
   const userPicList = useSelector((state:any) => state.randomUserPics.pictures);
 
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
-  console.log(mountainList);
 
   const totalMunroes = mountainList.length;
-  const numberOfMunroesClimbed = mountainList;
-
-  // create a get all mountains array. get length and assign to total mountains.
-  // filter all mountains that have Statuses[0]?.climbed
-  // return the length of filtered array.
+  const numberOfMunroesClimbed = mountainList
+    .filter((mountain) => mountain.Statuses[0]?.climbed).length;
 
   const dispatch = useDispatch();
 
@@ -86,7 +82,9 @@ const UserProfile = () => {
             Munroes Climbed
           </Text>
           <Text style={styles.title}>
-            70/282
+            {numberOfMunroesClimbed}
+            /
+            {totalMunroes}
           </Text>
           {/* Status bar to be incooperated (dependent on userMunroeStats state) */}
         </View>
