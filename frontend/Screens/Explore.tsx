@@ -34,13 +34,19 @@ const styles = StyleSheet.create({
     marginBottom: 80,
   },
   horizontalList: {
-    height: '30%',
+    height: '40%',
   },
-  thumbnail: {
+  unclimbedMountainNames: {
+    color: 'black',
+    textAlign: 'center',
+    width: 100,
+    justifyContent: 'space-around',
+
   },
   view: {
     margin: 10,
     alignItems: 'flex-end',
+    width: 100,
 
   },
 });
@@ -64,10 +70,11 @@ const Explore = () => {
     </View>
 
   );
-  const unClimbedMountainImage = (id: number, uri: string) => (
+  const unClimbedMountainImage = (id: number, name: string, uri: string) => (
     <View style={styles.view}>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <CircularThumbnailImage imageUrl={uri} />
+        <Text style={styles.unclimbedMountainNames} numberOfLines={1}>{name}</Text>
       </Pressable>
     </View>
 
@@ -81,20 +88,23 @@ const Explore = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>Explore Screen</Text>
+      <Text style={styles.title}>List of unclimbed mountains</Text>
       <FlatList
         data={unclimbedArr}
         horizontal
-        renderItem={({ item }) => unClimbedMountainImage(item.id, item.imageUrl)}
+        renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         style={styles.horizontalList}
+        showsHorizontalScrollIndicator={false}
 
       />
+      <Text style={styles.title}>Pictures of other users</Text>
       <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         style={styles.verticalList}
+        showsVerticalScrollIndicator={false}
       />
 
       <NavFooter />
