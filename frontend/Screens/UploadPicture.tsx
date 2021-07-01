@@ -59,8 +59,17 @@ const UploadPicture = (pictureToBeUploaded : any) => {
     dispatch(getMountains());
   }, [dispatch]);
 
-  // eslint-disable-next-line max-len
-  const pickers = mountainList ? mountainList.map((location: any) => <Picker.Item key={location.id} label={location.name} value={location.id} />).sort((a, b) => a.props.value - b.props.value) : null;
+  const pickers = mountainList
+    ? mountainList
+      .map((location: any) => (
+        <Picker.Item
+          key={location.id}
+          label={location.name}
+          value={location.id}
+        />
+      ))
+      .sort((a, b) => a.props.value - b.props.value)
+    : null;
 
   if (pickers?.length) console.log(picture);
 
