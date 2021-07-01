@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMountains } from '../store/getAllMountains.store';
-import styles from './styles/uploadPicture';
+import styles from './styles/uploadPictureStyles';
 
 const UploadPicture = (pictureToBeUploaded : any) => {
   const [selectedMountain, setSelectedMountain] = useState();

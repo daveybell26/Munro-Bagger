@@ -1,31 +1,10 @@
 import React from 'react';
 import {
-  SafeAreaView, ImageBackground, StyleSheet, TouchableOpacity,
+  SafeAreaView, ImageBackground, TouchableOpacity,
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-around',
-    padding: 25,
-  },
-  button: {
-
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 35,
-    height: 50,
-    width: 50,
-  },
-});
+import styles from './styles/previewPictureStyles';
 
 const Picture = ({
   picture,

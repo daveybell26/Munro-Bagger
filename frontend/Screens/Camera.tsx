@@ -5,7 +5,7 @@ import {
 import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
-import styles from './styles/camera';
+import styles from './styles/cameraStyles';
 import Picture from '../Components/PreviewPicture';
 
 const CameraScreen = () => {
