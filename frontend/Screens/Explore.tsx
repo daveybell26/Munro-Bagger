@@ -30,8 +30,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  list: {
+  verticalList: {
     marginBottom: 80,
+  },
+  horizontalList: {
+    height: '30%',
+  },
+  thumbnail: {
+  },
+  view: {
+    margin: 10,
+    alignItems: 'flex-end',
+
   },
 });
 
@@ -55,7 +65,7 @@ const Explore = () => {
 
   );
   const unClimbedMountainImage = (id: number, uri: string) => (
-    <View>
+    <View style={styles.view}>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <CircularThumbnailImage imageUrl={uri} />
       </Pressable>
@@ -73,17 +83,18 @@ const Explore = () => {
       <Header />
       <Text style={styles.title}>Explore Screen</Text>
       <FlatList
-        horizontal
         data={unclimbedArr}
+        horizontal
         renderItem={({ item }) => unClimbedMountainImage(item.id, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
-        style={styles.list}
+        style={styles.horizontalList}
+
       />
       <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
-        style={styles.list}
+        style={styles.verticalList}
       />
 
       <NavFooter />
