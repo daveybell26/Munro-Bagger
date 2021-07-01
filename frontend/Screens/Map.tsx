@@ -7,7 +7,7 @@ import Header from '../Components/Header';
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EBF2FA',
   },
 });
 

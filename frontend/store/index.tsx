@@ -5,6 +5,7 @@ import oneMountainReducer from './getOneMountain.store';
 import randomUserPicsReducer from './getRandomUserPics.store';
 import loginReducer from './login.store';
 import exploreMountainsReducer from './explore.store';
+import unclimbedMountainsReducer from './getUnclimbedMountains.store';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     randomUserPics: randomUserPicsReducer,
     login: loginReducer,
     exploreRandomMountains: exploreMountainsReducer,
+    unclimbedMountains: unclimbedMountainsReducer,
   },
 });
 
