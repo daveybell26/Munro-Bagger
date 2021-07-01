@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView, View, Text, TouchableOpacity,
+} from 'react-native';
 import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
@@ -53,7 +55,7 @@ const CameraScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {previewVisible && capturedImage ? (
         <Picture picture={capturedImage} retakePicture={retakePicture} />
       ) : (
@@ -65,12 +67,7 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
-          <View style={styles.takePictureButton}>
-            <TouchableOpacity onPress={takePicture}>
-              <MaterialIcons name="photo-camera" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.switchCameraButton}>
+          <SafeAreaView style={styles.switchCameraButton}>
             <TouchableOpacity onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -85,16 +82,20 @@ const CameraScreen = () => {
                 color="black"
               />
             </TouchableOpacity>
-
-          </View>
-          <View style={styles.backButton}>
-            <TouchableOpacity onPress={() => history.push('/profile')}>
-              <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+          </SafeAreaView>
+          <SafeAreaView style={styles.takePictureButton}>
+            <TouchableOpacity onPress={takePicture}>
+              <MaterialIcons name="photo-camera" size={24} color="black" />
             </TouchableOpacity>
-          </View>
+          </SafeAreaView>
+          <SafeAreaView style={styles.backButton}>
+            <TouchableOpacity onPress={() => history.goBack()}>
+              <MaterialIcons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
         </Camera>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
