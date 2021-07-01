@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRandomMountains } from '../store/explore.store';
+import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 
@@ -31,12 +32,14 @@ const styles = StyleSheet.create({
 });
 
 const Explore = () => {
-  const list = useSelector((state:any) => state.exploreRandomMountains.randomMountainsList);
+  const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
+  const unclimbedArr = useSelector((state: any) => state.unclimbedMountains.unclimbedMountainsList);
   const dispatch = useDispatch();
+  console.log('--------------------------------', unclimbedArr);
 
-  const randomMountainImage = (name:string, uri: string) => (
+  const randomMountainImage = (name: string, uri: string) => (
     <View>
-      <Text style={styles.pictureTitle}>{ name }</Text>
+      <Text style={styles.pictureTitle}>{name}</Text>
       <Image
         source={{ uri }}
         style={{ width: '100%', height: 200 }}
@@ -47,6 +50,7 @@ const Explore = () => {
 
   useEffect(() => {
     dispatch(getRandomMountains());
+    dispatch(getExploreUnclimbedMountains());
   }, [dispatch]);
 
   return (
