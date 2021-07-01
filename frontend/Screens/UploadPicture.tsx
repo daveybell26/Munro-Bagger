@@ -10,16 +10,8 @@ import { getMountains } from '../store/getAllMountains.store';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    padding: 25,
-  },
-  image: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    padding: 25,
   },
   button: {
     backgroundColor: '#FFF',
@@ -28,6 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     height: 50,
     width: 50,
+    margin: 5,
   },
 });
 
@@ -61,15 +54,21 @@ const UploadPicture = (pictureToBeUploaded : any) => {
         <Picker
           selectedValue={selectedMountain}
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onValueChange={(itemValue, itemIndex) => setSelectedMountain(itemValue)}
+          onValueChange={(itemValue) => setSelectedMountain(itemValue)}
         >
           {pickers}
         </Picker>
       </View>
-      <TouchableOpacity onPress={() => history.push('/camera')}>
-        <MaterialIcons name="highlight-remove" size={24} color="black" />
-      </TouchableOpacity>
-
+      <SafeAreaView style={styles.button}>
+        <TouchableOpacity>
+          <MaterialIcons name="check-circle-outline" size={24} color="black" />
+        </TouchableOpacity>
+      </SafeAreaView>
+      <SafeAreaView style={styles.button}>
+        <TouchableOpacity onPress={() => history.push('/camera')}>
+          <MaterialIcons name="highlight-remove" size={24} color="black" />
+        </TouchableOpacity>
+      </SafeAreaView>
     </SafeAreaView>
   );
 };
