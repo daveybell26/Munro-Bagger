@@ -64,9 +64,7 @@ const styles = StyleSheet.create({
 
 const UserProfile = () => {
   const userPicList = useSelector((state:any) => state.randomUserPics.pictures);
-
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
-
   const totalMunroes = mountainList.length;
   const numberOfMunroesClimbed = mountainList
     .filter((mountain) => mountain.Statuses[0]?.climbed).length;
@@ -92,7 +90,7 @@ const UserProfile = () => {
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={heroImageUrl} />
           <Text style={globalStyles.header}>
-            Hot Chick
+            Amy Bell
           </Text>
           <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
             <MaterialIcons name="photo-camera" size={40} />
