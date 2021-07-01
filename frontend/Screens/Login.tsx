@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TextInput, ImageBackground } from 'react-native';
+import {
+  StyleSheet, TextInput, ImageBackground, View,
+} from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/customButton';
@@ -12,8 +14,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   emailInput: {
     borderWidth: 1,
@@ -25,31 +25,32 @@ const styles = StyleSheet.create({
   },
 });
 const Login = () => {
-  const history = useHistory();
+  // TODO: remove useState and instead put into redux
   const [email, setEmail] = useState('');
-  const dispatch = useDispatch();
   const userDetails = useSelector((state: any) => state.login.userDetails);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (userDetails.id) history.push('/explore');
   }, [userDetails]);
 
-  const changeHandler = (val: string) => {
-    setEmail(val);
-  };
+  const changeHandler = (val: string) => setEmail(val);
 
-  const submitHandler = () => {
-    dispatch(postLogin(email));
-  };
+  const submitHandler = () => dispatch(postLogin(email));
 
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
       <Header />
-      <TextInput
-        style={styles.emailInput}
-        placeholder="example@google.com"
-        onChangeText={changeHandler}
-      />
-      <CustomButton onPress={submitHandler}>Login</CustomButton>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <TextInput
+          style={styles.emailInput}
+          placeholder="user@example.com"
+          onChangeText={changeHandler}
+        />
+        <CustomButton onPress={submitHandler}>Login</CustomButton>
+      </View>
     </ImageBackground>
 
   );

@@ -4,9 +4,7 @@ import { login } from '../services/apiService';
 
 export const postLogin = createAsyncThunk('login/postLogin', async (email: string) => {
   const { data } = await login(email);
-  if (!data) {
-    return {};
-  }
+  if (!data) return {};
   return data;
 });
 
