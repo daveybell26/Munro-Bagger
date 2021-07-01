@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   userStatsSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: 20,
   },
   userMunroePics: {
@@ -43,6 +46,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginLeft: 20,
     marginRight: 20,
+  },
+  progressBar: {
+    width: 210,
+    height: 30,
+    backgroundColor: '#E02A56',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  progressText: {
+    position: 'absolute',
+    top: '25%',
+    right: 5,
+    color: 'white',
   },
 });
 
@@ -54,6 +70,13 @@ const UserProfile = () => {
   const totalMunroes = mountainList.length;
   const numberOfMunroesClimbed = mountainList
     .filter((mountain) => mountain.Statuses[0]?.climbed).length;
+
+  // eslint-disable-next-line prefer-const
+  let munroeClimbedPercentage = (numberOfMunroesClimbed / totalMunroes) * 100;
+  // eslint-disable-next-line prefer-const
+  let progressBarPercentageNum = Math.round(munroeClimbedPercentage);
+  // eslint-disable-next-line prefer-const
+  let progressBarPercentage = `${progressBarPercentageNum}%`;
 
   const dispatch = useDispatch();
 
@@ -79,15 +102,32 @@ const UserProfile = () => {
         <View style={styles.lineBreaks} />
 
         <View style={styles.userStatsSection}>
-          <Text style={globalStyles.stats}>
-            Munroes Climbed:
-          </Text>
-          <Text style={globalStyles.stats}>
-            {numberOfMunroesClimbed}
-            /
-            {totalMunroes}
-          </Text>
+
+          <View>
+            <Text style={globalStyles.stats}>
+              Munroes Climbed:
+            </Text>
+            <Text style={globalStyles.stats}>
+              {numberOfMunroesClimbed}
+              /
+              {totalMunroes}
+            </Text>
+
+          </View>
+
           {/* Status bar to be incooperated (dependent on userMunroeStats state) */}
+          <View style={styles.progressBar}>
+            <View style={{
+              width: `${progressBarPercentageNum}%`,
+              height: '100%',
+              backgroundColor: '#2AE0B4',
+            }}
+            />
+            <Text style={styles.progressText}>
+              {progressBarPercentage}
+            </Text>
+          </View>
+
         </View>
 
         <View style={styles.lineBreaks} />
