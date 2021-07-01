@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import {
+  SafeAreaView, Text, StyleSheet, TouchableOpacity,
+} from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -27,14 +29,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const UploadPicture = () => {
+const UploadPicture = (state : any) => {
   const history = useHistory();
-
+  console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <Text>We upload here</Text>
       <SafeAreaView style={styles.button}>
-        <MaterialIcons onPress={() => history.push('/camera')} name="highlight-remove" size={24} color="black" />
+        <TouchableOpacity onPress={() => history.push('/camera')}>
+          <MaterialIcons name="highlight-remove" size={24} color="black" />
+        </TouchableOpacity>
       </SafeAreaView>
     </SafeAreaView>
   );
