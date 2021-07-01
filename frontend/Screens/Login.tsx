@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
+
 const Login = () => {
   // TODO: remove useState and instead put into redux
   const [email, setEmail] = useState('');
@@ -56,4 +57,5 @@ const Login = () => {
 
   );
 };
+
 export default Login;
