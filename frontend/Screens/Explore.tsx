@@ -5,8 +5,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { getRandomMountains } from '../store/explore.store';
+import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
+import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -35,7 +37,8 @@ const styles = StyleSheet.create({
 
 const Explore = () => {
   const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
-
+  const unclimbedArr = useSelector((state: any) => state.unclimbedMountains.unclimbedMountainsList);
+  const userId = useSelector((state: any) => state.login.userDetails.id);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -54,6 +57,7 @@ const Explore = () => {
 
   useEffect(() => {
     dispatch(getRandomMountains());
+    dispatch(getExploreUnclimbedMountains(userId));
   }, [dispatch]);
 
   return (
@@ -61,11 +65,21 @@ const Explore = () => {
       <Header />
       <Text style={styles.title}>Explore Screen</Text>
       <FlatList
+        horizontal
+        data={unclimbedArr}
+        renderItem={({ item }) => (
+          <CircularThumbnailImage imageUrl={item.imageUrl} />
+        )}
+        keyExtractor={(item) => item.name.toString()}
+        style={styles.list}
+      />
+      <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         style={styles.list}
       />
+
       <NavFooter />
     </SafeAreaView>
   );
