@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
 
 const Explore = () => {
   const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
+  const userId = useSelector((state: any) => state.login.userDetails.id);
   const unclimbedArr = useSelector((state: any) => state.unclimbedMountains.unclimbedMountainsList);
   const dispatch = useDispatch();
-  console.log('--------------------------------', unclimbedArr);
 
   const randomMountainImage = (name: string, uri: string) => (
     <View>
@@ -50,7 +50,7 @@ const Explore = () => {
 
   useEffect(() => {
     dispatch(getRandomMountains());
-    dispatch(getExploreUnclimbedMountains());
+    dispatch(getExploreUnclimbedMountains(userId));
   }, [dispatch]);
 
   return (

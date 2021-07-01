@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getExploreUnclimbed } from '../services/apiService';
 
-export const getExploreUnclimbedMountains = createAsyncThunk('unclimbedMountains/getExploreUnclimbedMountains', async () => {
-  const { data } = await getExploreUnclimbed(1);
+export const getExploreUnclimbedMountains = createAsyncThunk('unclimbedMountains/getExploreUnclimbedMountains', async (userId: number) => {
+  const { data } = await getExploreUnclimbed(userId);
   return data;
 });
 
