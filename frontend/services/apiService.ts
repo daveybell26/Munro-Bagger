@@ -4,7 +4,7 @@ import { BACKEND_URL } from '@env';
 const baseUrl = BACKEND_URL;
 
 export const login = (email: string) => axios.post(
-  `${baseUrl}/login`, email,
+  `${baseUrl}/login`, { email },
 );
 
 export const getRandomUserPics = (UserId: number) => axios.get(
