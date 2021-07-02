@@ -55,6 +55,26 @@ const CameraScreen = () => {
     setPreviewVisible(false);
   };
 
+  const imagePicker = async () => {
+    if (Platform.OS !== 'web') {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+    const selectedImage = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!selectedImage.cancelled) {
+      setCapturedImage(selectedImage);
+      setPreviewVisible(true);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {previewVisible && capturedImage ? (
