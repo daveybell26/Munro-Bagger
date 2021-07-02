@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView, ImageBackground, TouchableOpacity,
+  SafeAreaView, ImageBackground, TouchableOpacity, Modal, Alert, Pressable,
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import UploadPicture from '../Screens/UploadPicture';
 import styles from './styles/previewPictureStyles';
 
 const Picture = ({
@@ -14,6 +15,7 @@ const Picture = ({
   retakePicture: any;
 }) => {
   const history = useHistory();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,10 +25,23 @@ const Picture = ({
             <MaterialIcons name="photo-camera" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>
-        <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => history.push('/uploadPicture', { pictureToBeUploaded: picture.uri })}>
+        <SafeAreaView>
+          <Modal
+            animationType="slide"
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <UploadPicture />
+          </Modal>
+          <Pressable
+            style={[styles.button]}
+            onPress={() => setModalVisible(true)}
+          >
             <MaterialIcons name="check-circle-outline" size={24} color="black" />
-          </TouchableOpacity>
+          </Pressable>
         </SafeAreaView>
       </ImageBackground>
     </SafeAreaView>

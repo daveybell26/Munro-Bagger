@@ -15,13 +15,13 @@ const UploadPicture = (pictureToBeUploaded : any) => {
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const history = useHistory();
-  const {
-    history: {
-      location: {
-        state: { pictureToBeUploaded: picture },
-      },
-    },
-  } = pictureToBeUploaded;
+  // const {
+  //   history: {
+  //     location: {
+  //       state: { pictureToBeUploaded: picture },
+  //     },
+  //   },
+  // } = pictureToBeUploaded;
 
   useEffect(() => {
     dispatch(getMountains());
