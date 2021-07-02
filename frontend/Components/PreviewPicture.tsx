@@ -26,7 +26,7 @@ const Picture = ({
         </SafeAreaView>
         <SafeAreaView>
           <Modal
-            animationType="slide"
+            animationType="fade"
             visible={modalVisible}
             onRequestClose={() => {
               Alert.alert('Modal has been closed.');
