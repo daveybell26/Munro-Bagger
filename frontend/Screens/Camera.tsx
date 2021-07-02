@@ -56,21 +56,17 @@ const CameraScreen = () => {
   };
 
   const imagePicker = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      // eslint-disable-next-line no-alert
-      alert('Sorry, we need camera roll permissions to make this work!');
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
       return;
     }
 
-    const selectedImage = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      quality: 1,
-    });
+    const pickerResult = await ImagePicker.launchImageLibraryAsync();
 
-    if (!selectedImage.cancelled) {
-      setCapturedImage(selectedImage);
+    if (!pickerResult.cancelled) {
+      setCapturedImage(pickerResult);
       setPreviewVisible(true);
     }
   };
