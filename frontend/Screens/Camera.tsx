@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView, View, Text, TouchableOpacity,
+  SafeAreaView, View, Text, TouchableOpacity, Platform,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 import styles from './styles/cameraStyles';
