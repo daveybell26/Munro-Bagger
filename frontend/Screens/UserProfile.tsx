@@ -10,7 +10,7 @@ import ImageGrid from '../Components/ImageGrid';
 import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import { getMountains } from '../store/getAllMountains.store';
-import { globalStyles } from '../GlobalStyles';
+import { globalStyles } from '../styles/GlobalStyles';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
 
@@ -69,12 +69,11 @@ const UserProfile = () => {
   const numberOfMunroesClimbed = mountainList
     .filter((mountain) => mountain.Statuses[0]?.climbed).length;
 
-  // eslint-disable-next-line prefer-const
-  let munroeClimbedPercentage = (numberOfMunroesClimbed / totalMunroes) * 100;
-  // eslint-disable-next-line prefer-const
-  let progressBarPercentageNum = Math.round(munroeClimbedPercentage);
-  // eslint-disable-next-line prefer-const
-  let progressBarPercentage = `${progressBarPercentageNum}%`;
+  const munroeClimbedPercentage = (numberOfMunroesClimbed / totalMunroes) * 100;
+
+  const progressBarPercentageNum = Math.round(munroeClimbedPercentage);
+
+  const progressBarPercentage = `${progressBarPercentageNum}%`;
 
   const dispatch = useDispatch();
 
