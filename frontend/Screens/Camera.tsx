@@ -61,6 +61,7 @@ const CameraScreen = () => {
       if (status !== 'granted') {
         // eslint-disable-next-line no-alert
         alert('Sorry, we need camera roll permissions to make this work!');
+        return;
       }
     }
     const selectedImage = await ImagePicker.launchImageLibraryAsync({
