@@ -8,6 +8,8 @@ import Login from './Screens/Login';
 import Map from './Screens/Map';
 import MountainProfile from './Screens/MountainProfile';
 import UserProfile from './Screens/UserProfile';
+import CameraScreen from './Screens/Camera';
+import UploadPicture from './Screens/UploadPicture';
 
 export default function App() {
   return (
