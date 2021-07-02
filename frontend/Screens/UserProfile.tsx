@@ -70,7 +70,7 @@ const UserProfile = () => {
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={heroImageUrl} />
           <Text style={styles.title}>
-            Hot Chick
+            Anna Bell
           </Text>
           <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
             <MaterialIcons name="photo-camera" size={40} onPress={() => history.push('/camera')} />
