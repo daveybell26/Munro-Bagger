@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-native';
 import { getRandomMountains } from '../store/explore.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
-import { globalStyles } from '../styles/GlobalStyles';
+import { globalStyles } from './styles/GlobalStyles';
 
 const styles = StyleSheet.create({
   safeArea: {

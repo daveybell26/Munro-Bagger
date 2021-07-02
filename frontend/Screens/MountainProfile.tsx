@@ -8,7 +8,7 @@ import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
-import { globalStyles } from '../styles/GlobalStyles';
+import { globalStyles } from './styles/GlobalStyles';
 
 const styles = StyleSheet.create({
   safeArea: {

@@ -11,7 +11,7 @@ import ImageGrid from '../Components/ImageGrid';
 import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import { getMountains } from '../store/getAllMountains.store';
-import { globalStyles } from '../styles/GlobalStyles';
+import { globalStyles } from './styles/GlobalStyles';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useHistory } from 'react-router-native';
+import { useHistory, useLocation } from 'react-router-native';
 
 const styles = StyleSheet.create({
   navFooter: {
@@ -17,13 +17,26 @@ const styles = StyleSheet.create({
 });
 
 const NavFooter = () => {
+  // when user presses icon, a new markers jsx componenet rendered with different color.
+  const urlLocation = useLocation();
+
+  const isOnExploreScreen = urlLocation.pathname === '/explore';
+  const isOnMapScreen = urlLocation.pathname === '/map';
+  const isOnProfileScreen = urlLocation.pathname === '/profile';
+
   const history = useHistory();
   return (
     <SafeAreaView>
       <View style={styles.navFooter}>
-        <MaterialIcons name="home" size={35} onPress={() => history.push('/explore')} />
-        <MaterialIcons name="terrain" size={35} onPress={() => history.push('/map')} />
-        <MaterialIcons name="person" size={35} onPress={() => history.push('/profile')} />
+        {isOnExploreScreen
+          ? <MaterialIcons name="home" size={35} color="white" onPress={() => history.push('/explore')} />
+          : <MaterialIcons name="home" size={35} onPress={() => history.push('/explore')} />}
+        {isOnMapScreen
+          ? <MaterialIcons name="terrain" size={35} color="white" onPress={() => history.push('/map')} />
+          : <MaterialIcons name="terrain" size={35} onPress={() => history.push('/map')} />}
+        {isOnProfileScreen
+          ? <MaterialIcons name="person" size={35} color="white" onPress={() => history.push('/profile')} />
+          : <MaterialIcons name="person" size={35} onPress={() => history.push('/profile')} />}
       </View>
     </SafeAreaView>
   );

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import styles from '../styles/previewPictureStyles';
+import styles from './styles/previewPictureStyles';
 
 const Picture = ({
   picture,
