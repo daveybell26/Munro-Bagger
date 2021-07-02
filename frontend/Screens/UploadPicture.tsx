@@ -10,19 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
 
-const UploadPicture = (pictureToBeUploaded : any) => {
+const UploadPicture = ({ props } :any) => {
   const [selectedMountain, setSelectedMountain] = useState();
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
-  const history = useHistory();
-  // const {
-  //   history: {
-  //     location: {
-  //       state: { pictureToBeUploaded: picture },
-  //     },
-  //   },
-  // } = pictureToBeUploaded;
-
+  const { picture, setModalVisible, modalVisible } = props;
   useEffect(() => {
     dispatch(getMountains());
   }, [dispatch]);
@@ -57,7 +49,7 @@ const UploadPicture = (pictureToBeUploaded : any) => {
           </TouchableOpacity>
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => history.push('/camera')}>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <MaterialIcons name="highlight-remove" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>
