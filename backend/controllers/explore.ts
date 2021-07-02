@@ -6,7 +6,7 @@ export const getExploreUnclimbed = async (req: Request, res: Response) => {
   try {
     const { UserId } = req.query;
     const data = await sequelize.models.Mountain.findAll({
-      attributes: ['name', 'imageUrl'],
+      attributes: ['id', 'name', 'imageUrl'],
       include: [{
         attributes: ['climbed'],
         model: sequelize.models.Status,
