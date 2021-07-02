@@ -32,7 +32,7 @@ const Picture = ({
               setModalVisible(!modalVisible);
             }}
           >
-            <UploadPicture props={{ picture: picture.uri, setModalVisible, modalVisible }} />
+            <UploadPicture props={{ picture: picture.base64, setModalVisible, modalVisible }} />
           </Modal>
           <Pressable
             style={[styles.button]}

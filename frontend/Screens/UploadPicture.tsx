@@ -16,8 +16,9 @@ const UploadPicture = ({ props } :any) => {
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const { picture, setModalVisible, modalVisible } = props;
-  const { state: { base64 } } = useLocation<any>();
+  // const { state: { base64 } } = useLocation<any>();
 
+  console.log(picture);
   useEffect(() => {
     dispatch(getMountains());
   }, [dispatch]);
