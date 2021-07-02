@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView, Text, TouchableOpacity, View,
@@ -37,9 +38,6 @@ const UploadPicture = (pictureToBeUploaded : any) => {
       ))
       .sort((a, b) => a.props.value - b.props.value)
     : null;
-
-  if (pickers?.length) console.log(picture);
-  if (selectedMountain) console.log(selectedMountain);
 
   return (
     <SafeAreaView style={styles.container}>
