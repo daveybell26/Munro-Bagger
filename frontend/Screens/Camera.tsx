@@ -89,6 +89,11 @@ const CameraScreen = () => {
           ratio="16:9"
         >
           <SafeAreaView style={styles.button}>
+            <TouchableOpacity onPress={imagePicker}>
+              <MaterialIcons name="folder" size={24} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
+          <SafeAreaView style={styles.button}>
             <TouchableOpacity onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
