@@ -4,24 +4,19 @@ import {
   SafeAreaView, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { useHistory } from 'react-router-native';
+import { useHistory, useLocation } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
+// import cloudinaryUpload from '../cloudinary';
 
 const UploadPicture = (pictureToBeUploaded : any) => {
   const [selectedMountain, setSelectedMountain] = useState();
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const history = useHistory();
-  const {
-    history: {
-      location: {
-        state: { pictureToBeUploaded: picture },
-      },
-    },
-  } = pictureToBeUploaded;
+  const { state: { base64 } } = useLocation<any>();
 
   useEffect(() => {
     dispatch(getMountains());
@@ -52,7 +47,7 @@ const UploadPicture = (pictureToBeUploaded : any) => {
       </View>
       <View style={styles.buttonContainer}>
         <SafeAreaView style={styles.button}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('call cloudinary here')}>
             <MaterialIcons name="check-circle-outline" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>
