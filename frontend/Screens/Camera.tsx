@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView, View, Text, TouchableOpacity, Platform,
+  SafeAreaView, View, Text, TouchableOpacity,
 } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
@@ -56,14 +56,13 @@ const CameraScreen = () => {
   };
 
   const imagePicker = async () => {
-    if (Platform.OS !== 'web') {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        // eslint-disable-next-line no-alert
-        alert('Sorry, we need camera roll permissions to make this work!');
-        return;
-      }
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      // eslint-disable-next-line no-alert
+      alert('Sorry, we need camera roll permissions to make this work!');
+      return;
     }
+
     const selectedImage = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
