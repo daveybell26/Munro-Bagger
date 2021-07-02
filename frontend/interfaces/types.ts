@@ -17,3 +17,26 @@ interface MountainInfo {
   name: string,
   updatedAt: string,
 }
+
+interface PermissionInfo {
+  status: 'granted' | 'undetermined' | 'denied';
+  granted: boolean;
+  expires: 'never' | number;
+  canAskAgain: boolean;
+  ios?: {
+    scope: 'whenInUse' | 'always';
+  };
+  android?: {
+    scope: 'fine' | 'coarse' | 'none';
+  };
+}
+
+interface PermissionResponse {
+  status: 'granted' | 'undetermined' | 'denied';
+  granted: boolean;
+  expires: 'never' | number;
+  canAskAgain: boolean;
+  permissions: {
+    [permissionType: string]: PermissionInfo;
+  };
+}

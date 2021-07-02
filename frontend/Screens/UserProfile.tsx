@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   SafeAreaView, Text, StyleSheet, View,
 } from 'react-native';
+import { useHistory } from 'react-router-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
 });
 
 const UserProfile = () => {
+  const history = useHistory();
   const userPicList = useSelector((state:any) => state.randomUserPics.pictures);
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const totalMunroes = mountainList.length;
@@ -92,7 +94,7 @@ const UserProfile = () => {
             Amy Bell
           </Text>
           <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
-            <MaterialIcons name="photo-camera" size={40} />
+            <MaterialIcons name="photo-camera" size={40} onPress={() => history.push('/camera')} />
           </View>
         </View>
 
