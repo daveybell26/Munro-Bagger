@@ -65,10 +65,12 @@ const CameraScreen = () => {
 
     const pickerResult = await ImagePicker.launchImageLibraryAsync();
 
-    if (!pickerResult.cancelled) {
-      setCapturedImage(pickerResult);
-      setPreviewVisible(true);
+    if (pickerResult.cancelled === true) {
+      return;
     }
+
+    setCapturedImage(pickerResult);
+    setPreviewVisible(true);
   };
 
   return (
