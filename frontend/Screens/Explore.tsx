@@ -8,6 +8,7 @@ import { getRandomMountains } from '../store/explore.store';
 import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
+import { globalStyles } from './styles/GlobalStyles';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 
 const styles = StyleSheet.create({
@@ -65,7 +66,7 @@ const Explore = () => {
           source={{ uri }}
           style={{ width: '100%', height: 200 }}
         />
-        <Text style={styles.pictureTitle}>{name}</Text>
+        <Text style={globalStyles.subHeaders}>{name}</Text>
       </Pressable>
     </View>
 
@@ -88,7 +89,7 @@ const Explore = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <Text style={styles.title}>List of unclimbed mountains</Text>
+      <Text style={globalStyles.header}>List of unclimbed mountains</Text>
       <FlatList
         data={unclimbedArr}
         horizontal
@@ -98,7 +99,7 @@ const Explore = () => {
         showsHorizontalScrollIndicator={false}
 
       />
-      <Text style={styles.title}>Pictures of other users</Text>
+      <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
       <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
