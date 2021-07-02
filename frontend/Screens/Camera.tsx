@@ -24,7 +24,7 @@ const CameraScreen = () => {
 
   const options = {
     quality: 0,
-    base64: false,
+    base64: true,
   };
 
   let camera: Camera | null;
