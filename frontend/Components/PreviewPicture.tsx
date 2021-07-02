@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   SafeAreaView, ImageBackground, TouchableOpacity, Modal, Alert, Pressable,
 } from 'react-native';
-import { useHistory } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import UploadPicture from '../Screens/UploadPicture';
 import styles from './styles/previewPictureStyles';
@@ -14,7 +13,6 @@ const Picture = ({
   picture: any;
   retakePicture: any;
 }) => {
-  const history = useHistory();
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
