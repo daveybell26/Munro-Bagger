@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   SafeAreaView, Text, StyleSheet, Image, View,
 } from 'react-native';
-import { useParams } from 'react-router-native';
+import { useParams, useHistory } from 'react-router-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 });
 
 const MountainProfile = () => {
+  const history = useHistory();
   const { id } = useParams<{ id: string }>();
   const {
     name, imageUrl, Pictures, Peak, Statuses,
@@ -62,6 +63,7 @@ const MountainProfile = () => {
         {' '}
         {Statuses?.climbed ? 'Climbed' : 'Not Climbed'}
       </Text>
+      <Text onPress={() => history.push('/route')}>Show Route</Text>
       <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
