@@ -26,6 +26,8 @@ export default function App() {
               <Route exact path="/map" component={Map} />
               <Route exact path="/mountain/:id" component={MountainProfile} />
               <Route exact path="/profile" component={UserProfile} />
+              <Route exact path="/camera" component={CameraScreen} />
+              <Route exact path="/uploadPicture" component={UploadPicture} />
             </Switch>
           </NativeRouter>
         </Provider>
