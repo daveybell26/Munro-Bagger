@@ -4,7 +4,6 @@ import {
   SafeAreaView, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { useLocation } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMountains } from '../store/getAllMountains.store';
@@ -16,9 +15,7 @@ const UploadPicture = ({ props } :any) => {
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const { picture, setModalVisible, modalVisible } = props;
-  // const { state: { base64 } } = useLocation<any>();
 
-  console.log(picture);
   useEffect(() => {
     dispatch(getMountains());
   }, [dispatch]);

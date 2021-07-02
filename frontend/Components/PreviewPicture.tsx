@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   SafeAreaView, ImageBackground, TouchableOpacity, Modal, Alert, Pressable,
 } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { MaterialIcons } from '@expo/vector-icons';
 import UploadPicture from '../Screens/UploadPicture';
 import styles from './styles/previewPictureStyles';
@@ -32,7 +33,17 @@ const Picture = ({
               setModalVisible(!modalVisible);
             }}
           >
-            <UploadPicture props={{ picture: picture.base64, setModalVisible, modalVisible }} />
+            <BlurView
+              intensity={100}
+              tint="dark"
+              style={styles.blur}
+            >
+              <ImageBackground source={{ uri: picture.uri }} style={styles.image}>
+                <UploadPicture
+                  props={{ picture: picture.base64, setModalVisible, modalVisible }}
+                />
+              </ImageBackground>
+            </BlurView>
           </Modal>
           <Pressable
             style={[styles.button]}

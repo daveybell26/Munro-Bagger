@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
+  blur: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
+  },
 });
 
 export default styles;
