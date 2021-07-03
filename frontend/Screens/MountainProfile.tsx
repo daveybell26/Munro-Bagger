@@ -33,9 +33,7 @@ const MountainProfile = () => {
   } = useSelector((state:any) => state.oneMountain.mountain);
 
   const userId = useSelector((state: any) => state.login.userDetails.id);
-  console.log('userid-------------------', userId);
   const [isEnabled, setIsEnabled] = useState(false);
-  console.log('----------', Statuses)
   const dispatch = useDispatch();
   
   const toggleSwitch2 = () => Statuses.length === 0 ? false : Statuses[0].climbed;
