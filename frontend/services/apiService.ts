@@ -24,3 +24,10 @@ export const getExploreRandom = () => axios.get(`${baseUrl}/explore/random`);
 export const postPicture = (UserId: number, MountainId: number) => axios.post(
   `${baseUrl}/picture/mountain/${MountainId}/user/${UserId}`,
 );
+
+export const postClimbed = (UserId: number, MountainId: number) => axios.post(
+  `${baseUrl}/status/climbed/${MountainId}?UserId=${UserId}`
+);
+export const putClimbed = (id: number, bool: boolean) => axios.put(
+  `${baseUrl}/status/${id}/climbed/${bool}`,
+);

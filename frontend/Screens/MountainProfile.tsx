@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView, Text, StyleSheet, Image, View,
+  SafeAreaView, Text, StyleSheet, Image, View, Switch
 } from 'react-native';
 import { useParams } from 'react-router-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,10 +31,18 @@ const MountainProfile = () => {
   const {
     name, imageUrl, Pictures, Peak, Statuses,
   } = useSelector((state:any) => state.oneMountain.mountain);
-  const dispatch = useDispatch();
 
+  const userId = useSelector((state: any) => state.login.userDetails.id);
+  console.log('userid-------------------', userId);
+  const [isEnabled, setIsEnabled] = useState(false);
+  console.log('----------', Statuses)
+  const dispatch = useDispatch();
+  
+  const toggleSwitch2 = () => Statuses.length === 0 ? false : Statuses[0].climbed;
   useEffect(() => {
     dispatch(getOneMountain(+id));
+    ()=> { toggleSwitch2() }
+    
   }, [dispatch]);
 
   return (
@@ -57,11 +65,13 @@ const MountainProfile = () => {
         {Peak?.elevation}
         m
       </Text>
-      <Text style={globalStyles.stats}>
-        Status:
-        {' '}
-        {Statuses?.climbed ? 'Climbed' : 'Not Climbed'}
-      </Text>
+      <Switch
+        trackColor={{ false: "red", true: "green" }}
+        thumbColor={isEnabled ? "white" : "white"}
+        ios_backgroundColor="red"
+        // onValueChange={}
+        value={toggleSwitch2}
+      />
       <ImageGrid list={Pictures} />
       <NavFooter />
     </SafeAreaView>
