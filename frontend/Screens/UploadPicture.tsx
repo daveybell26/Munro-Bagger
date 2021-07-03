@@ -35,14 +35,12 @@ const UploadPicture = ({ props } :any) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Pick a Mountain</Text>
-      <View style={styles.listContainer}>
-        <Picker
-          selectedValue={selectedMountain}
-          onValueChange={(itemValue) => setSelectedMountain(itemValue)}
-        >
-          {pickers}
-        </Picker>
-      </View>
+      <Picker
+        selectedValue={selectedMountain}
+        onValueChange={(itemValue) => setSelectedMountain(itemValue)}
+      >
+        {pickers}
+      </Picker>
       <View style={styles.buttonContainer}>
         <SafeAreaView style={styles.button}>
           <TouchableOpacity onPress={() => console.log('call cloudinary here')}>
