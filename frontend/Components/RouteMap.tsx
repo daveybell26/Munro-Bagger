@@ -1,12 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
-import MapView, { Polyline } from 'react-native-maps';
+import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
-import { PROVIDER_GOOGLE } from '@env';
 import styles from './styles/mapStyles';
 
 const RouteMap = () => {
-  const [userLocation, setLocation] = useState();
+  const [userLocation, setLocation] = useState<Location.LocationObject>();
   const mapView = useRef<MapView>(null);
 
   useEffect(() => {
