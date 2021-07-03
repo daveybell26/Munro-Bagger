@@ -26,13 +26,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pictureTitle: {
-    marginBottom: 20,
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  verticalList: {
-    marginBottom: 80,
   },
   horizontalList: {
     height: '40%',
@@ -48,7 +44,6 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: 'flex-end',
     width: 100,
-
   },
 });
 
@@ -88,27 +83,35 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
-      <Text style={globalStyles.header}>List of unclimbed mountains</Text>
-      <FlatList
-        data={unclimbedArr}
-        horizontal
-        renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.horizontalList}
-        showsHorizontalScrollIndicator={false}
+      <SafeAreaView style={{ flex: 1.2 }}>
+        <Header />
+      </SafeAreaView>
+      <SafeAreaView style={{ flex: 3.5 }}>
+        <Text style={globalStyles.header}>List of unclimbed mountains</Text>
+        <FlatList
+          data={unclimbedArr}
+          horizontal
+          renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          style={styles.horizontalList}
+          showsHorizontalScrollIndicator={false}
+        />
+      </SafeAreaView>
 
-      />
-      <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
-      <FlatList
-        data={list}
-        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.verticalList}
-        showsVerticalScrollIndicator={false}
-      />
+      <SafeAreaView style={{ flex: 10 }}>
+        <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
+        <FlatList
+          data={list}
+          renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      </SafeAreaView>
 
-      <NavFooter />
+      <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end' }}>
+        <NavFooter />
+      </SafeAreaView>
+
     </SafeAreaView>
   );
 };
