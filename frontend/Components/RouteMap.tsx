@@ -19,7 +19,6 @@ const RouteMap = () => (
         longitudeDelta: 1,
       }}
       style={styles.map}
-      customMapStyle={customMap}
     >
       <Polyline
         coordinates={[

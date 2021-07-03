@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
@@ -12,6 +12,14 @@ const MapComponent = () => {
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const mapView = useRef<MapView>(null);
+
+  const confineMap = () => {
+    const northEast = { latitude: 58.41311, longitude: -2.97362 };
+    const southWest = { latitude: 56.19029, longitude: -6.24164 };
+    mapView.current?.setMapBoundaries(northEast, southWest);
+  };
 
   const listOfMarkers = mountainList ? mountainList.map((location: any) => {
     const markerLocation = {
@@ -39,14 +47,16 @@ const MapComponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
-        region={{
+        mapType="terrain"
+        ref={mapView}
+        onMapReady={() => confineMap()}
+        initialRegion={{
           latitude: 57.3017,
           longitude: -4.60763,
           latitudeDelta: 4.5,
           longitudeDelta: 1,
         }}
         style={styles.map}
-        customMapStyle={customMap}
       >
         {listOfMarkers}
       </MapView>

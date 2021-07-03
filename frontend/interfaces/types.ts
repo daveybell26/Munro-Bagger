@@ -40,3 +40,8 @@ interface PermissionResponse {
     [permissionType: string]: PermissionInfo;
   };
 }
+
+interface LatLng {
+  latitude: Number,
+  longitude: Number,
+}
