@@ -34,10 +34,10 @@ const RouteMap = () => {
         ref={mapView}
         onMapReady={() => confineMap()}
         initialRegion={{
-          latitude: 57.3017,
-          longitude: -4.60763,
-          latitudeDelta: 4.5,
-          longitudeDelta: 1,
+          latitude: 56.17,
+          longitude: -4.63301,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
         }}
         style={styles.map}
         showsUserLocation
