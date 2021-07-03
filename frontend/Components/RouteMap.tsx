@@ -7,6 +7,7 @@ import NavFooter from './NavFooter';
 import Header from './Header';
 
 const RouteMap = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userLocation, setLocation] = useState<Location.LocationObject>();
   const mapView = useRef<MapView>(null);
 
