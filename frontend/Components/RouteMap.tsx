@@ -1,20 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
-import * as TaskManager from 'expo-task-manager';
 import * as Location from 'expo-location';
+import { PROVIDER_GOOGLE } from '@env';
 import styles from './styles/mapStyles';
 
 const RouteMap = () => {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [userLocation, setLocation] = useState();
   const mapView = useRef<MapView>(null);
 
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
         return;
       }
 
@@ -22,13 +20,6 @@ const RouteMap = () => {
       setLocation(location);
     })();
   }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
 
   const confineMap = () => {
     const northEast = { latitude: 59, longitude: -1 };
@@ -39,6 +30,7 @@ const RouteMap = () => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
+        provider={PROVIDER_GOOGLE}
         mapType="terrain"
         ref={mapView}
         onMapReady={() => confineMap()}
