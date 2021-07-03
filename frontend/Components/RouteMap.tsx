@@ -1,15 +1,34 @@
-import React, { useRef } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
-// import { useHistory } from 'react-router-native';
+import * as TaskManager from 'expo-task-manager';
+import * as Location from 'expo-location';
 import styles from './styles/mapStyles';
-// import { getMountains } from '../store/getAllMountains.store';
-// import GreenMountain from '../assets/greenMountain.png';
-// import RedMountain from '../assets/redMountain.png';
 
 const RouteMap = () => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const mapView = useRef<MapView>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
 
   const confineMap = () => {
     const northEast = { latitude: 59, longitude: -1 };
@@ -30,6 +49,7 @@ const RouteMap = () => {
           longitudeDelta: 1,
         }}
         style={styles.map}
+        showsUserLocation
       >
         <Polyline
           coordinates={[
