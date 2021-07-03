@@ -11,8 +11,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#427AA1',
-    position: 'absolute',
-    bottom: 0,
   },
 });
 
@@ -26,7 +24,7 @@ const NavFooter = () => {
 
   const history = useHistory();
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.navFooter}>
         {isOnExploreScreen
           ? <MaterialIcons name="home" size={35} color="white" onPress={() => history.push('/explore')} />
