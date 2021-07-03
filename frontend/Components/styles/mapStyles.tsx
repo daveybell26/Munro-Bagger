@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#EBF2FA',
+  },
 });
 
 export default styles;
