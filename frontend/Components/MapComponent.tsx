@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
+import { PROVIDER_GOOGLE } from '@env';
 import styles from './styles/mapStyles';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
@@ -47,6 +48,7 @@ const MapComponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
+        provider={PROVIDER_GOOGLE}
         mapType="terrain"
         ref={mapView}
         onMapReady={() => confineMap()}
