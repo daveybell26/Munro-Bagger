@@ -83,10 +83,8 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <SafeAreaView style={{ flex: 1.2 }}>
-        <Header />
-      </SafeAreaView>
-      <SafeAreaView style={{ flex: 3.5 }}>
+      <Header />
+      <SafeAreaView style={{ flex: 1 }}>
         <Text style={globalStyles.header}>List of unclimbed mountains</Text>
         <FlatList
           data={unclimbedArr}
@@ -98,7 +96,7 @@ const Explore = () => {
         />
       </SafeAreaView>
 
-      <SafeAreaView style={{ flex: 10 }}>
+      <SafeAreaView style={{ flex: 3 }}>
         <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
         <FlatList
           data={list}
@@ -107,11 +105,7 @@ const Explore = () => {
           showsVerticalScrollIndicator={false}
         />
       </SafeAreaView>
-
-      <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end' }}>
-        <NavFooter />
-      </SafeAreaView>
-
+      <NavFooter />
     </SafeAreaView>
   );
 };
