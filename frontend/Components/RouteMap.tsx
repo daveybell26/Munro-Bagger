@@ -11,6 +11,7 @@ import { styles, customMap } from './styles/mapStyles';
 const RouteMap = () => (
   <SafeAreaView style={styles.container}>
     <MapView
+      mapType="terrain"
       region={{
         latitude: 57.3017,
         longitude: -4.60763,
