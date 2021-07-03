@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
-import { styles, customMap } from './styles/mapStyles';
+import styles from './styles/mapStyles';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
