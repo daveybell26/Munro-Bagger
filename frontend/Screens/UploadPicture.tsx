@@ -4,19 +4,24 @@ import {
   SafeAreaView, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { useHistory, useLocation } from 'react-router-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
 // import cloudinaryUpload from '../cloudinary';
 
-const UploadPicture = (pictureToBeUploaded : any) => {
+const UploadPicture = ({
+  picture,
+  setModalVisible,
+  modalVisible,
+} : {
+  picture: any,
+  setModalVisible: any,
+  modalVisible:any
+}) => {
   const [selectedMountain, setSelectedMountain] = useState();
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { state: { base64 } } = useLocation<any>();
 
   useEffect(() => {
     dispatch(getMountains());
@@ -37,14 +42,12 @@ const UploadPicture = (pictureToBeUploaded : any) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Pick a Mountain</Text>
-      <View style={styles.listContainer}>
-        <Picker
-          selectedValue={selectedMountain}
-          onValueChange={(itemValue) => setSelectedMountain(itemValue)}
-        >
-          {pickers}
-        </Picker>
-      </View>
+      <Picker
+        selectedValue={selectedMountain}
+        onValueChange={(itemValue) => setSelectedMountain(itemValue)}
+      >
+        {pickers}
+      </Picker>
       <View style={styles.buttonContainer}>
         <SafeAreaView style={styles.button}>
           <TouchableOpacity onPress={() => console.log('call cloudinary here')}>
@@ -52,7 +55,7 @@ const UploadPicture = (pictureToBeUploaded : any) => {
           </TouchableOpacity>
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => history.push('/camera')}>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <MaterialIcons name="highlight-remove" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>

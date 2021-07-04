@@ -3,9 +3,12 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
     padding: 25,
-    justifyContent: 'center',
-    marginTop: '20%',
+    justifyContent: 'space-between',
+    height: 300,
+    width: 300,
+    borderRadius: 10,
   },
   button: {
     backgroundColor: '#FFF',
@@ -17,20 +20,13 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   buttonContainer: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  listContainer: {
-    flex: 1,
-    padding: 0,
-    margin: 0,
-  },
   text: {
-    flex: 1,
     textAlign: 'center',
     fontSize: 20,
-    flexDirection: 'row',
   },
 });
 
