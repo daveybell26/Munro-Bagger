@@ -47,7 +47,7 @@ const MountainProfile = () => {
     name, imageUrl, Pictures, Peak, Statuses,
   } = useSelector((state: any) => state.oneMountain.mountain);
   const createStatusListener = useSelector((state: any) => state.unclimbedCreate.climbedStatusObj);
-  const updateStatusListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr[1][0].climbed);
+  const updateStatusListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr);
   const userId = useSelector((state: any) => state.login.userDetails.id);
   const initialSwitchStatus = () => (Statuses.length === 0 ? false : Statuses[0].climbed);
   const dispatch = useDispatch();
@@ -55,7 +55,6 @@ const MountainProfile = () => {
     if (Statuses.length === 0) {
       dispatch(postClimbedStatus({ userId, id }));
     } else {
-      console.log('HIT');
       dispatch(putClimbedStatus({ id: Statuses[0].id, bool: !Statuses[0].climbed }));
     }
   };
