@@ -3,13 +3,14 @@ import {
   SafeAreaView, Text, StyleSheet, Image, View, Pressable,
 } from 'react-native';
 import { useParams, useHistory } from 'react-router-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { getOneMountain } from '../store/getOneMountain.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import { globalStyles } from './styles/GlobalStyles';
+import { oneMountainSelector, useAppDispatch } from '../store';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -41,10 +42,8 @@ const styles = StyleSheet.create({
 const MountainProfile = () => {
   const history = useHistory();
   const { id } = useParams<{ id: string }>();
-  const {
-    name, imageUrl, Pictures, Peak, Statuses,
-  } = useSelector((state:any) => state.oneMountain.mountain);
-  const dispatch = useDispatch();
+  const { mountain } = useSelector(oneMountainSelector);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
@@ -53,36 +52,39 @@ const MountainProfile = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: imageUrl }}
-          style={{ width: '100%', height: 200 }}
-        />
-      </View>
-      <Text style={globalStyles.subHeaders}>{name}</Text>
-      <SafeAreaView style={styles.info}>
-        <Text style={globalStyles.stats}>
-          Elevation:
-          {' '}
-          {Peak?.elevation}
-          m
-        </Text>
-        <Text style={globalStyles.stats}>
-          Status:
-          {' '}
-          {Statuses?.climbed ? 'Climbed' : 'Not Climbed'}
-        </Text>
-      </SafeAreaView>
-      <SafeAreaView style={styles.routeButton}>
-        <Pressable onPress={() => history.push('/route')}>
-          <FontAwesome5 name="route" size={50} color={Statuses?.climbed ? 'green' : 'red'} />
-        </Pressable>
-        <Text>
-          Show Route
-        </Text>
-      </SafeAreaView>
-
-      <ImageGrid list={Pictures} />
+      {Object.keys(mountain).length !== 0 ? (
+        <>
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: mountain.imageUrl }}
+              style={{ width: '100%', height: 200 }}
+            />
+          </View>
+          <Text style={globalStyles.subHeaders}>{mountain.name}</Text>
+          <SafeAreaView style={styles.info}>
+            <Text style={globalStyles.stats}>
+              Elevation:
+              {' '}
+              {mountain.Peak?.elevation}
+              m
+            </Text>
+            <Text style={globalStyles.stats}>
+              Status:
+              {' '}
+              {mountain.Statuses[0]?.climbed ? 'Climbed' : 'Not Climbed'}
+            </Text>
+          </SafeAreaView>
+          <SafeAreaView style={styles.routeButton}>
+            <Pressable onPress={() => history.push('/route')}>
+              <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? 'green' : 'red'} />
+            </Pressable>
+            <Text>
+              Show Route
+            </Text>
+          </SafeAreaView>
+          <ImageGrid list={mountain.Pictures} />
+        </>
+      ) : null}
       <NavFooter />
     </SafeAreaView>
   );

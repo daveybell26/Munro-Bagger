@@ -4,12 +4,13 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
 import cloudinaryUpload from '../cloudinary';
 import { postPicture } from '../services/apiService';
+import { allMountainSelector, loginSelector, useAppDispatch } from '../store';
 
 const UploadPicture = ({
   picture,
@@ -23,10 +24,10 @@ const UploadPicture = ({
   const [selectedMountain, setSelectedMountain] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const mountainList: MountainInfo[] = useSelector((state: any) => state.allMountains.mountainList);
-  const user = useSelector((state: any) => state.login.userDetails);
+  const { mountainList } = useSelector(allMountainSelector);
+  const { userDetails } = useSelector(loginSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -36,14 +37,14 @@ const UploadPicture = ({
   const uploadHandler = async () => {
     setLoading(true);
     const cloudinaryUrl = await cloudinaryUpload(picture);
-    await postPicture(user.id, selectedMountain, cloudinaryUrl);
+    await postPicture(userDetails.id, selectedMountain, cloudinaryUrl);
     setLoading(false);
     history.push('/profile');
   };
 
   const pickers = mountainList
     ? mountainList
-      .map((location: any) => (
+      .map((location) => (
         <Picker.Item
           key={location.id}
           label={location.name}

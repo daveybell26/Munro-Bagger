@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
   StyleSheet, TextInput, ImageBackground, View,
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
 import { postLogin } from '../store/login.store';
+import { loginSelector, useAppDispatch } from '../store';
 
 const backGroundImage = require('../assets/background.jpg');
 
@@ -27,10 +28,10 @@ const styles = StyleSheet.create({
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const userDetails = useSelector((state: any) => state.login.userDetails);
+  const { userDetails } = useSelector(loginSelector);
 
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (userDetails.id) history.push('/explore');

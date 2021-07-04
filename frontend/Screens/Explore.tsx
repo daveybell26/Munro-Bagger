@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { getRandomMountains } from '../store/explore.store';
 import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
@@ -10,6 +10,9 @@ import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import { globalStyles } from './styles/GlobalStyles';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
+import {
+  randomMountainSelector, unclimbedMountainsSelector, loginSelector, useAppDispatch,
+} from '../store';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -48,10 +51,10 @@ const styles = StyleSheet.create({
 });
 
 const Explore = () => {
-  const list = useSelector((state: any) => state.exploreRandomMountains.randomMountainsList);
-  const unclimbedArr = useSelector((state: any) => state.unclimbedMountains.unclimbedMountainsList);
-  const userId = useSelector((state: any) => state.login.userDetails.id);
-  const dispatch = useDispatch();
+  const { randomMountainsList } = useSelector(randomMountainSelector);
+  const { unclimbedMountainsList } = useSelector(unclimbedMountainsSelector);
+  const { userDetails } = useSelector(loginSelector);
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
   const randomMountainImage = (id: number, name: string, uri: string) => (
@@ -64,9 +67,9 @@ const Explore = () => {
         <Text style={globalStyles.subHeaders}>{name}</Text>
       </Pressable>
     </View>
-
   );
-  const unClimbedMountainImage = (id: number, name: string, uri: string) => (
+
+  const unclimbedMountainImage = (id: number, name: string, uri: string) => (
     <View style={styles.view}>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <CircularThumbnailImage imageUrl={uri} />
@@ -78,7 +81,7 @@ const Explore = () => {
 
   useEffect(() => {
     dispatch(getRandomMountains());
-    dispatch(getExploreUnclimbedMountains(userId));
+    dispatch(getExploreUnclimbedMountains(userDetails.id));
   }, [dispatch]);
 
   return (
@@ -86,17 +89,21 @@ const Explore = () => {
       <Header />
       <Text style={globalStyles.header}>List of unclimbed mountains</Text>
       <FlatList
-        data={unclimbedArr}
+        data={unclimbedMountainsList}
         horizontal
-        renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
+        renderItem={(
+          { item } : { item: MountainInfo },
+        ) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         style={styles.horizontalList}
         showsHorizontalScrollIndicator={false}
       />
       <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
       <FlatList
-        data={list}
-        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
+        data={randomMountainsList}
+        renderItem={(
+          { item }: { item: MountainInfo },
+        ) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
       />
