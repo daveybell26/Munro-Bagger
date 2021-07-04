@@ -24,6 +24,7 @@ export const putClimbed = async (req: Request, res: Response) => {
       climbed: bool,
     }, {
       where: { id },
+      returning: true,
     });
     res.json(data);
   } catch (e) {

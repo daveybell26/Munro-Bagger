@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { BACKEND_URL } from '@env';
+// import { BACKEND_URL } from '@env';
 
-const baseUrl = BACKEND_URL;
+const baseUrl = 'http://192.168.178.92:8081';
 
 export const login = (email: string) => axios.post(
   `${baseUrl}/login`, { email },
@@ -23,4 +23,11 @@ export const getExploreRandom = () => axios.get(`${baseUrl}/explore/random`);
 
 export const postPicture = (UserId: number, MountainId: number) => axios.post(
   `${baseUrl}/picture/mountain/${MountainId}/user/${UserId}`,
+);
+
+export const postClimbed = (UserId: number, MountainId: number) => axios.post(
+  `${baseUrl}/status/climbed/${MountainId}?UserId=${UserId}`,
+);
+export const putClimbed = (id: number, bool: boolean) => axios.put(
+  `${baseUrl}/status/${id}/climbed/${bool}`,
 );
