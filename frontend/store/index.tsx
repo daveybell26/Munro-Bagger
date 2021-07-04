@@ -19,9 +19,16 @@ const store = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk = ThunkAction<void, RootState, unknown, Action>;
 
-export type RootState = ReturnType<typeof store.getState>;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export const allMountainSelector = (state: RootState) => state.allMountains;
+export const oneMountainSelector = (state: RootState) => state.oneMountain;
+export const randomUserPicsSelector = (state: RootState) => state.randomUserPics;
+export const loginSelector = (state: RootState) => state.login;
+export const unclimbedMountainsSelector = (state: RootState) => state.unclimbedMountains;
+export const randomMountainSelector = (state: RootState) => state.exploreRandomMountains;
 
 export default store;

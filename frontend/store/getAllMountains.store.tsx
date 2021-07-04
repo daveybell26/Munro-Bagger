@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '.';
 import { getAllMountains } from '../services/apiService';
 
 export const getMountains = createAsyncThunk('allMountains/getMountains', async () => {
@@ -9,14 +8,14 @@ export const getMountains = createAsyncThunk('allMountains/getMountains', async 
 });
 
 interface MountainListState {
-  mountainList: []
+  mountainList: MountainInfo[]
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialMountainState: MountainListState = {
+const initialMountainState = {
   mountainList: [],
   loading: 'idle',
-};
+} as MountainListState;
 
 const allMountainsSlice = createSlice({
   name: 'allMountains',
@@ -35,7 +34,5 @@ const allMountainsSlice = createSlice({
     });
   },
 });
-
-export const allMountainSelector = (state: RootState) => state.allMountains;
 
 export default allMountainsSlice.reducer;

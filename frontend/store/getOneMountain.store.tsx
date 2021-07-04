@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '.';
 import { getMountainById } from '../services/apiService';
 
 export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', async (id: number) => {
@@ -10,14 +9,14 @@ export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', asy
 });
 
 interface MountainState {
-  mountain: {}
+  mountain: MountainInfo
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialMountainState: MountainState = {
+const initialMountainState = {
   mountain: {},
   loading: 'idle',
-};
+} as MountainState;
 
 const oneMountainSlice = createSlice({
   name: 'oneMountain',
@@ -36,7 +35,5 @@ const oneMountainSlice = createSlice({
     });
   },
 });
-
-export const oneMountainSelector = (state: RootState) => state.oneMountain;
 
 export default oneMountainSlice.reducer;
