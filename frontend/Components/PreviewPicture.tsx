@@ -33,17 +33,13 @@ const Picture = ({
               setModalVisible(!modalVisible);
             }}
           >
-            <BlurView
-              intensity={100}
-              tint="dark"
-              style={styles.blur}
-            >
-              <ImageBackground source={{ uri: picture.uri }} style={styles.image}>
-                <UploadPicture
-                  props={{ picture: picture.base64, setModalVisible, modalVisible }}
-                />
-              </ImageBackground>
-            </BlurView>
+            <ImageBackground source={{ uri: picture.uri }} style={styles.image}>
+              <UploadPicture
+                picture={picture.base64}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+              />
+            </ImageBackground>
           </Modal>
           <Pressable
             style={[styles.button]}

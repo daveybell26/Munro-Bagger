@@ -10,11 +10,18 @@ import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
 // import cloudinaryUpload from '../cloudinary';
 
-const UploadPicture = ({ props } :any) => {
+const UploadPicture = ({
+  picture,
+  setModalVisible,
+  modalVisible,
+} : {
+  picture: any,
+  setModalVisible: any,
+  modalVisible:any
+}) => {
   const [selectedMountain, setSelectedMountain] = useState();
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
   const dispatch = useDispatch();
-  const { picture, setModalVisible, modalVisible } = props;
 
   useEffect(() => {
     dispatch(getMountains());

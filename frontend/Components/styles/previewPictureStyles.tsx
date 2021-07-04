@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   button: {
-
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -21,11 +20,8 @@ const styles = StyleSheet.create({
     width: 50,
   },
   blur: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
-    width: '100%',
   },
 });
 
