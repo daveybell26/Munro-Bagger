@@ -26,7 +26,7 @@ const ImageGrid = ({ list }: { list: any }) => {
         renderItem={({ item }) => singleImage(item)}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
-        style={{ marginTop: 10, marginBottom: 50 }}
+        style={{ marginTop: 10, marginBottom: 10 }}
       />
     </SafeAreaView>
   );
