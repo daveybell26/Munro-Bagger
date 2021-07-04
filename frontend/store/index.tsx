@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import mountainsReducer from './getAllMountains.store';
 import oneMountainReducer from './getOneMountain.store';
@@ -20,6 +20,7 @@ const store = configureStore({
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
+export type AppThunk = ThunkAction<void, RootState, unknown, Action>;
 
 export type RootState = ReturnType<typeof store.getState>;
 
