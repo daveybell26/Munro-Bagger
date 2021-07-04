@@ -6,9 +6,11 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-native';
 import { getMountains } from '../store/getAllMountains.store';
 import styles from './styles/uploadPictureStyles';
-// import cloudinaryUpload from '../cloudinary';
+import cloudinaryUpload from '../cloudinary';
+import { postPicture } from '../services/apiService';
 
 const UploadPicture = ({
   picture,
@@ -17,15 +19,24 @@ const UploadPicture = ({
 } : {
   picture: any,
   setModalVisible: any,
-  modalVisible:any
+  modalVisible: any
 }) => {
-  const [selectedMountain, setSelectedMountain] = useState();
-  const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
+  const [selectedMountain, setSelectedMountain] = useState(0);
+  const mountainList: MountainInfo[] = useSelector((state: any) => state.allMountains.mountainList);
+  const user = useSelector((state: any) => state.login.userDetails);
+
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getMountains());
   }, [dispatch]);
+
+  const uploadHandler = async () => {
+    const cloudinaryUrl = await cloudinaryUpload(picture);
+    await postPicture(user.id, selectedMountain, cloudinaryUrl);
+    history.push('/profile');
+  };
 
   const pickers = mountainList
     ? mountainList
@@ -50,7 +61,7 @@ const UploadPicture = ({
       </Picker>
       <View style={styles.buttonContainer}>
         <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => console.log('call cloudinary here')}>
+          <TouchableOpacity onPress={() => uploadHandler()}>
             <MaterialIcons name="check-circle-outline" size={24} color="black" />
           </TouchableOpacity>
         </SafeAreaView>
