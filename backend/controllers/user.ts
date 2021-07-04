@@ -6,7 +6,7 @@ const getRandomUserPics = async (req: Request, res: Response) => {
     const { UserId } = req.query;
     const data = await sequelize.models.Picture.findAll({
       where: { UserId },
-      order: sequelize.random(),
+      order: [['createdAt', 'desc']],
       limit: 12,
     });
     res.json(data);

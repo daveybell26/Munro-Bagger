@@ -3,10 +3,10 @@ import sequelize from '../models/sequelize';
 
 const postPicture = async (req: Request, res: Response) => {
   try {
+    const { imageUrl } = req.body;
     const { UserId, MountainId } = req.params;
-    const randomImageId = Math.ceil(Math.random() * 1000);
     const data = await sequelize.models.Picture.create({
-      imageUrl: `https://picsum.photos/id/${randomImageId}/200`,
+      imageUrl,
       UserId,
       MountainId,
     });
