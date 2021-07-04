@@ -55,6 +55,7 @@ export const putWishlist = async (req: Request, res: Response) => {
       wishlist: bool,
     }, {
       where: { id },
+      returning: true,
     });
     res.json(data);
   } catch (e) {

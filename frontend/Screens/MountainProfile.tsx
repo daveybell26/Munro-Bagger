@@ -8,6 +8,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { getOneMountain } from '../store/getOneMountain.store';
 import { postClimbedStatus } from '../store/postClimbed.store';
 import { putClimbedStatus } from '../store/putClimbed.store';
+import { postWishlistStatus } from '../store/postWishlist.store';
+import { putWishlistStatus } from '../store/putWishlist.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
@@ -46,12 +48,15 @@ const MountainProfile = () => {
   const {
     name, imageUrl, Pictures, Peak, Statuses,
   } = useSelector((state: any) => state.oneMountain.mountain);
-  const createStatusListener = useSelector((state: any) => state.unclimbedCreate.climbedStatusObj);
-  const updateStatusListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr);
+  const createClimbedListener = useSelector((state: any) => state.unclimbedCreate.climbedStatusObj);
+  const updateClimbedListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr);
+  const createWishListener = useSelector((state: any) => state.wishlistCreate.wishlistStatusObj);
+  const updateWishListener = useSelector((state: any) => state.wishlistUpdate.wishlistStatusArr);
   const userId = useSelector((state: any) => state.login.userDetails.id);
-  const initialSwitchStatus = () => (Statuses.length === 0 ? false : Statuses[0].climbed);
+  const initialClimbedStatus = () => (Statuses.length === 0 ? false : Statuses[0].climbed);
+  const initialWishlistStatus = () => (Statuses.length === 0 ? false : Statuses[0].wishlist);
   const dispatch = useDispatch();
-  const changeStatus = () => {
+  const changeClimbedStatus = () => {
     if (Statuses.length === 0) {
       dispatch(postClimbedStatus({ userId, id }));
     } else {
@@ -59,9 +64,17 @@ const MountainProfile = () => {
     }
   };
 
+  const changeWishlistStatus = () => {
+    if (Statuses.length === 0) {
+      dispatch(postWishlistStatus(id));
+    } else {
+      dispatch(putWishlistStatus({ id: Statuses[0].id, bool: !Statuses[0].wishlist }));
+    }
+  };
+
   useEffect(() => {
     dispatch(getOneMountain(+id));
-  }, [createStatusListener, updateStatusListener]);
+  }, [createClimbedListener, updateClimbedListener, createWishListener, updateWishListener]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -81,16 +94,28 @@ const MountainProfile = () => {
           m
         </Text>
         <Text style={globalStyles.stats}>
-          Status:
+          Climbed:
           {' '}
-          {/* {Statuses?.climbed ? 'Climbed' : 'Not Climbed'} */}
         </Text>
         <Switch
           trackColor={{ false: 'red', true: 'green' }}
           // thumbColor={isEnabled ? 'white' : 'white'}
           ios_backgroundColor="red"
-          onValueChange={() => changeStatus()}
-          value={!Statuses ? null : initialSwitchStatus()}
+          onValueChange={() => changeClimbedStatus()}
+          value={!Statuses ? null : initialClimbedStatus()}
+
+        />
+        <Text style={globalStyles.stats}>
+          Wishlist:
+          {' '}
+        </Text>
+        <Switch
+          trackColor={{ false: 'red', true: 'green' }}
+          // thumbColor={isEnabled ? 'white' : 'white'}
+          ios_backgroundColor="red"
+          onValueChange={() => changeWishlistStatus()}
+          value={!Statuses ? null : initialWishlistStatus()}
+
         />
       </SafeAreaView>
       <SafeAreaView style={styles.routeButton}>

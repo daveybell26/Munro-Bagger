@@ -8,6 +8,8 @@ import exploreMountainsReducer from './explore.store';
 import unclimbedMountainsReducer from './getUnclimbedMountains.store';
 import unclimbedCreateStatusReducer from './postClimbed.store';
 import unclimbedUpdateStatusReducer from './putClimbed.store';
+import wishlistCreateStatusReducer from './postWishlist.store';
+import wishlistUpdateStatusReducer from './putWishlist.store';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +21,8 @@ const store = configureStore({
     unclimbedMountains: unclimbedMountainsReducer,
     unclimbedCreate: unclimbedCreateStatusReducer,
     unclimbedUpdate: unclimbedUpdateStatusReducer,
+    wishlistCreate: wishlistCreateStatusReducer,
+    wishlistUpdate: wishlistUpdateStatusReducer,
   },
 });
 
