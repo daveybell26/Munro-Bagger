@@ -89,30 +89,3 @@ const RouteMap = () => {
   );
 };
 export default RouteMap;
-
-// const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
-// const dispatch = useDispatch();
-// const history = useHistory();
-
-// const listOfMarkers = mountainList ? mountainList.map((location: any) => {
-//   const markerLocation = {
-//     latitude: location.Peak.latitude,
-//     longitude: location.Peak.longitude,
-//   };
-//   return (
-//     <Marker
-//       onPress={() => history.push(`/mountain/${location.id}`)}
-//       key={location.id}
-//       coordinate={markerLocation}
-//       image={location.Statuses[0]?.climbed ? GreenMountain : RedMountain}
-//     >
-//       <Callout>
-//         <Text>{location.name}</Text>
-//       </Callout>
-//     </Marker>
-//   );
-// }) : null;
-
-// useEffect(() => {
-//   dispatch(getMountains());
-// }, [dispatch]);

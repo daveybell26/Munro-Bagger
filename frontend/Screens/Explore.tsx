@@ -84,27 +84,22 @@ const Explore = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      <SafeAreaView style={{ flex: 1 }}>
-        <Text style={globalStyles.header}>List of unclimbed mountains</Text>
-        <FlatList
-          data={unclimbedArr}
-          horizontal
-          renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
-          keyExtractor={(item) => item.id.toString()}
-          style={styles.horizontalList}
-          showsHorizontalScrollIndicator={false}
-        />
-      </SafeAreaView>
-
-      <SafeAreaView style={{ flex: 3 }}>
-        <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
-        <FlatList
-          data={list}
-          renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
-          keyExtractor={(item) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-        />
-      </SafeAreaView>
+      <Text style={globalStyles.header}>List of unclimbed mountains</Text>
+      <FlatList
+        data={unclimbedArr}
+        horizontal
+        renderItem={({ item }) => unClimbedMountainImage(item.id, item.name, item.imageUrl)}
+        keyExtractor={(item) => item.id.toString()}
+        style={styles.horizontalList}
+        showsHorizontalScrollIndicator={false}
+      />
+      <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
+      <FlatList
+        data={list}
+        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+      />
       <NavFooter />
     </SafeAreaView>
   );
