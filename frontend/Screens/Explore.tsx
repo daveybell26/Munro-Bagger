@@ -26,13 +26,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pictureTitle: {
-    marginBottom: 20,
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  verticalList: {
-    marginBottom: 80,
   },
   horizontalList: {
     height: '40%',
@@ -48,7 +44,6 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: 'flex-end',
     width: 100,
-
   },
 });
 
@@ -97,17 +92,14 @@ const Explore = () => {
         keyExtractor={(item) => item.id.toString()}
         style={styles.horizontalList}
         showsHorizontalScrollIndicator={false}
-
       />
       <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
       <FlatList
         data={list}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
-        style={styles.verticalList}
         showsVerticalScrollIndicator={false}
       />
-
       <NavFooter />
     </SafeAreaView>
   );

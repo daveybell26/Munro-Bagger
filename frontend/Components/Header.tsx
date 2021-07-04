@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 export default function Header() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.header}>
         <MaterialIcons name="terrain" size={50} />
         <Text style={styles.appName}> bagPics</Text>
