@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '.';
 import { getExploreRandom } from '../services/apiService';
 
 export const getRandomMountains = createAsyncThunk('randomMountains/getRandomMountains', async () => {
@@ -34,5 +35,7 @@ const randomMountainsSlice = createSlice({
     });
   },
 });
+
+export const randomMountainSelector = (state: RootState) => state.exploreRandomMountains;
 
 export default randomMountainsSlice.reducer;

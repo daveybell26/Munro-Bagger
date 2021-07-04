@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '.';
 import { getExploreUnclimbed } from '../services/apiService';
 
 export const getExploreUnclimbedMountains = createAsyncThunk('unclimbedMountains/getExploreUnclimbedMountains', async (userId: number) => {
@@ -34,5 +35,7 @@ const unclimbedMountainsSlice = createSlice({
     });
   },
 });
+
+export const unclimbedMountainsSelector = (state: RootState) => state.unclimbedMountains;
 
 export default unclimbedMountainsSlice.reducer;

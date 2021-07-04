@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '.';
 import { login } from '../services/apiService';
 
 export const postLogin = createAsyncThunk('login/postLogin', async (email: string) => {
@@ -35,5 +36,7 @@ const loginSlice = createSlice({
     });
   },
 });
+
+export const loginSelector = (state: RootState) => state.login;
 
 export default loginSlice.reducer;

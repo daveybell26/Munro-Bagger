@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '.';
 import { getRandomUserPics } from '../services/apiService';
 
 export const getUserPicsRandomly = createAsyncThunk('randomUserPics/getUserPicsRandomly', async () => {
@@ -35,5 +36,7 @@ const randomUserPicsSlice = createSlice({
     });
   },
 });
+
+export const randomUserPicsSelector = (state: RootState) => state.randomUserPics;
 
 export default randomUserPicsSlice.reducer;
