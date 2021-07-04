@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   SafeAreaView, ImageBackground, TouchableOpacity, Modal, Alert, Pressable,
 } from 'react-native';
-import { BlurView } from 'expo-blur';
 import { MaterialIcons } from '@expo/vector-icons';
 import UploadPicture from '../Screens/UploadPicture';
 import styles from './styles/previewPictureStyles';
@@ -10,7 +9,7 @@ import styles from './styles/previewPictureStyles';
 const Picture = ({
   picture,
   retakePicture,
-}: {
+} : {
   picture: any;
   retakePicture: any;
 }) => {

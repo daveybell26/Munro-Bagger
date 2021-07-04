@@ -19,10 +19,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  blur: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
 
 export default styles;
