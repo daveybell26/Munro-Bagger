@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView, Text, TouchableOpacity, View,
+  ActivityIndicator, SafeAreaView, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -22,6 +22,8 @@ const UploadPicture = ({
   modalVisible: any
 }) => {
   const [selectedMountain, setSelectedMountain] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const mountainList: MountainInfo[] = useSelector((state: any) => state.allMountains.mountainList);
   const user = useSelector((state: any) => state.login.userDetails);
 
@@ -33,8 +35,10 @@ const UploadPicture = ({
   }, [dispatch]);
 
   const uploadHandler = async () => {
+    setLoading(true);
     const cloudinaryUrl = await cloudinaryUpload(picture);
     await postPicture(user.id, selectedMountain, cloudinaryUrl);
+    setLoading(false);
     history.push('/profile');
   };
 
@@ -59,19 +63,22 @@ const UploadPicture = ({
       >
         {pickers}
       </Picker>
-      <View style={styles.buttonContainer}>
-        <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => uploadHandler()}>
-            <MaterialIcons name="check-circle-outline" size={24} color="black" />
-          </TouchableOpacity>
-        </SafeAreaView>
-        <SafeAreaView style={styles.button}>
-          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-            <MaterialIcons name="highlight-remove" size={24} color="black" />
-          </TouchableOpacity>
-        </SafeAreaView>
-      </View>
-
+      {loading
+        ? <ActivityIndicator size="large" />
+        : (
+          <View style={styles.buttonContainer}>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity onPress={() => uploadHandler()}>
+                <MaterialIcons name="check-circle-outline" size={24} color="black" />
+              </TouchableOpacity>
+            </SafeAreaView>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                <MaterialIcons name="highlight-remove" size={24} color="black" />
+              </TouchableOpacity>
+            </SafeAreaView>
+          </View>
+        )}
     </SafeAreaView>
   );
 };
