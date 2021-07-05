@@ -11,7 +11,7 @@ interface MountainInfo {
     elevation: number
   },
   Statuses: Statuses[]
-  Pictures?: Pictures[]
+  Pictures: Pictures[]
 }
 
 interface Statuses {
