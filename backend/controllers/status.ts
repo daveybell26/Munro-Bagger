@@ -24,6 +24,7 @@ export const putClimbed = async (req: Request, res: Response) => {
       climbed: bool,
     }, {
       where: { id },
+      returning: true,
     });
     res.json(data);
   } catch (e) {
@@ -54,6 +55,7 @@ export const putWishlist = async (req: Request, res: Response) => {
       wishlist: bool,
     }, {
       where: { id },
+      returning: true,
     });
     res.json(data);
   } catch (e) {

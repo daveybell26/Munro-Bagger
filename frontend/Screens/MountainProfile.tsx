@@ -1,32 +1,64 @@
 import React, { useEffect } from 'react';
 import {
-  Image, Pressable, SafeAreaView, Text, View,
+  SafeAreaView, Text, Image, View, Pressable, Switch,
 } from 'react-native';
 import { useParams, useHistory } from 'react-router-native';
 import { useSelector } from 'react-redux';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { getOneMountain } from '../store/getOneMountain.store';
+import { postClimbedStatus } from '../store/postClimbed.store';
+import { putClimbedStatus } from '../store/putClimbed.store';
+import { postWishlistStatus } from '../store/postWishlist.store';
+import { putWishlistStatus } from '../store/putWishlist.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import { globalStyles } from './styles/GlobalStyles';
-import { oneMountainSelector, useAppDispatch } from '../store';
+import { loginSelector, oneMountainSelector, useAppDispatch } from '../store';
 import styles from './styles/mountainProfileStyles';
 
 const MountainProfile = () => {
   const history = useHistory();
-  const { id } = useParams<{ id: string }>();
-  const { mountain } = useSelector(oneMountainSelector);
   const dispatch = useAppDispatch();
+  const { id } = useParams<{ id: string }>();
+
+  const { mountain } = useSelector(oneMountainSelector);
+  const { userDetails } = useSelector(loginSelector);
+  const createClimbedListener = useSelector((state: any) => state.unclimbedCreate.climbedStatusObj);
+  const updateClimbedListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr);
+  const createWishListener = useSelector((state: any) => state.wishlistCreate.wishlistStatusObj);
+  const updateWishListener = useSelector((state: any) => state.wishlistUpdate.wishlistStatusArr);
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
-  }, [dispatch]);
+  }, [createClimbedListener, updateClimbedListener, createWishListener, updateWishListener]);
+
+  const changeClimbedStatus = () => {
+    if (mountain.Statuses.length === 0) {
+      dispatch(postClimbedStatus({ UserId: userDetails.id, id }));
+    } else {
+      dispatch(putClimbedStatus({
+        id: mountain.Statuses[0]?.id,
+        bool: !mountain.Statuses[0]?.climbed,
+      }));
+    }
+  };
+
+  const changeWishlistStatus = () => {
+    if (mountain.Statuses.length === 0) {
+      dispatch(postWishlistStatus(id));
+    } else {
+      dispatch(putWishlistStatus({
+        id: mountain.Statuses[0]?.id,
+        bool: !mountain.Statuses[0]?.wishlist,
+      }));
+    }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
-      {Object.keys(mountain).length !== 0 ? (
+      {mountain.id ? (
         <>
           <View style={styles.imageContainer}>
             <Image
@@ -43,10 +75,25 @@ const MountainProfile = () => {
               m
             </Text>
             <Text style={globalStyles.stats}>
-              Status:
+              Climbed:
               {' '}
-              {mountain.Statuses[0]?.climbed ? 'Climbed' : 'Not Climbed'}
             </Text>
+            <Switch
+              trackColor={{ false: 'red', true: 'green' }}
+              ios_backgroundColor="red"
+              onValueChange={() => changeClimbedStatus()}
+              value={mountain.Statuses[0]?.climbed ? mountain.Statuses[0]?.climbed : false}
+            />
+            <Text style={globalStyles.stats}>
+              Wishlist:
+              {' '}
+            </Text>
+            <Switch
+              trackColor={{ false: 'red', true: 'green' }}
+              ios_backgroundColor="red"
+              onValueChange={() => changeWishlistStatus()}
+              value={mountain.Statuses[0]?.wishlist ? mountain.Statuses[0]?.wishlist : false}
+            />
           </SafeAreaView>
           <SafeAreaView style={styles.routeButton}>
             <Pressable onPress={() => history.push('/route')}>
