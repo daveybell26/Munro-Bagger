@@ -35,7 +35,7 @@ const MountainProfile = () => {
 
   const changeClimbedStatus = () => {
     if (mountain.Statuses.length === 0) {
-      dispatch(postClimbedStatus({ UserId: userDetails.id, id }));
+      dispatch(postClimbedStatus({ userId: userDetails.id, id }));
     } else {
       dispatch(putClimbedStatus({
         id: mountain.Statuses[0]?.id,
@@ -46,7 +46,7 @@ const MountainProfile = () => {
 
   const changeWishlistStatus = () => {
     if (mountain.Statuses.length === 0) {
-      dispatch(postWishlistStatus(id));
+      dispatch(postWishlistStatus({ userId: userDetails.id, id }));
     } else {
       dispatch(putWishlistStatus({
         id: mountain.Statuses[0]?.id,
