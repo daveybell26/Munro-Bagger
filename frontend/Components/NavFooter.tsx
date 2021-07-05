@@ -18,7 +18,7 @@ const NavFooter = () => {
   // when user presses icon, a new markers jsx componenet rendered with different color.
   const urlLocation = useLocation();
 
-  const isOnExploreScreen = urlLocation.pathname === '/explore';
+  const isOnExploreScreen = urlLocation.pathname === '/';
   const isOnMapScreen = urlLocation.pathname === '/map';
   const isOnProfileScreen = urlLocation.pathname === '/profile';
 
@@ -27,8 +27,8 @@ const NavFooter = () => {
     <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.navFooter}>
         {isOnExploreScreen
-          ? <MaterialIcons name="home" size={35} color="white" onPress={() => history.push('/explore')} />
-          : <MaterialIcons name="home" size={35} onPress={() => history.push('/explore')} />}
+          ? <MaterialIcons name="home" size={35} color="white" onPress={() => history.push('/')} />
+          : <MaterialIcons name="home" size={35} onPress={() => history.push('/')} />}
         {isOnMapScreen
           ? <MaterialIcons name="terrain" size={35} color="white" onPress={() => history.push('/map')} />
           : <MaterialIcons name="terrain" size={35} onPress={() => history.push('/map')} />}

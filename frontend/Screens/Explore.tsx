@@ -41,13 +41,12 @@ const Explore = () => {
         <Text style={styles.unclimbedMountainNames} numberOfLines={1}>{name}</Text>
       </Pressable>
     </View>
-
   );
 
   useEffect(() => {
+    if (userDetails.id) dispatch(getExploreUnclimbedMountains(userDetails.id));
     dispatch(getRandomMountains());
-    dispatch(getExploreUnclimbedMountains(userDetails.id));
-  }, [dispatch]);
+  }, [dispatch, userDetails.id]);
 
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -13,17 +13,23 @@ interface LoginState {
     id: number
   }
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+  authToken: string
 }
 
 const initialLoginState = {
   userDetails: {},
   loading: 'idle',
+  authToken: '',
 } as LoginState;
 
 const loginSlice = createSlice({
   name: 'login',
   initialState: initialLoginState,
-  reducers: {},
+  reducers: {
+    setToken(state, action) {
+      state.authToken = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postLogin.pending, (state) => {
       state.loading = 'pending';
@@ -38,4 +44,5 @@ const loginSlice = createSlice({
   },
 });
 
+export const { setToken } = loginSlice.actions;
 export default loginSlice.reducer;
