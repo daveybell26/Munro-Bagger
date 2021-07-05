@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { postWishlist } from '../services/apiService';
 
-export const postWishlistStatus = createAsyncThunk('wishlistStatusCreate/postWishlistStatus', async (MountainId: any) => {
-  const { data } = await postWishlist(MountainId);
+export const postWishlistStatus = createAsyncThunk('wishlistStatusCreate/postWishlistStatus', async ({ userId, id }: { userId: number, id: number }) => {
+  const { data } = await postWishlist(userId, id);
   return data;
 });
 
@@ -12,10 +12,10 @@ interface WishlistStatusState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialWishlistStatusState: WishlistStatusState = {
+const initialWishlistStatusState = {
   wishlistStatusObj: {},
   loading: 'idle',
-};
+} as WishlistStatusState;
 
 const wishlistStatusCreateSlice = createSlice({
   name: 'wishlistStatusCreate',

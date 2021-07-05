@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { SafeAreaView, Text } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useHistory } from 'react-router-native';
@@ -7,11 +7,12 @@ import styles from './styles/mapStyles';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
+import { allMountainSelector, useAppDispatch } from '../store';
 import BlueMountain from '../assets/blueMountain.png';
 
 const MapComponent = () => {
-  const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
-  const dispatch = useDispatch();
+  const { mountainList } = useSelector(allMountainSelector);
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
   const mapView = useRef<MapView>(null);
@@ -22,15 +23,15 @@ const MapComponent = () => {
     mapView.current?.setMapBoundaries(northEast, southWest);
   };
 
-  const listOfMarkers = mountainList ? mountainList.map((location: any) => {
+  const listOfMarkers = mountainList ? mountainList.map((location) => {
     const markerLocation = {
       latitude: location.Peak.latitude,
       longitude: location.Peak.longitude,
     };
 
-    const markerImage = (mountain: any) => {
-      if (mountain?.climbed) return GreenMountain;
-      if (mountain?.wishlist) return BlueMountain;
+    const markerImage = (status: Statuses) => {
+      if (status?.climbed) return GreenMountain;
+      if (status?.wishlist) return BlueMountain;
       return RedMountain;
     };
 

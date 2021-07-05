@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { postClimbed } from '../services/apiService';
 
-export const postClimbedStatus = createAsyncThunk('climbedStatusCreate/postClimbedStatus', async ({ userId, id }: any) => {
+export const postClimbedStatus = createAsyncThunk('climbedStatusCreate/postClimbedStatus', async ({ userId, id }: { userId: number, id: number }) => {
   const { data } = await postClimbed(userId, id);
   return data;
 });
@@ -12,10 +12,10 @@ interface ClimbedStatusState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialClimbedStatusState: ClimbedStatusState = {
+const initialClimbedStatusState = {
   climbedStatusObj: {},
   loading: 'idle',
-};
+} as ClimbedStatusState;
 
 const climbedStatusCreateSlice = createSlice({
   name: 'climbedStatusCreate',

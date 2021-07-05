@@ -1,23 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 interface MountainInfo {
+  id: number
+  name: string
+  imageUrl: string
+  createdAt: string
+  updatedAt: string
   Peak: {
+    latitude: number
+    longitude: number
     elevation: number
-    latitude: number,
-    longitude: number,
   },
-  Statuses: [
-    {
-      climbed: boolean,
-      wishlist: boolean,
-    },
-  ],
-  createdAt: string,
-  id: number,
-  imageUrl: string,
-  name: string,
-  updatedAt: string,
+  Statuses: Statuses[]
+  Pictures: Pictures[]
 }
 
+interface Statuses {
+  id: number
+  climbed: boolean
+  wishlist: boolean
+}
+
+interface Pictures {
+  id: number
+  imageUrl: string
+  UserId: number
+  MountainId: number
+}
 interface PermissionInfo {
   status: 'granted' | 'undetermined' | 'denied';
   granted: boolean;
@@ -42,6 +50,10 @@ interface PermissionResponse {
 }
 
 interface LatLng {
-  latitude: Number,
-  longitude: Number,
+  latitude: number,
+  longitude: number,
+}
+
+interface ParamTypes {
+  id: number,
 }

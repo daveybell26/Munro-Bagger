@@ -32,8 +32,8 @@ export const putClimbed = (id: number, bool: boolean) => axios.put(
   `${baseUrl}/status/${id}/climbed/${bool}`,
 );
 
-export const postWishlist = (MountainId: number) => axios.post(
-  `${baseUrl}/status/wishlist/${MountainId}`,
+export const postWishlist = (UserId: number, MountainId: number) => axios.post(
+  `${baseUrl}/status/wishlist/${MountainId}?UserId=${UserId}`,
 );
 export const putWishlist = (id: number, bool: boolean) => axios.put(
   `${baseUrl}/status/${id}/wishlist/${bool}`,

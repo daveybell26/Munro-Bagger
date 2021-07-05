@@ -8,14 +8,14 @@ export const getMountains = createAsyncThunk('allMountains/getMountains', async 
 });
 
 interface MountainListState {
-  mountainList: []
+  mountainList: MountainInfo[]
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialMountainState: MountainListState = {
+const initialMountainState = {
   mountainList: [],
   loading: 'idle',
-};
+} as MountainListState;
 
 const allMountainsSlice = createSlice({
   name: 'allMountains',
