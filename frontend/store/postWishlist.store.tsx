@@ -12,10 +12,10 @@ interface WishlistStatusState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialWishlistStatusState: WishlistStatusState = {
+const initialWishlistStatusState = {
   wishlistStatusObj: {},
   loading: 'idle',
-};
+} as WishlistStatusState;
 
 const wishlistStatusCreateSlice = createSlice({
   name: 'wishlistStatusCreate',

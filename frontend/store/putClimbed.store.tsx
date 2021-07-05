@@ -12,10 +12,10 @@ interface ClimbedStatusState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialClimbedStatusState: ClimbedStatusState = {
+const initialClimbedStatusState = {
   climbedStatusArr: [],
   loading: 'idle',
-};
+} as ClimbedStatusState;
 
 const climbedStatusUpdateSlice = createSlice({
   name: 'climbedStatusUpdate',

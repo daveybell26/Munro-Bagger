@@ -32,14 +32,14 @@ const MountainProfile = () => {
 
   const { mountain } = useSelector(oneMountainSelector);
   const { userDetails } = useSelector(loginSelector);
-  const createClimbedListener = useSelector(createClimbedSelector);
-  const updateClimbedListener = useSelector(updateClimbedSelector);
-  const createWishListener = useSelector(createWishSelector);
-  const updateWishListener = useSelector(updateWishSelector);
+  const { climbedStatusObj } = useSelector(createClimbedSelector);
+  const { climbedStatusArr } = useSelector(updateClimbedSelector);
+  const { wishlistStatusObj } = useSelector(createWishSelector);
+  const { wishlistStatusArr } = useSelector(updateWishSelector);
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
-  }, [createClimbedListener, updateClimbedListener, createWishListener, updateWishListener]);
+  }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
 
   const changeClimbedStatus = () => (mountain.Statuses.length === 0
     ? dispatch(postClimbedStatus({ userId: userDetails.id, id: +id }))
