@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
-import {
-  SafeAreaView, Text, StyleSheet, View,
-} from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import { useHistory } from 'react-router-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
@@ -13,56 +11,9 @@ import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import { getMountains } from '../store/getAllMountains.store';
 import { globalStyles } from './styles/GlobalStyles';
 import { randomUserPicsSelector, allMountainSelector, useAppDispatch } from '../store';
+import styles from './styles/userProfileStyles';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
-
-const styles = StyleSheet.create({
-
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#EBF2FA',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-
-  },
-  userProfileHeroSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 40,
-    padding: 20,
-  },
-  userStatsSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 20,
-  },
-  userMunroePics: {
-  },
-  lineBreaks: {
-    borderBottomWidth: 1,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  progressBar: {
-    width: 210,
-    height: 30,
-    backgroundColor: '#E02A56',
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
-  progressText: {
-    position: 'absolute',
-    top: '25%',
-    right: 5,
-    color: 'white',
-  },
-});
 
 const UserProfile = () => {
   const history = useHistory();

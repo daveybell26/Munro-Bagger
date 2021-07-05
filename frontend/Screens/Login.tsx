@@ -1,30 +1,16 @@
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, TextInput, ImageBackground, View,
+  ImageBackground, TextInput, View,
 } from 'react-native';
 import { useHistory } from 'react-router-native';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
 import { postLogin } from '../store/login.store';
 import { loginSelector, useAppDispatch } from '../store';
+import styles from './styles/loginStyles';
 
 const backGroundImage = require('../assets/background.jpg');
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EBF2FA',
-  },
-  emailInput: {
-    borderWidth: 1,
-    borderColor: '#427AA1',
-    width: 200,
-    margin: 10,
-    padding: 8,
-    backgroundColor: 'white',
-  },
-});
 
 const Login = () => {
   const [email, setEmail] = useState('');

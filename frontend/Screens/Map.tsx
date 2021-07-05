@@ -1,15 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import NavFooter from '../Components/NavFooter';
 import MapComponent from '../Components/MapComponent';
 import Header from '../Components/Header';
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#EBF2FA',
-  },
-});
+import styles from './styles/mapStyles';
 
 const Map = () => (
   <SafeAreaView style={styles.safeArea}>
