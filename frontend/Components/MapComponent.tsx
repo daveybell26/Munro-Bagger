@@ -7,6 +7,7 @@ import styles from './styles/mapStyles';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
+import BlueMountain from '../assets/blueMountain.png';
 
 const MapComponent = () => {
   const mountainList: MountainInfo[] = useSelector((state:any) => state.allMountains.mountainList);
@@ -26,12 +27,19 @@ const MapComponent = () => {
       latitude: location.Peak.latitude,
       longitude: location.Peak.longitude,
     };
+
+    const markerImage = (mountain: any) => {
+      if (mountain?.climbed) return GreenMountain;
+      if (mountain?.wishlist) return BlueMountain;
+      return RedMountain;
+    };
+
     return (
       <Marker
         onPress={() => history.push(`/mountain/${location.id}`)}
         key={location.id}
         coordinate={markerLocation}
-        image={location.Statuses[0]?.climbed ? GreenMountain : RedMountain}
+        image={markerImage(location.Statuses[0])}
       >
         <Callout>
           <Text>{location.name}</Text>
