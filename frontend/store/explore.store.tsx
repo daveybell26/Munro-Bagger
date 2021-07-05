@@ -8,7 +8,7 @@ export const getRandomMountains = createAsyncThunk('randomMountains/getRandomMou
 });
 
 interface RandomMountainsListState {
-  randomMountainsList: []
+  randomMountainsList: UnclimbedMountain[]
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 

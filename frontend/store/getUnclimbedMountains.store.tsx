@@ -8,7 +8,7 @@ export const getExploreUnclimbedMountains = createAsyncThunk('unclimbedMountains
 });
 
 interface UnclimbedMountainsListState {
-  unclimbedMountainsList: []
+  unclimbedMountainsList: UnclimbedMountain[]
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 

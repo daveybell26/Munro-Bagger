@@ -8,7 +8,7 @@ export const getUserPicsRandomly = createAsyncThunk('randomUserPics/getUserPicsR
 });
 
 interface RandomUserPicsState {
-  pictures: []
+  pictures: Pictures[]
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 

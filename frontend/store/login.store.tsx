@@ -11,6 +11,8 @@ export const postLogin = createAsyncThunk('login/postLogin', async (email: strin
 interface LoginState {
   userDetails: {
     id: number
+    email: string
+    imageUrl: string
   }
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }

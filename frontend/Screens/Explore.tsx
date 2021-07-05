@@ -56,9 +56,7 @@ const Explore = () => {
       <FlatList
         data={unclimbedMountainsList}
         horizontal
-        renderItem={(
-          { item } : { item: MountainInfo },
-        ) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
+        renderItem={({ item }) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         style={styles.horizontalList}
         showsHorizontalScrollIndicator={false}
@@ -66,9 +64,7 @@ const Explore = () => {
       <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
       <FlatList
         data={randomMountainsList}
-        renderItem={(
-          { item }: { item: MountainInfo },
-        ) => randomMountainImage(item.id, item.name, item.imageUrl)}
+        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
       />
