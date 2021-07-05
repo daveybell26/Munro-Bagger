@@ -28,9 +28,9 @@ const MapComponent = () => {
       longitude: location.Peak.longitude,
     };
 
-    const markerImage = () => {
-      if (location.Statuses[0]?.wishlist && !location.Statuses[0]?.climbed) return BlueMountain;
-      if (location.Statuses[0]?.climbed) return GreenMountain;
+    const markerImage = (mountain: any) => {
+      if (mountain?.climbed) return GreenMountain;
+      if (mountain?.wishlist) return BlueMountain;
       return RedMountain;
     };
 
@@ -39,7 +39,7 @@ const MapComponent = () => {
         onPress={() => history.push(`/mountain/${location.id}`)}
         key={location.id}
         coordinate={markerLocation}
-        image={markerImage()}
+        image={markerImage(location.Statuses[0])}
       >
         <Callout>
           <Text>{location.name}</Text>
