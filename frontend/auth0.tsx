@@ -14,7 +14,7 @@ import {
 // You can open this app in the Expo client and check your logs to find out your redirect URL.
 
 const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
-const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
+const authorizationEndpoint = 'dev-l8augku5.eu.auth0.com';
 
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
@@ -29,7 +29,7 @@ export default function App() {
       // id_token will return a JWT token
       responseType: 'id_token',
       // retrieve the user's profile
-      scopes: ['openid', 'profile', 'email'],
+      scopes: ['openid', 'profile'],
       extraParams: {
         // ideally, this will be a random value
         nonce: 'nonce',
@@ -55,7 +55,6 @@ export default function App() {
         // Retrieve the JWT token and decode it
         const jwtToken = result.params.id_token;
         const decoded = jwtDecode(jwtToken);
-        console.log(decoded);
 
         const { name } = decoded;
         setName(name);
