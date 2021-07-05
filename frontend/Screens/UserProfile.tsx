@@ -10,7 +10,9 @@ import { getUserPicsRandomly } from '../store/getRandomUserPics.store';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import { getMountains } from '../store/getAllMountains.store';
 import { globalStyles } from './styles/GlobalStyles';
-import { randomUserPicsSelector, allMountainSelector, useAppDispatch } from '../store';
+import {
+  randomUserPicsSelector, allMountainSelector, useAppDispatch, loginSelector,
+} from '../store';
 import styles from './styles/userProfileStyles';
 
 const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
@@ -19,6 +21,7 @@ const UserProfile = () => {
   const history = useHistory();
   const { pictures } = useSelector(randomUserPicsSelector);
   const { mountainList } = useSelector(allMountainSelector);
+  const { userDetails } = useSelector(loginSelector);
 
   const dispatch = useAppDispatch();
 
@@ -31,7 +34,7 @@ const UserProfile = () => {
   const progressBarPercentage = `${progressBarPercentageNum}%`;
 
   useEffect(() => {
-    dispatch(getUserPicsRandomly());
+    dispatch(getUserPicsRandomly(userDetails.id));
     dispatch(getMountains());
   }, [dispatch]);
 
