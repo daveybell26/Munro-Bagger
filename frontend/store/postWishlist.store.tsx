@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { postWishlist } from '../services/apiService';
 
-export const postWishlistStatus = createAsyncThunk('wishlistStatusCreate/postWishlistStatus', async ({ userId, id }: any) => {
+export const postWishlistStatus = createAsyncThunk('wishlistStatusCreate/postWishlistStatus', async ({ userId, id }: { userId: number, id: number }) => {
   const { data } = await postWishlist(userId, id);
   return data;
 });
