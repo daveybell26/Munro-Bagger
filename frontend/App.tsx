@@ -1,101 +1,37 @@
-import * as AuthSession from 'expo-auth-session';
-import jwtDecode from 'jwt-decode';
-import * as React from 'react';
-import {
-  Alert, Button, Platform, StyleSheet, Text, View,
-} from 'react-native';
-
-// You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
-// In your Auth0 client, you need to also add a url to your authorized redirect urls.
-//
-// For this application, I added https://auth.expo.io/@arielweinberger/with-auth0 because I am
-// signed in as the 'arielweinberger' account on Expo and the name/slug for this app is 'with-auth0'.
-//
-// You can open this app in the Expo client and check your logs to find out your redirect URL.
-
-const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
-const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
-
-const useProxy = Platform.select({ web: false, default: true });
-const redirectUri = AuthSession.makeRedirectUri({ useProxy });
+import React from 'react';
+import { Provider } from 'react-redux';
+import { NativeRouter, Switch, Route } from 'react-router-native';
+import { SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import store from './store/index';
+import Explore from './Screens/Explore';
+import Login from './Screens/Login';
+import Map from './Screens/Map';
+import MountainProfile from './Screens/MountainProfile';
+import UserProfile from './Screens/UserProfile';
+import CameraScreen from './Screens/Camera';
+import UploadPicture from './Screens/UploadPicture';
 
 export default function App() {
-  const [name, setName] = React.useState(null);
-
-  const [request, result, promptAsync] = AuthSession.useAuthRequest(
-    {
-      redirectUri,
-      clientId: auth0ClientId,
-      // id_token will return a JWT token
-      responseType: 'id_token',
-      // retrieve the user's profile
-      scopes: ['openid', 'profile', 'email'],
-      extraParams: {
-        // ideally, this will be a random value
-        nonce: 'nonce',
-      },
-    },
-    { authorizationEndpoint },
-  );
-
-  // Retrieve the redirect URL, add this to the callback URL list
-  // of your Auth0 application.
-  console.log(`Redirect URL: ${redirectUri}`);
-
-  React.useEffect(() => {
-    if (result) {
-      if (result.error) {
-        Alert.alert(
-          'Authentication error',
-          result.params.error_description || 'something went wrong',
-        );
-        return;
-      }
-      if (result.type === 'success') {
-        // Retrieve the JWT token and decode it
-        const jwtToken = result.params.id_token;
-        const decoded = jwtDecode(jwtToken);
-        console.log(decoded);
-
-        const { name } = decoded;
-        setName(name);
-      }
-    }
-  }, [result]);
-
   return (
-    <View style={styles.container}>
-      {name ? (
-        <>
-          <Text style={styles.title}>
-            You are logged in,
-            {' '}
-            {name}
-            !
-          </Text>
-          <Button title="Log out" onPress={() => setName(null)} />
-        </>
-      ) : (
-        <Button
-          disabled={!request}
-          title="Log in with Auth0"
-          onPress={() => promptAsync({ useProxy })}
-        />
-      )}
-    </View>
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+    }}
+    >
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#427AA1' }}>
+        <Provider store={store}>
+          <NativeRouter>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/explore" component={Explore} />
+              <Route exact path="/map" component={Map} />
+              <Route exact path="/mountain/:id" component={MountainProfile} />
+              <Route exact path="/profile" component={UserProfile} />
+              <Route exact path="/camera" component={CameraScreen} />
+              <Route exact path="/uploadPicture" component={UploadPicture} />
+            </Switch>
+          </NativeRouter>
+        </Provider>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginTop: 40,
-  },
-});
