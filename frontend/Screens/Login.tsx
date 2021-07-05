@@ -9,7 +9,7 @@ import * as AuthSession from 'expo-auth-session';
 import jwtDecode from 'jwt-decode';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
-import { postLogin } from '../store/login.store';
+import { postLogin, setToken } from '../store/login.store';
 import { useAppDispatch } from '../store';
 import styles from './styles/loginStyles';
 
@@ -29,19 +29,16 @@ const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
-  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
   const dispatch = useAppDispatch();
 
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
       redirectUri,
       clientId: auth0ClientId,
-      // id_token will return a JWT token
       responseType: 'id_token',
-      // retrieve the user's profile
       scopes: ['openid', 'profile', 'email'],
       extraParams: {
-        // ideally, this will be a random value
         nonce: 'nonce',
       },
     },
@@ -58,25 +55,19 @@ const Login = () => {
         return;
       }
       if (result.type === 'success') {
-        // Retrieve the JWT token and decode it
         const jwtToken = result.params.id_token;
-        const decoded = jwtDecode(jwtToken);
-        console.log(decoded);
+        const decoded: any = jwtDecode(jwtToken);
 
-        const { email, name } = decoded;
-        setName(name);
-
-        dispatch(postLogin(email));
-
-        // update redux state for the user
-        // store jwt token in redux state
+        dispatch(postLogin(decoded.email));
+        dispatch(setToken(jwtToken));
+        setEmail(decoded.email);
       }
     }
   }, [result]);
 
   return (
     <View style={styles.container}>
-      {name ? (
+      {email ? (
         <NativeRouter>
           <Switch>
             <Route exact path="/" component={Explore} />
