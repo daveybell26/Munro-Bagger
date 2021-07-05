@@ -2,7 +2,7 @@ import React, {
   useRef, useState, useEffect, useMemo, FC,
 } from 'react';
 import {
-  SafeAreaView, StyleSheet, View, Platform,
+  SafeAreaView, View, Platform,
 } from 'react-native';
 import MapView, {
   Polyline, PROVIDER_GOOGLE, UrlTile, Region, MapTypes,
@@ -10,9 +10,8 @@ import MapView, {
 import { Button } from 'react-native-elements';
 import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
-import Constants from 'expo-constants';
-import AppConstants from '../constants';
-import DownloadSettings from './DowlnoadSettings';
+import AppConstants from '../constants/index';
+import DownloadSettings from './DownloadSettings';
 import styles from './styles/mapStyles';
 import NavFooter from './NavFooter';
 import Header from './Header';
@@ -22,8 +21,8 @@ const MAP_TYPE: MapTypes = Platform.OS === 'android' ? 'none' : 'standard';
 const INITIALREGION: Region = {
   latitude: 56.17,
   longitude: -4.63301,
-  latitudeDelta: 0.05,
-  longitudeDelta: 0.05,
+  latitudeDelta: 0.1,
+  longitudeDelta: 0.1,
 };
 
 const RouteMap: FC = () => {
@@ -31,7 +30,7 @@ const RouteMap: FC = () => {
   const [userLocation, setLocation] = useState<Location.LocationObject>();
   const mapView = useRef<MapView>(null);
   const [isOffline, setIsOffline] = useState(false);
-  const [visisbleSettings, setVisisbleSettings] = useState(false);
+  const [visibilitySettings, setVisibilitySettings] = useState(false);
   const [mapRegion, setMapRegion] = useState(INITIALREGION);
 
   const urlTemplate = useMemo(
@@ -54,13 +53,13 @@ const RouteMap: FC = () => {
     setIsOffline(!isOffline);
   }
 
-  function toggeleDownloadSettings() {
-    setVisisbleSettings(!visisbleSettings);
+  function toggleDownloadSettings() {
+    setVisibilitySettings(!visibilitySettings);
   }
 
   function onDownloadComplete() {
     setIsOffline(true);
-    setVisisbleSettings(false);
+    setVisibilitySettings(false);
   }
 
   const toggleOfflineText = isOffline ? 'Go online' : 'Go offline';
@@ -97,8 +96,8 @@ const RouteMap: FC = () => {
           showsUserLocation
           onRegionChange={setMapRegion}
         >
-          <UrlTile urlTemplate={urlTemplate} zIndex={1} />
           <Polyline
+            zIndex={2}
             coordinates={[
 
               { latitude: 56.149528709339, longitude: -4.6420955523643 },
@@ -131,16 +130,17 @@ const RouteMap: FC = () => {
               '#E5845C',
               '#238C23',
             ]}
-            strokeWidth={6}
+            strokeWidth={3}
           />
+          <UrlTile urlTemplate={urlTemplate} zIndex={1} />
         </MapView>
         <View style={styles.actionContainer}>
-          <Button raised title="Download" onPress={toggeleDownloadSettings} />
+          <Button raised title="Download" onPress={toggleDownloadSettings} />
           <Button raised title="Clear tiles" onPress={clearTiles} />
           <Button raised title={toggleOfflineText} onPress={toggleOffline} />
         </View>
 
-        {visisbleSettings && (
+        {visibilitySettings && (
           <DownloadSettings mapRegion={mapRegion} onFinish={onDownloadComplete} />
         )}
       </SafeAreaView>

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     padding: 15,
+    paddingTop: Constants.statusBarHeight + 15,
     zIndex: 999,
     justifyContent: 'space-around',
   },
