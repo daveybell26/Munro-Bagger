@@ -1,21 +1,30 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 interface MountainInfo {
+  id: number
+  name: string
+  imageUrl: string
+  createdAt: string
+  updatedAt: string
   Peak: {
+    latitude: number
+    longitude: number
     elevation: number
-    latitude: number,
-    longitude: number,
   },
   Statuses: [
     {
-      climbed: boolean,
-      wishlist: boolean,
+      id: number
+      climbed: boolean
+      wishlist: boolean
     },
-  ],
-  createdAt: string,
-  id: number,
-  imageUrl: string,
-  name: string,
-  updatedAt: string,
+  ]
+  Pictures: [
+    {
+      id: number
+      imageUrl: string
+      UserId: number
+      MountainId: number,
+    },
+  ]
 }
 
 interface PermissionInfo {
@@ -42,6 +51,10 @@ interface PermissionResponse {
 }
 
 interface LatLng {
-  latitude: Number,
-  longitude: Number,
+  latitude: number,
+  longitude: number,
+}
+
+interface ParamTypes {
+  id: number,
 }
