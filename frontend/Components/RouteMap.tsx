@@ -1,15 +1,69 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { SafeAreaView } from 'react-native';
-import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+import React, {
+  useRef, useState, useEffect, useMemo, FC,
+} from 'react';
+import {
+  SafeAreaView, StyleSheet, View, Platform,
+} from 'react-native';
+import MapView, {
+  Polyline, PROVIDER_GOOGLE, UrlTile, Region, MapTypes,
+} from 'react-native-maps';
+import { Button } from 'react-native-elements';
+import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
+import Constants from 'expo-constants';
+import AppConstants from '../constants';
+import DownloadSettings from './DowlnoadSettings';
 import styles from './styles/mapStyles';
 import NavFooter from './NavFooter';
 import Header from './Header';
 
-const RouteMap = () => {
+const MAP_TYPE: MapTypes = Platform.OS === 'android' ? 'none' : 'standard';
+
+const INITIALREGION: Region = {
+  latitude: 56.17,
+  longitude: -4.63301,
+  latitudeDelta: 0.05,
+  longitudeDelta: 0.05,
+};
+
+const RouteMap: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userLocation, setLocation] = useState<Location.LocationObject>();
   const mapView = useRef<MapView>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const [visisbleSettings, setVisisbleSettings] = useState(false);
+  const [mapRegion, setMapRegion] = useState(INITIALREGION);
+
+  const urlTemplate = useMemo(
+    () => (isOffline
+      ? `${AppConstants.TILE_FOLDER}/{z}/{x}/{y}.png`
+      : `${AppConstants.MAP_URL}/{z}/{x}/{y}.png`),
+    [isOffline],
+  );
+
+  async function clearTiles() {
+    try {
+      await FileSystem.deleteAsync(AppConstants.TILE_FOLDER);
+      alert('Deleted all tiles');
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+  function toggleOffline() {
+    setIsOffline(!isOffline);
+  }
+
+  function toggeleDownloadSettings() {
+    setVisisbleSettings(!visisbleSettings);
+  }
+
+  function onDownloadComplete() {
+    setIsOffline(true);
+    setVisisbleSettings(false);
+  }
+
+  const toggleOfflineText = isOffline ? 'Go online' : 'Go offline';
 
   useEffect(() => {
     (async () => {
@@ -35,18 +89,15 @@ const RouteMap = () => {
       <SafeAreaView style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          mapType="terrain"
+          mapType={MAP_TYPE}
           ref={mapView}
           onMapReady={() => confineMap()}
-          initialRegion={{
-            latitude: 56.17,
-            longitude: -4.63301,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          }}
+          initialRegion={INITIALREGION}
           style={styles.map}
           showsUserLocation
+          onRegionChange={setMapRegion}
         >
+          <UrlTile urlTemplate={urlTemplate} zIndex={1} />
           <Polyline
             coordinates={[
 
@@ -83,6 +134,15 @@ const RouteMap = () => {
             strokeWidth={6}
           />
         </MapView>
+        <View style={styles.actionContainer}>
+          <Button raised title="Download" onPress={toggeleDownloadSettings} />
+          <Button raised title="Clear tiles" onPress={clearTiles} />
+          <Button raised title={toggleOfflineText} onPress={toggleOffline} />
+        </View>
+
+        {visisbleSettings && (
+          <DownloadSettings mapRegion={mapRegion} onFinish={onDownloadComplete} />
+        )}
       </SafeAreaView>
       <NavFooter />
     </SafeAreaView>

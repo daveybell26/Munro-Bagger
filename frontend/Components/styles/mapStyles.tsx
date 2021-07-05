@@ -15,6 +15,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EBF2FA',
   },
+  actionContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    padding: 15,
+    zIndex: 999,
+    justifyContent: 'space-around',
+  },
+  button: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
 });
 
 export default styles;
