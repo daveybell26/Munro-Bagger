@@ -19,7 +19,7 @@ const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
-export default function App() {
+export default function App () {
   const [name, setName] = React.useState(null);
 
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
