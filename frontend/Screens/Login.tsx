@@ -32,7 +32,7 @@ const Login = () => {
   const [email, setEmail] = useState(null);
   const dispatch = useAppDispatch();
 
-  const [request, result, promptAsync]: any = AuthSession.useAuthRequest(
+  const [, result, promptAsync]: any = AuthSession.useAuthRequest(
     {
       redirectUri,
       clientId: auth0ClientId,
