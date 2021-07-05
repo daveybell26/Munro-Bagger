@@ -99,7 +99,6 @@ const MountainProfile = () => {
         </Text>
         <Switch
           trackColor={{ false: 'red', true: 'green' }}
-          // thumbColor={isEnabled ? 'white' : 'white'}
           ios_backgroundColor="red"
           onValueChange={() => changeClimbedStatus()}
           value={!Statuses ? null : initialClimbedStatus()}
@@ -111,7 +110,6 @@ const MountainProfile = () => {
         </Text>
         <Switch
           trackColor={{ false: 'red', true: 'green' }}
-          // thumbColor={isEnabled ? 'white' : 'white'}
           ios_backgroundColor="red"
           onValueChange={() => changeWishlistStatus()}
           value={!Statuses ? null : initialWishlistStatus()}

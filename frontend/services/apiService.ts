@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import { BACKEND_URL } from '@env';
+import { BACKEND_URL } from '@env';
 
-const baseUrl = 'http://192.168.178.92:8081';
+const baseUrl = BACKEND_URL;
 
 export const login = (email: string) => axios.post(
   `${baseUrl}/login`, { email },
