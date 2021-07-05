@@ -10,23 +10,22 @@ interface MountainInfo {
     longitude: number
     elevation: number
   },
-  Statuses: [
-    {
-      id: number
-      climbed: boolean
-      wishlist: boolean
-    },
-  ]
-  Pictures: [
-    {
-      id: number
-      imageUrl: string
-      UserId: number
-      MountainId: number,
-    },
-  ]
+  Statuses: Statuses[]
+  Pictures: Pictures[]
 }
 
+interface Statuses {
+  id: number
+  climbed: boolean
+  wishlist: boolean
+}
+
+interface Pictures {
+  id: number
+  imageUrl: string
+  UserId: number
+  MountainId: number
+}
 interface PermissionInfo {
   status: 'granted' | 'undetermined' | 'denied';
   granted: boolean;
