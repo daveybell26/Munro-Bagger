@@ -64,7 +64,7 @@ const CameraScreen = () => {
       return;
     }
 
-    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({ base64: true });
 
     if (pickerResult.cancelled === true) {
       return;
