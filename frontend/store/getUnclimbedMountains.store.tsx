@@ -12,10 +12,10 @@ interface UnclimbedMountainsListState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialUnclimbedMountainsState: UnclimbedMountainsListState = {
+const initialUnclimbedMountainsState = {
   unclimbedMountainsList: [],
   loading: 'idle',
-};
+} as UnclimbedMountainsListState;
 
 const unclimbedMountainsSlice = createSlice({
   name: 'unclimbedMountains',

@@ -10,7 +10,7 @@ export const getAllMountains = async (req: Request, res: Response) => {
           model: sequelize.models.Peak,
         },
         {
-          attributes: ['climbed', 'wishlist'],
+          attributes: ['id', 'climbed', 'wishlist'],
           model: sequelize.models.Status,
         },
       ],
@@ -38,7 +38,7 @@ export const getMountainById = async (req: Request, res: Response) => {
           limit: 12,
         },
         {
-          attributes: ['climbed', 'wishlist'],
+          attributes: ['id', 'climbed', 'wishlist'],
           model: sequelize.models.Status,
         },
 

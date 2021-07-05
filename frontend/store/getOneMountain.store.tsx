@@ -3,20 +3,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getMountainById } from '../services/apiService';
 
 export const getOneMountain = createAsyncThunk('oneMountain/getOneMountain', async (id: number) => {
-  // TODO: make getMountainById parameter dynamic
   const { data } = await getMountainById(id);
   return data;
 });
 
 interface MountainState {
-  mountain: {}
+  mountain: MountainInfo
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialMountainState: MountainState = {
+const initialMountainState = {
   mountain: {},
   loading: 'idle',
-};
+} as MountainState;
 
 const oneMountainSlice = createSlice({
   name: 'oneMountain',

@@ -1,8 +1,10 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView, View, Text, TouchableOpacity,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory } from 'react-router-native';
 import styles from './styles/cameraStyles';
@@ -54,6 +56,24 @@ const CameraScreen = () => {
     setPreviewVisible(false);
   };
 
+  const imagePicker = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({ base64: true });
+
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+
+    setCapturedImage(pickerResult);
+    setPreviewVisible(true);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {previewVisible && capturedImage ? (
@@ -67,6 +87,11 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
+          <SafeAreaView style={styles.button}>
+            <TouchableOpacity onPress={imagePicker}>
+              <MaterialIcons name="folder" size={24} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
           <SafeAreaView style={styles.button}>
             <TouchableOpacity onPress={() => {
               setType(

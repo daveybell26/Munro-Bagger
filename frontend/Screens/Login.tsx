@@ -10,6 +10,8 @@ import jwtDecode from 'jwt-decode';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
 import { postLogin } from '../store/login.store';
+import { loginSelector, useAppDispatch } from '../store';
+import styles from './styles/loginStyles';
 
 import Explore from './Explore';
 import Map from './Map';

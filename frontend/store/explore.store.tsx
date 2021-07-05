@@ -12,10 +12,10 @@ interface RandomMountainsListState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialRandomMountainsState: RandomMountainsListState = {
+const initialRandomMountainsState = {
   randomMountainsList: [],
   loading: 'idle',
-};
+} as RandomMountainsListState;
 
 const randomMountainsSlice = createSlice({
   name: 'randomMountains',

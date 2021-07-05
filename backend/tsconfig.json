@@ -18,6 +18,11 @@
   },
   "compilerOptions": {
     // typescript options here
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
     "outDir": "build"
   }
 }

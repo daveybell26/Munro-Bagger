@@ -9,14 +9,16 @@ export const postLogin = createAsyncThunk('login/postLogin', async (email: strin
 });
 
 interface LoginState {
-  userDetails: {}
+  userDetails: {
+    id: number
+  }
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
-const initialLoginState: LoginState = {
+const initialLoginState = {
   userDetails: {},
   loading: 'idle',
-};
+} as LoginState;
 
 const loginSlice = createSlice({
   name: 'login',

@@ -21,6 +21,20 @@ export const getExploreUnclimbed = (UserId: number) => axios.get(
 
 export const getExploreRandom = () => axios.get(`${baseUrl}/explore/random`);
 
-export const postPicture = (UserId: number, MountainId: number) => axios.post(
-  `${baseUrl}/picture/mountain/${MountainId}/user/${UserId}`,
+export const postPicture = (UserId: number, MountainId: number, imageUrl: string) => axios.post(
+  `${baseUrl}/picture/mountain/${MountainId}/user/${UserId}`, { imageUrl },
+);
+
+export const postClimbed = (UserId: number, MountainId: number) => axios.post(
+  `${baseUrl}/status/climbed/${MountainId}?UserId=${UserId}`,
+);
+export const putClimbed = (id: number, bool: boolean) => axios.put(
+  `${baseUrl}/status/${id}/climbed/${bool}`,
+);
+
+export const postWishlist = (UserId: number, MountainId: number) => axios.post(
+  `${baseUrl}/status/wishlist/${MountainId}?UserId=${UserId}`,
+);
+export const putWishlist = (id: number, bool: boolean) => axios.put(
+  `${baseUrl}/status/${id}/wishlist/${bool}`,
 );
