@@ -14,7 +14,15 @@ import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import { globalStyles } from './styles/GlobalStyles';
-import { loginSelector, oneMountainSelector, useAppDispatch } from '../store';
+import {
+  createClimbedSelector,
+  createWishSelector,
+  loginSelector,
+  oneMountainSelector,
+  updateClimbedSelector,
+  updateWishSelector,
+  useAppDispatch,
+} from '../store';
 import styles from './styles/mountainProfileStyles';
 
 const MountainProfile = () => {
@@ -24,36 +32,28 @@ const MountainProfile = () => {
 
   const { mountain } = useSelector(oneMountainSelector);
   const { userDetails } = useSelector(loginSelector);
-  const createClimbedListener = useSelector((state: any) => state.unclimbedCreate.climbedStatusObj);
-  const updateClimbedListener = useSelector((state: any) => state.unclimbedUpdate.climbedStatusArr);
-  const createWishListener = useSelector((state: any) => state.wishlistCreate.wishlistStatusObj);
-  const updateWishListener = useSelector((state: any) => state.wishlistUpdate.wishlistStatusArr);
+  const createClimbedListener = useSelector(createClimbedSelector);
+  const updateClimbedListener = useSelector(updateClimbedSelector);
+  const createWishListener = useSelector(createWishSelector);
+  const updateWishListener = useSelector(updateWishSelector);
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
   }, [createClimbedListener, updateClimbedListener, createWishListener, updateWishListener]);
 
-  const changeClimbedStatus = () => {
-    if (mountain.Statuses.length === 0) {
-      dispatch(postClimbedStatus({ userId: userDetails.id, id }));
-    } else {
-      dispatch(putClimbedStatus({
-        id: mountain.Statuses[0]?.id,
-        bool: !mountain.Statuses[0]?.climbed,
-      }));
-    }
-  };
+  const changeClimbedStatus = () => (mountain.Statuses.length === 0
+    ? dispatch(postClimbedStatus({ userId: userDetails.id, id: +id }))
+    : dispatch(putClimbedStatus({
+      id: mountain.Statuses[0]?.id,
+      bool: !mountain.Statuses[0]?.climbed,
+    })));
 
-  const changeWishlistStatus = () => {
-    if (mountain.Statuses.length === 0) {
-      dispatch(postWishlistStatus({ userId: userDetails.id, id }));
-    } else {
-      dispatch(putWishlistStatus({
-        id: mountain.Statuses[0]?.id,
-        bool: !mountain.Statuses[0]?.wishlist,
-      }));
-    }
-  };
+  const changeWishlistStatus = () => (mountain.Statuses.length === 0
+    ? dispatch(postWishlistStatus({ userId: userDetails.id, id: +id }))
+    : dispatch(putWishlistStatus({
+      id: mountain.Statuses[0]?.id,
+      bool: !mountain.Statuses[0]?.wishlist,
+    })));
 
   return (
     <SafeAreaView style={styles.safeArea}>

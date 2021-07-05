@@ -38,5 +38,9 @@ export const randomUserPicsSelector = (state: RootState) => state.randomUserPics
 export const loginSelector = (state: RootState) => state.login;
 export const unclimbedMountainsSelector = (state: RootState) => state.unclimbedMountains;
 export const randomMountainSelector = (state: RootState) => state.exploreRandomMountains;
+export const createClimbedSelector = (state: RootState) => state.unclimbedCreate;
+export const updateClimbedSelector = (state: RootState) => state.unclimbedUpdate;
+export const createWishSelector = (state: RootState) => state.wishlistCreate;
+export const updateWishSelector = (state: RootState) => state.wishlistUpdate;
 
 export default store;
