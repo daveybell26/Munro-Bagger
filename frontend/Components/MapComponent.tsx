@@ -29,9 +29,9 @@ const MapComponent = () => {
       longitude: location.Peak.longitude,
     };
 
-    const markerImage = (mountain: any) => {
-      if (mountain?.climbed) return GreenMountain;
-      if (mountain?.wishlist) return BlueMountain;
+    const markerImage = (status: Statuses) => {
+      if (status?.climbed) return GreenMountain;
+      if (status?.wishlist) return BlueMountain;
       return RedMountain;
     };
 
