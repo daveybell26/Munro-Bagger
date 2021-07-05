@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, ImageBackground, View, Alert, Platform,
+  ImageBackground, View, Alert, Platform,
 } from 'react-native';
 import {
   NativeRouter, Switch, Route,
@@ -10,7 +10,7 @@ import jwtDecode from 'jwt-decode';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
 import { postLogin } from '../store/login.store';
-import { loginSelector, useAppDispatch } from '../store';
+import { useAppDispatch } from '../store';
 import styles from './styles/loginStyles';
 
 import Explore from './Explore';
@@ -20,31 +20,18 @@ import UserProfile from './UserProfile';
 import CameraScreen from './Camera';
 import UploadPicture from './UploadPicture';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EBF2FA',
-  },
-  emailInput: {
-    borderWidth: 1,
-    borderColor: '#427AA1',
-    width: 200,
-    margin: 10,
-    padding: 8,
-    backgroundColor: 'white',
-  },
-});
-
 const backGroundImage = require('../assets/background.jpg');
 
-const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
-const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
+const auth0ClientId = 'CEoOtg3BpAsHEPdhYdjFnx6zQWLHLUOk';
+const authorizationEndpoint = 'https://euro-2021.eu.auth0.com/authorize';
 
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
   const [name, setName] = useState(null);
+  const dispatch = useAppDispatch();
+
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
       redirectUri,
@@ -76,10 +63,10 @@ const Login = () => {
         const decoded = jwtDecode(jwtToken);
         console.log(decoded);
 
-        const { name } = decoded;
+        const { email, name } = decoded;
         setName(name);
 
-        // const user = postLogin(decoded.email);
+        dispatch(postLogin(email));
 
         // update redux state for the user
         // store jwt token in redux state

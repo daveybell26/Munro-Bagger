@@ -4,7 +4,7 @@ import { SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import store from './store/index';
 import Login from './Screens/Login';
 
-export default function App () {
+export default function App() {
   return (
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss();
