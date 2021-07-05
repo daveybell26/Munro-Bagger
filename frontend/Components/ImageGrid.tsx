@@ -4,10 +4,10 @@ import {
 } from 'react-native';
 import ImageModal from './ImageModal';
 
-const ImageGrid = ({ list }: { list: any }) => {
+const ImageGrid = ({ list }: { list: Pictures[] }) => {
   const [modal, setModal] = useState<any>({});
 
-  const singleImage = (item: any) => (
+  const singleImage = (item: Pictures) => (
     <Pressable onPress={() => setModal(item)}>
       <Image
         style={{
