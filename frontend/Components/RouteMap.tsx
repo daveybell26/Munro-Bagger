@@ -16,7 +16,6 @@ import styles from './styles/mapStyles';
 
 const MAP_TYPE: MapTypes = Platform.OS === 'android' ? 'none' : 'standard';
 
-<<<<<<< HEAD
 const RouteMap = ({
   toggleMapVisibility,
   mountain,
@@ -24,16 +23,6 @@ const RouteMap = ({
   toggleMapVisibility : Function,
   mountain: MountainInfo
 }) => {
-=======
-const initialRegion: Region = {
-  latitude: 56.17,
-  longitude: -4.63301,
-  latitudeDelta: 0.1,
-  longitudeDelta: 0.1,
-};
-
-const RouteMap = ({ toggleMapVisibility }: { toggleMapVisibility: Function }) => {
->>>>>>> main
   const mapView = useRef<MapView>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [visibilitySettings, setVisibilitySettings] = useState(false);
