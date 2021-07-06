@@ -19,7 +19,7 @@ const UserProfile = () => {
   const history = useHistory();
   const { pictures } = useSelector(randomUserPicsSelector);
   const { mountainList } = useSelector(allMountainSelector);
-  const { basicInfo, userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken, basicInfo } = useSelector(loginSelector);
 
   const dispatch = useAppDispatch();
 
@@ -32,8 +32,8 @@ const UserProfile = () => {
   const progressBarPercentage = `${progressBarPercentageNum}%`;
 
   useEffect(() => {
-    dispatch(getUserPicsRandomly(userDetails.id));
-    dispatch(getMountains(userDetails.id));
+    dispatch(getUserPicsRandomly({ id: userDetails.id, jwtToken: authToken }));
+    dispatch(getMountains({ UserId: userDetails.id, jwtToken: authToken }));
   }, [dispatch, userDetails.id]);
 
   return (

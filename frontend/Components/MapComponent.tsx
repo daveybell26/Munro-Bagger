@@ -12,7 +12,7 @@ import BlueMountain from '../assets/blueMountain.png';
 
 const MapComponent = () => {
   const { mountainList } = useSelector(allMountainSelector);
-  const { userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken } = useSelector(loginSelector);
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -51,7 +51,7 @@ const MapComponent = () => {
   }) : null;
 
   useEffect(() => {
-    dispatch(getMountains(userDetails.id));
+    dispatch(getMountains({ UserId: userDetails.id, jwtToken: authToken }));
   }, [dispatch, userDetails.id]);
 
   return (
