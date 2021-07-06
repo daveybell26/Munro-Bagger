@@ -1,18 +1,8 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory, useLocation } from 'react-router-native';
-
-const styles = StyleSheet.create({
-  navFooter: {
-    width: '100%',
-    height: 65,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: '#427AA1',
-  },
-});
+import styles from './styles/navFooterStyles';
 
 const NavFooter = () => {
   // when user presses icon, a new markers jsx componenet rendered with different color.

@@ -1,38 +1,16 @@
 import React, { FC, useState, useMemo } from 'react';
-import {
-  StyleSheet, Text, Slider, ActivityIndicator,
-} from 'react-native';
+import { Text, Slider, ActivityIndicator } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import { Card, Button } from 'react-native-elements';
 import { Region } from 'react-native-maps';
 import { tileGridForRegion } from '../utilities/TileGrid';
 import AppConstants from '../constants';
+import styles from './styles/downloadSettingsStyles';
 
 type Props = {
   mapRegion: Region
   onFinish: () => void
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 15,
-    left: 0,
-    right: 0,
-    zIndex: 999,
-  },
-  warningMessage: {
-    marginVertical: 10,
-    color: '#bbb',
-    fontStyle: 'italic',
-    fontSize: 10,
-    textAlign: 'center',
-  },
-  estimate: {
-    marginVertical: 15,
-    textAlign: 'center',
-  },
-});
 
 const DownloadSettings: FC<Props> = ({
   mapRegion,
