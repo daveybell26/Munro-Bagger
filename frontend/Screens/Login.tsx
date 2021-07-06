@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   ImageBackground, View, Alert, Platform,
 } from 'react-native';
@@ -7,10 +7,11 @@ import {
 } from 'react-router-native';
 import * as AuthSession from 'expo-auth-session';
 import jwtDecode from 'jwt-decode';
+import { useSelector } from 'react-redux';
 import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
-import { postLogin, setToken } from '../store/login.store';
-import { useAppDispatch } from '../store';
+import { postLogin, setBasicInfo, setToken } from '../store/login.store';
+import { loginSelector, useAppDispatch } from '../store';
 import styles from './styles/loginStyles';
 
 import Explore from './Explore';
@@ -29,7 +30,7 @@ const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
-  const [email, setEmail] = useState(null);
+  const { basicInfo } = useSelector(loginSelector);
   const dispatch = useAppDispatch();
 
   const [, result, promptAsync]: any = AuthSession.useAuthRequest(
@@ -60,14 +61,18 @@ const Login = () => {
 
         dispatch(postLogin(decoded.email));
         dispatch(setToken(jwtToken));
-        setEmail(decoded.email);
+        dispatch(setBasicInfo({
+          email: decoded.email,
+          name: decoded.name,
+          image: decoded.picture,
+        }));
       }
     }
   }, [result]);
 
   return (
     <View style={styles.container}>
-      {email ? (
+      {basicInfo.email ? (
         <NativeRouter>
           <Switch>
             <Route exact path="/" component={Explore} />

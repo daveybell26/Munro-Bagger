@@ -16,12 +16,18 @@ interface LoginState {
   }
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
   authToken: string
+  basicInfo: {
+    email: string
+    name: string
+    image: string
+  }
 }
 
 const initialLoginState = {
   userDetails: {},
   loading: 'idle',
   authToken: '',
+  basicInfo: {},
 } as LoginState;
 
 const loginSlice = createSlice({
@@ -30,6 +36,9 @@ const loginSlice = createSlice({
   reducers: {
     setToken(state, action) {
       state.authToken = action.payload;
+    },
+    setBasicInfo(state, action) {
+      state.basicInfo = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -46,5 +55,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setToken } = loginSlice.actions;
+export const { setToken, setBasicInfo } = loginSlice.actions;
 export default loginSlice.reducer;
