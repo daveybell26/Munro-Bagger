@@ -21,13 +21,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Header() {
+export default function Header({ isProfile }: { isProfile: boolean }) {
+  // const location = useLocation();
+  // console.log(location)
   return (
     <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.header}>
         <MaterialIcons name="terrain" size={50} />
         <Text style={styles.appName}> bagPics</Text>
-        <LogoutButton />
+        {isProfile ? <LogoutButton /> : null}
       </View>
     </SafeAreaView>
   );

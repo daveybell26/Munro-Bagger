@@ -89,7 +89,7 @@ const Login = () => {
         </NativeRouter>
       ) : (
         <ImageBackground source={backGroundImage} style={styles.container}>
-          <Header />
+          <Header isProfile={false} />
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <CustomButton onPress={() => promptAsync({ useProxy })}>Login</CustomButton>
           </View>

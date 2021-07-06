@@ -50,7 +50,7 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile={false} />
       <Text style={globalStyles.header}>List of unclimbed mountains</Text>
       <FlatList
         data={unclimbedMountainsList}

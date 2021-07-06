@@ -57,7 +57,7 @@ const MountainProfile = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile={false} />
       {mountain.id ? (
         <>
           <View style={styles.imageContainer}>

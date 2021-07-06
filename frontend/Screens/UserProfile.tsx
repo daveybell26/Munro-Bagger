@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   SafeAreaView, Text, View,
 } from 'react-native';
-import { useHistory, useLocation } from 'react-router-native';
+import { useHistory } from 'react-router-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
@@ -18,8 +18,6 @@ import {
 import styles from './styles/userProfileStyles';
 
 const UserProfile = () => {
-  const location = useLocation();
-  console.log(location);
   const history = useHistory();
   const { pictures } = useSelector(randomUserPicsSelector);
   const { mountainList } = useSelector(allMountainSelector);
@@ -42,7 +40,7 @@ const UserProfile = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile />
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />

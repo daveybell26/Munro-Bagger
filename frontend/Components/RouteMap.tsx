@@ -31,7 +31,7 @@ const RouteMap = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile={false} />
       <SafeAreaView style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
