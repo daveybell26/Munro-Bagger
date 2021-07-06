@@ -3,6 +3,7 @@ import sequelize from '../models/sequelize';
 
 export const getAllMountains = async (req: Request, res: Response) => {
   try {
+    const { UserId } = req.query;
     const data = await sequelize.models.Mountain.findAll({
       include: [
         {
@@ -12,6 +13,8 @@ export const getAllMountains = async (req: Request, res: Response) => {
         {
           attributes: ['id', 'climbed', 'wishlist'],
           model: sequelize.models.Status,
+          required: false,
+          where: { UserId },
         },
       ],
     });
@@ -23,6 +26,7 @@ export const getAllMountains = async (req: Request, res: Response) => {
 
 export const getMountainById = async (req: Request, res: Response) => {
   try {
+    const { UserId } = req.query;
     const { id } = req.params;
     const data = await sequelize.models.Mountain.findOne({
       where: { id },
@@ -40,6 +44,8 @@ export const getMountainById = async (req: Request, res: Response) => {
         {
           attributes: ['id', 'climbed', 'wishlist'],
           model: sequelize.models.Status,
+          required: false,
+          where: { UserId },
         },
 
       ],

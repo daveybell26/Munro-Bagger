@@ -23,9 +23,19 @@ interface Statuses {
 interface Pictures {
   id: number
   imageUrl: string
-  UserId: number
-  MountainId: number
+  createdAt?: string
+  updatedAt?: string
+  UserId?: number
+  MountainId?: number
 }
+
+interface UnclimbedMountain {
+  id: number
+  name: string
+  imageUrl: string
+  Statuses: Statuses[]
+}
+
 interface PermissionInfo {
   status: 'granted' | 'undetermined' | 'denied';
   granted: boolean;

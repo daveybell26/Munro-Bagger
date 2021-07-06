@@ -11,19 +11,36 @@ export const postLogin = createAsyncThunk('login/postLogin', async (email: strin
 interface LoginState {
   userDetails: {
     id: number
+    email: string
+    imageUrl: string
   }
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+  authToken: string
+  basicInfo: {
+    email: string
+    name: string
+    image: string
+  }
 }
 
 const initialLoginState = {
   userDetails: {},
   loading: 'idle',
+  authToken: '',
+  basicInfo: {},
 } as LoginState;
 
 const loginSlice = createSlice({
   name: 'login',
   initialState: initialLoginState,
-  reducers: {},
+  reducers: {
+    setToken(state, action) {
+      state.authToken = action.payload;
+    },
+    setBasicInfo(state, action) {
+      state.basicInfo = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postLogin.pending, (state) => {
       state.loading = 'pending';
@@ -38,4 +55,5 @@ const loginSlice = createSlice({
   },
 });
 
+export const { setToken, setBasicInfo } = loginSlice.actions;
 export default loginSlice.reducer;

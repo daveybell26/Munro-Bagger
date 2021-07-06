@@ -39,7 +39,7 @@ const MountainProfile = () => {
   const [mapVisibility, setVisibility] = useState(false);
 
   useEffect(() => {
-    dispatch(getOneMountain(+id));
+    dispatch(getOneMountain({ UserId: userDetails.id, id: +id }));
   }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
 
   function toggleMapVisibility() {
