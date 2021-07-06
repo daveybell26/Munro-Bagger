@@ -5,8 +5,6 @@ import LogoutButton from './LogoutButton';
 import styles from './styles/headerStyles';
 
 export default function Header({ isProfile }: { isProfile: boolean }) {
-  // const location = useLocation();
-  // console.log(location)
   return (
     <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.header}>
