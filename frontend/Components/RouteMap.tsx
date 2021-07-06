@@ -18,7 +18,7 @@ import Header from './Header';
 
 const MAP_TYPE: MapTypes = Platform.OS === 'android' ? 'none' : 'standard';
 
-const INITIALREGION: Region = {
+const initialRegion: Region = {
   latitude: 56.17,
   longitude: -4.63301,
   latitudeDelta: 0.1,
@@ -31,7 +31,7 @@ const RouteMap: FC = () => {
   const mapView = useRef<MapView>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [visibilitySettings, setVisibilitySettings] = useState(false);
-  const [mapRegion, setMapRegion] = useState(INITIALREGION);
+  const [mapRegion, setMapRegion] = useState(initialRegion);
 
   const urlTemplate = useMemo(
     () => (isOffline
@@ -43,8 +43,10 @@ const RouteMap: FC = () => {
   async function clearTiles() {
     try {
       await FileSystem.deleteAsync(AppConstants.TILE_FOLDER);
+      // eslint-disable-next-line no-alert
       alert('Deleted all tiles');
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.warn(error);
     }
   }
@@ -91,7 +93,7 @@ const RouteMap: FC = () => {
           mapType={MAP_TYPE}
           ref={mapView}
           onMapReady={() => confineMap()}
-          initialRegion={INITIALREGION}
+          initialRegion={initialRegion}
           style={styles.map}
           showsUserLocation
           onRegionChange={setMapRegion}
