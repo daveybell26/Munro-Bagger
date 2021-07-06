@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
-import { SafeAreaView, Text, View } from 'react-native';
+import {
+  SafeAreaView, Text, View,
+} from 'react-native';
 import { useHistory } from 'react-router-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
@@ -19,7 +21,7 @@ const UserProfile = () => {
   const history = useHistory();
   const { pictures } = useSelector(randomUserPicsSelector);
   const { mountainList } = useSelector(allMountainSelector);
-  const { basicInfo, userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken, basicInfo } = useSelector(loginSelector);
 
   const dispatch = useAppDispatch();
 
@@ -32,13 +34,13 @@ const UserProfile = () => {
   const progressBarPercentage = `${progressBarPercentageNum}%`;
 
   useEffect(() => {
-    dispatch(getUserPicsRandomly(userDetails.id));
-    dispatch(getMountains(userDetails.id));
+    dispatch(getUserPicsRandomly({ id: userDetails.id, jwtToken: authToken }));
+    dispatch(getMountains({ UserId: userDetails.id, jwtToken: authToken }));
   }, [dispatch, userDetails.id]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile />
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />

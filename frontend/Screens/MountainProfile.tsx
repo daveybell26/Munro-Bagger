@@ -31,7 +31,7 @@ const MountainProfile = () => {
   const { id } = useParams<{ id: string }>();
 
   const { mountain } = useSelector(oneMountainSelector);
-  const { userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken } = useSelector(loginSelector);
   const { climbedStatusObj } = useSelector(createClimbedSelector);
   const { climbedStatusArr } = useSelector(updateClimbedSelector);
   const { wishlistStatusObj } = useSelector(createWishSelector);
@@ -39,7 +39,7 @@ const MountainProfile = () => {
   const [mapVisibility, setMapVisibility] = useState(false);
 
   useEffect(() => {
-    dispatch(getOneMountain({ UserId: userDetails.id, id: +id }));
+    dispatch(getOneMountain({ UserId: userDetails.id, id: +id, jwtToken: authToken }));
   }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
 
   function toggleMapVisibility() {
@@ -47,22 +47,24 @@ const MountainProfile = () => {
   }
 
   const changeClimbedStatus = () => (mountain.Statuses.length === 0
-    ? dispatch(postClimbedStatus({ userId: userDetails.id, id: +id }))
+    ? dispatch(postClimbedStatus({ userId: userDetails.id, id: +id, jwtToken: authToken }))
     : dispatch(putClimbedStatus({
       id: mountain.Statuses[0]?.id,
       bool: !mountain.Statuses[0]?.climbed,
+      jwtToken: authToken,
     })));
 
   const changeWishlistStatus = () => (mountain.Statuses.length === 0
-    ? dispatch(postWishlistStatus({ userId: userDetails.id, id: +id }))
+    ? dispatch(postWishlistStatus({ userId: userDetails.id, id: +id, jwtToken: authToken }))
     : dispatch(putWishlistStatus({
       id: mountain.Statuses[0]?.id,
       bool: !mountain.Statuses[0]?.wishlist,
+      jwtToken: authToken,
     })));
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile={false} />
       {mountain.id && mapVisibility ? (
         <SafeAreaView style={{ flex: 1 }}>
           <RouteMap toggleMapVisibility={toggleMapVisibility} mountain={mountain} />

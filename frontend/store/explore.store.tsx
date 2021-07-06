@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getExploreRandom } from '../services/apiService';
 
-export const getRandomMountains = createAsyncThunk('randomMountains/getRandomMountains', async () => {
-  const { data } = await getExploreRandom();
+export const getRandomMountains = createAsyncThunk('randomMountains/getRandomMountains', async (jwtToken: string) => {
+  const { data } = await getExploreRandom(jwtToken);
   return data;
 });
 

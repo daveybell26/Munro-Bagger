@@ -7,7 +7,7 @@ import styles from './styles/mapStyles';
 
 const Map = () => (
   <SafeAreaView style={styles.safeArea}>
-    <Header />
+    <Header isProfile={false} />
     <MapComponent />
     <NavFooter />
   </SafeAreaView>

@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { putWishlist } from '../services/apiService';
 
-export const putWishlistStatus = createAsyncThunk('wishlistStatusUpdate/putWishlistStatus', async ({ id, bool }: { id: number, bool: boolean }) => {
-  const { data } = await putWishlist(id, bool);
+export const putWishlistStatus = createAsyncThunk('wishlistStatusUpdate/putWishlistStatus', async ({ id, bool, jwtToken }: { id: number, bool: boolean, jwtToken: string }) => {
+  const { data } = await putWishlist(id, bool, jwtToken);
   return data;
 });
 

@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login } from '../services/apiService';
 
-export const postLogin = createAsyncThunk('login/postLogin', async (email: string) => {
-  const { data } = await login(email);
+export const postLogin = createAsyncThunk('login/postLogin', async ({ email, jwtToken }:{ email: string, jwtToken:string }) => {
+  const { data } = await login(email, jwtToken);
   if (!data) return {};
   return data;
 });
@@ -40,6 +40,11 @@ const loginSlice = createSlice({
     setBasicInfo(state, action) {
       state.basicInfo = action.payload;
     },
+    deleteState(state) {
+      state.authToken = initialLoginState.authToken;
+      state.basicInfo = initialLoginState.basicInfo;
+      state.userDetails = initialLoginState.userDetails;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(postLogin.pending, (state) => {
@@ -55,5 +60,7 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setToken, setBasicInfo } = loginSlice.actions;
+export const {
+  setToken, setBasicInfo, deleteState,
+} = loginSlice.actions;
 export default loginSlice.reducer;

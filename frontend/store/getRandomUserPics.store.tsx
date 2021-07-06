@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomUserPics } from '../services/apiService';
 
-export const getUserPicsRandomly = createAsyncThunk('randomUserPics/getUserPicsRandomly', async (id: number) => {
-  const { data } = await getRandomUserPics(id);
+export const getUserPicsRandomly = createAsyncThunk('randomUserPics/getUserPicsRandomly', async ({ id, jwtToken }:{ id: number, jwtToken:string }) => {
+  const { data } = await getRandomUserPics(id, jwtToken);
   return data;
 });
 

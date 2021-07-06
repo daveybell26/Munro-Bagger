@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { postClimbed } from '../services/apiService';
 
-export const postClimbedStatus = createAsyncThunk('climbedStatusCreate/postClimbedStatus', async ({ userId, id }: { userId: number, id: number }) => {
-  const { data } = await postClimbed(userId, id);
+export const postClimbedStatus = createAsyncThunk('climbedStatusCreate/postClimbedStatus', async ({ userId, id, jwtToken }: { userId: number, id: number, jwtToken: string }) => {
+  const { data } = await postClimbed(userId, id, jwtToken);
   return data;
 });
 

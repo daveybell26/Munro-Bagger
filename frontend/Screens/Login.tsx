@@ -24,14 +24,15 @@ import RouteMap from '../Components/RouteMap';
 
 const backGroundImage = require('../assets/background.jpg');
 
-const auth0ClientId = 'CEoOtg3BpAsHEPdhYdjFnx6zQWLHLUOk';
-const authorizationEndpoint = 'https://euro-2021.eu.auth0.com/authorize';
+const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
+const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
 
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
   const { basicInfo } = useSelector(loginSelector);
+
   const dispatch = useAppDispatch();
 
   const [, result, promptAsync]: any = AuthSession.useAuthRequest(
@@ -43,6 +44,7 @@ const Login = () => {
       extraParams: {
         nonce: 'nonce',
       },
+      prompt: AuthSession.Prompt.Login,
     },
     { authorizationEndpoint },
   );
@@ -60,7 +62,7 @@ const Login = () => {
         const jwtToken = result.params.id_token;
         const decoded: any = jwtDecode(jwtToken);
 
-        dispatch(postLogin(decoded.email));
+        dispatch(postLogin({ email: decoded.email, jwtToken }));
         dispatch(setToken(jwtToken));
         dispatch(setBasicInfo({
           email: decoded.email,
@@ -87,7 +89,7 @@ const Login = () => {
         </NativeRouter>
       ) : (
         <ImageBackground source={backGroundImage} style={styles.container}>
-          <Header />
+          <Header isProfile={false} />
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <CustomButton onPress={() => promptAsync({ useProxy })}>Login</CustomButton>
           </View>
