@@ -107,8 +107,13 @@ Startpoint.init(
 
 Route.init(
   {
-    route: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+    latitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
   }, { sequelize },
 );
@@ -130,6 +135,7 @@ Mountain.hasOne(Peak);
 Mountain.hasMany(Startpoint);
 Startpoint.belongsTo(Mountain);
 
-Mountain.hasOne(Route);
+Mountain.hasMany(Route);
+Route.belongsTo(Mountain);
 
 export default sequelize;

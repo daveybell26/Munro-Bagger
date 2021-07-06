@@ -1,4 +1,4 @@
-const { mountains, users } = require('../mockData.json');
+const { mountains, users, routes } = require('../mockData.json');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -58,6 +58,16 @@ module.exports = {
           MountainId,
         };
       }),
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'Routes', routes.map((route) => ({
+        latitude: route.latitude,
+        longitude: route.longitude,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        MountainId: 87,
+      })),
       {},
     );
   },

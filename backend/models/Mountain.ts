@@ -19,7 +19,7 @@ export default class Mountain extends Model implements MountainInterface {
 
   public readonly startpoint?: Startpoint[];
 
-  public readonly route?: Route;
+  public readonly route?: Route[];
 
   public static associations: {
     status: Association<Mountain, Status>;
