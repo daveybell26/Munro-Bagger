@@ -6,26 +6,12 @@ export type Tile = {
   z: number
 };
 
-export function tileGridForRegion(
-  region: Region,
-  minZoom: number,
-  maxZoom: number,
-): Tile[] {
-  let tiles: Tile[] = [];
-
-  for (let zoom = minZoom; zoom <= maxZoom; zoom++) {
-    const subTiles = tilesForZoom(region, zoom);
-    tiles = [...tiles, ...subTiles];
-  }
-
-  return tiles;
-}
-
 function degToRad(deg: number): number {
   return (deg * Math.PI) / 180;
 }
+
 function lonToTileX(lon: number, zoom: number): number {
-  return Math.floor(((lon + 180) / 360) * Math.pow(2, zoom));
+  return Math.floor(((lon + 180) / 360) * (2 ** zoom));
 }
 
 function latToTileY(lat: number, zoom: number): number {
@@ -33,7 +19,8 @@ function latToTileY(lat: number, zoom: number): number {
     ((1
       - Math.log(Math.tan(degToRad(lat)) + 1 / Math.cos(degToRad(lat))) / Math.PI)
       / 2)
-      * Math.pow(2, zoom),
+
+      * (2 ** zoom),
   );
 }
 
@@ -50,10 +37,25 @@ function tilesForZoom(region: Region, zoom: number): Tile[] {
 
   const tiles: Tile[] = [];
 
-  for (let x = minTileX; x <= maxTileX; x++) {
-    for (let y = minTileY; y <= maxTileY; y++) {
+  for (let x = minTileX; x <= maxTileX; x += 1) {
+    for (let y = minTileY; y <= maxTileY; y += 1) {
       tiles.push({ x, y, z: zoom });
     }
+  }
+
+  return tiles;
+}
+
+export function tileGridForRegion(
+  region: Region,
+  minZoom: number,
+  maxZoom: number,
+): Tile[] {
+  let tiles: Tile[] = [];
+
+  for (let zoom = minZoom; zoom <= maxZoom; zoom += 1) {
+    const subTiles = tilesForZoom(region, zoom);
+    tiles = [...tiles, ...subTiles];
   }
 
   return tiles;
