@@ -27,3 +27,7 @@ interface StartpointInterface {
   latitude: number;
   longitude: number;
 }
+interface RouteInterface {
+  latitude: number;
+  longitude: number;
+}

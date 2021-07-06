@@ -4,6 +4,7 @@ import Status from './Status';
 import Picture from './Picture';
 import Peak from './Peak';
 import Startpoint from './Startpoint';
+import Route from './Route';
 
 export default class Mountain extends Model implements MountainInterface {
   public name!: string;
@@ -18,10 +19,13 @@ export default class Mountain extends Model implements MountainInterface {
 
   public readonly startpoint?: Startpoint[];
 
+  public readonly route?: Route[];
+
   public static associations: {
     status: Association<Mountain, Status>;
     picture: Association<Mountain, Picture>;
     peak: Association<Mountain, Peak>;
     startpoint: Association<Mountain, Startpoint>;
+    route: Association<Mountain, Route>;
   };
 }
