@@ -8,7 +8,6 @@ import postPicture from './controllers/picture';
 import {
   postClimbed, postWishlist, putClimbed, putWishlist,
 } from './controllers/status';
-import authRedirect from './controllers/auth';
 
 const router = express.Router();
 
@@ -25,7 +24,6 @@ router.put('/status/:id/climbed/:bool', putClimbed);
 router.post('/status/wishlist/:MountainId', postWishlist);
 router.put('/status/:id/wishlist/:bool', putWishlist);
 
-router.get('/authorize', authRedirect);
 router.post('/login', login);
 
 router.post('/picture/mountain/:MountainId/user/:UserId', postPicture);

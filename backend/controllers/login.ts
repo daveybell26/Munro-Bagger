@@ -3,6 +3,7 @@ import sequelize from '../models/sequelize';
 
 const login = async (req: Request, res: Response) => {
   try {
+    // console.log(JSON.stringify(req.headers));
     const { email } = req.body;
     const [data] = await sequelize.models.User.findOrCreate({
       where: { email },

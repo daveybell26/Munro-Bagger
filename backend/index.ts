@@ -17,13 +17,13 @@ const jwtCheck = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://dev-l8augku5.eu.auth0.com/.well-known/jwks.json',
   }),
-  audience: 'https://www.baghikes-api.com',
+  audience: 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R',
   issuer: 'https://dev-l8augku5.eu.auth0.com/',
   algorithms: ['RS256'],
 });
 
 app.use(cors());
-app.use(morgan('tiny'));
+app.use(morgan('common'));
 app.use(express.json());
 app.use(jwtCheck);
 app.use(router);
