@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView, Text, Image, View, Pressable, Switch,
 } from 'react-native';
-import { useParams, useHistory } from 'react-router-native';
+import { useParams } from 'react-router-native';
 import { useSelector } from 'react-redux';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { getOneMountain } from '../store/getOneMountain.store';
@@ -13,6 +13,7 @@ import { putWishlistStatus } from '../store/putWishlist.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
+import RouteMap from '../Components/RouteMap';
 import { globalStyles } from './styles/GlobalStyles';
 import {
   createClimbedSelector,
@@ -26,7 +27,6 @@ import {
 import styles from './styles/mountainProfileStyles';
 
 const MountainProfile = () => {
-  const history = useHistory();
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
 
@@ -36,10 +36,15 @@ const MountainProfile = () => {
   const { climbedStatusArr } = useSelector(updateClimbedSelector);
   const { wishlistStatusObj } = useSelector(createWishSelector);
   const { wishlistStatusArr } = useSelector(updateWishSelector);
+  const [mapVisibility, setVisibility] = useState(false);
 
   useEffect(() => {
     dispatch(getOneMountain(+id));
   }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
+
+  function toggleMapVisibility() {
+    setVisibility(!mapVisibility);
+  }
 
   const changeClimbedStatus = () => (mountain.Statuses.length === 0
     ? dispatch(postClimbedStatus({ userId: userDetails.id, id: +id }))
@@ -55,10 +60,18 @@ const MountainProfile = () => {
       bool: !mountain.Statuses[0]?.wishlist,
     })));
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <Header />
-      {mountain.id ? (
+  const componentToBeRendered = () => {
+    if (mountain.id && mapVisibility) {
+      return (
+        <>
+          <SafeAreaView style={{ flex: 1 }}>
+            <RouteMap toggleMapVisibility={toggleMapVisibility} />
+          </SafeAreaView>
+        </>
+      );
+    }
+    if (mountain.id) {
+      return (
         <>
           <View style={styles.imageContainer}>
             <Image
@@ -96,7 +109,7 @@ const MountainProfile = () => {
             />
           </SafeAreaView>
           <SafeAreaView style={styles.routeButton}>
-            <Pressable onPress={() => history.push('/route')}>
+            <Pressable onPress={toggleMapVisibility}>
               <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? 'green' : 'red'} />
             </Pressable>
             <Text>
@@ -105,7 +118,15 @@ const MountainProfile = () => {
           </SafeAreaView>
           <ImageGrid list={mountain.Pictures} />
         </>
-      ) : null}
+      );
+    }
+    return null;
+  };
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <Header />
+      {componentToBeRendered()}
       <NavFooter />
     </SafeAreaView>
   );
