@@ -7,11 +7,12 @@ import styles from './styles/mapStyles';
 import { getMountains } from '../store/getAllMountains.store';
 import GreenMountain from '../assets/greenMountain.png';
 import RedMountain from '../assets/redMountain.png';
-import { allMountainSelector, useAppDispatch } from '../store';
+import { allMountainSelector, loginSelector, useAppDispatch } from '../store';
 import BlueMountain from '../assets/blueMountain.png';
 
 const MapComponent = () => {
   const { mountainList } = useSelector(allMountainSelector);
+  const { userDetails } = useSelector(loginSelector);
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -50,8 +51,8 @@ const MapComponent = () => {
   }) : null;
 
   useEffect(() => {
-    dispatch(getMountains());
-  }, [dispatch]);
+    dispatch(getMountains(userDetails.id));
+  }, [dispatch, userDetails.id]);
 
   return (
     <SafeAreaView style={styles.container}>

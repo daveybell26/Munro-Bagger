@@ -38,7 +38,7 @@ const MountainProfile = () => {
   const { wishlistStatusArr } = useSelector(updateWishSelector);
 
   useEffect(() => {
-    dispatch(getOneMountain(+id));
+    dispatch(getOneMountain({ UserId: userDetails.id, id: +id }));
   }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
 
   const changeClimbedStatus = () => (mountain.Statuses.length === 0

@@ -35,8 +35,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(getUserPicsRandomly(userDetails.id));
-    dispatch(getMountains());
-  }, [dispatch]);
+    dispatch(getMountains(userDetails.id));
+  }, [dispatch, userDetails.id]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
