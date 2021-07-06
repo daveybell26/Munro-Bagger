@@ -1,5 +1,5 @@
 import React, {
-  useRef, useState, useEffect, useMemo, FC,
+  useRef, useState, useEffect, useMemo,
 } from 'react';
 import {
   SafeAreaView, View, Platform,
@@ -24,8 +24,6 @@ const initialRegion: Region = {
 };
 
 const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userLocation, setLocation] = useState<Location.LocationObject>();
   const mapView = useRef<MapView>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [visibilitySettings, setVisibilitySettings] = useState(false);
@@ -149,7 +147,7 @@ const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) 
               { latitude: 56.190222796, longitude: -4.633262154 },
 
             ]}
-            strokeColor="black" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColor="black"
             strokeWidth={3}
           />
           <UrlTile urlTemplate={urlTemplate} zIndex={1} />
