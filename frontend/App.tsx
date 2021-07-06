@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import {
-  SafeAreaView, TouchableWithoutFeedback, Keyboard, Text,
+  SafeAreaView, TouchableWithoutFeedback, Keyboard,
 } from 'react-native';
 import store from './store/index';
 import Login from './Screens/Login';
