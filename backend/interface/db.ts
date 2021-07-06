@@ -27,3 +27,6 @@ interface StartpointInterface {
   latitude: number;
   longitude: number;
 }
+interface RouteInterface {
+  route: Array<Object>
+}

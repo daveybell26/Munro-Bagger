@@ -6,6 +6,7 @@ import Mountain from './Mountain';
 import Picture from './Picture';
 import Peak from './Peak';
 import Startpoint from './Startpoint';
+import Route from './Route';
 
 dotenv.config();
 
@@ -104,6 +105,14 @@ Startpoint.init(
   }, { sequelize },
 );
 
+Route.init(
+  {
+    route: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
+  }, { sequelize },
+);
+
 User.hasMany(Status);
 Status.belongsTo(User);
 
@@ -120,5 +129,7 @@ Mountain.hasOne(Peak);
 
 Mountain.hasMany(Startpoint);
 Startpoint.belongsTo(Mountain);
+
+Mountain.hasOne(Route);
 
 export default sequelize;
