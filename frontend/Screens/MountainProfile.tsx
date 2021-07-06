@@ -65,7 +65,7 @@ const MountainProfile = () => {
       <Header />
       {mountain.id && mapVisibility ? (
         <SafeAreaView style={{ flex: 1 }}>
-          <RouteMap toggleMapVisibility={toggleMapVisibility} />
+          <RouteMap toggleMapVisibility={toggleMapVisibility} mountain={mountain} />
         </SafeAreaView>
       ) : null}
       {mountain.id && !mapVisibility ? (

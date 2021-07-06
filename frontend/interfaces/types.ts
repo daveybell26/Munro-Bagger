@@ -12,6 +12,7 @@ interface MountainInfo {
   },
   Statuses: Statuses[]
   Pictures: Pictures[]
+  Routes: Routes[]
 }
 
 interface Statuses {
@@ -64,6 +65,10 @@ interface LatLng {
   longitude: number,
 }
 
+interface Routes {
+  latitude: number,
+  longitude: number,
+}
 interface ParamTypes {
   id: number,
 }

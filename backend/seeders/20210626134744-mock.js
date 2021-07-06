@@ -64,9 +64,9 @@ module.exports = {
       'Routes', routes.map((route) => ({
         latitude: route.latitude,
         longitude: route.longitude,
+        MountainId: route.MountainId,
         createdAt: new Date(),
         updatedAt: new Date(),
-        MountainId: 87,
       })),
       {},
     );
