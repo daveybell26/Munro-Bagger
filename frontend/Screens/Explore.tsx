@@ -18,7 +18,7 @@ import styles from './styles/exploreStyles';
 const Explore = () => {
   const { randomMountainsList } = useSelector(randomMountainSelector);
   const { unclimbedMountainsList } = useSelector(unclimbedMountainsSelector);
-  const { userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken } = useSelector(loginSelector);
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -44,8 +44,12 @@ const Explore = () => {
   );
 
   useEffect(() => {
-    if (userDetails.id) dispatch(getExploreUnclimbedMountains(userDetails.id));
-    dispatch(getRandomMountains());
+    if (userDetails.id) {
+      dispatch(getExploreUnclimbedMountains(
+        { userId: userDetails.id, jwtToken: authToken },
+      ));
+    }
+    dispatch(getRandomMountains(authToken));
   }, [dispatch, userDetails.id]);
 
   return (

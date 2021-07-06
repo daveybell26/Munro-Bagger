@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getAllMountains } from '../services/apiService';
 
-export const getMountains = createAsyncThunk('allMountains/getMountains', async (UserId: number) => {
-  const { data } = await getAllMountains(UserId);
+export const getMountains = createAsyncThunk('allMountains/getMountains', async ({ UserId, jwtToken }:{ UserId: number, jwtToken: string }) => {
+  const { data } = await getAllMountains(UserId, jwtToken);
   return data;
 });
 

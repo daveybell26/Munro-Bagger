@@ -25,19 +25,19 @@ const UploadPicture = ({
   const [loading, setLoading] = useState(false);
 
   const { mountainList } = useSelector(allMountainSelector);
-  const { userDetails } = useSelector(loginSelector);
+  const { userDetails, authToken } = useSelector(loginSelector);
 
   const dispatch = useAppDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getMountains(userDetails.id));
+    dispatch(getMountains({ UserId: userDetails.id, jwtToken: authToken }));
   }, [dispatch, userDetails.id]);
 
   const uploadHandler = async () => {
     setLoading(true);
     const cloudinaryUrl = await cloudinaryUpload(picture);
-    await postPicture(userDetails.id, selectedMountain, cloudinaryUrl);
+    await postPicture(userDetails.id, selectedMountain, cloudinaryUrl, authToken);
     setLoading(false);
     history.push('/profile');
   };
