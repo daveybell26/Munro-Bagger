@@ -45,24 +45,24 @@ export const postPicture = (
 );
 
 export const postClimbed = (UserId: number, MountainId: number, jwtToken: string) => axios.post(
-  `${baseUrl}/status/climbed/${MountainId}?UserId=${UserId}`, {
+  `${baseUrl}/status/climbed/${MountainId}?UserId=${UserId}`, {}, {
     headers: { Authorization: `Bearer ${jwtToken}` },
   },
 );
 export const putClimbed = (id: number, bool: boolean, jwtToken: string) => axios.put(
-  `${baseUrl}/status/${id}/climbed/${bool}`, {
+  `${baseUrl}/status/${id}/climbed/${bool}`, {}, {
     headers: { Authorization: `Bearer ${jwtToken}` },
   },
 );
 
 export const postWishlist = (UserId: number, MountainId: number, jwtToken: string) => axios.post(
-  `${baseUrl}/status/wishlist/${MountainId}?UserId=${UserId}`, {
+  `${baseUrl}/status/wishlist/${MountainId}?UserId=${UserId}`, {}, {
     headers: { Authorization: `Bearer ${jwtToken}` },
   },
 );
 
 export const putWishlist = (id: number, bool: boolean, jwtToken: string) => axios.put(
-  `${baseUrl}/status/${id}/wishlist/${bool}`, {
+  `${baseUrl}/status/${id}/wishlist/${bool}`, {}, {
     headers: { Authorization: `Bearer ${jwtToken}` },
   },
 );
