@@ -20,6 +20,7 @@ import MountainProfile from './MountainProfile';
 import UserProfile from './UserProfile';
 import CameraScreen from './Camera';
 import UploadPicture from './UploadPicture';
+import RouteMap from '../Components/RouteMap';
 
 const backGroundImage = require('../assets/background.jpg');
 
@@ -83,6 +84,7 @@ const Login = () => {
             <Route exact path="/profile" component={UserProfile} />
             <Route exact path="/camera" component={CameraScreen} />
             <Route exact path="/uploadPicture" component={UploadPicture} />
+            <Route exact path="/route" component={RouteMap} />
           </Switch>
         </NativeRouter>
       ) : (
