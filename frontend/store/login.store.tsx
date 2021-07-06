@@ -40,6 +40,11 @@ const loginSlice = createSlice({
     setBasicInfo(state, action) {
       state.basicInfo = action.payload;
     },
+    deleteState(state) {
+      state.authToken = initialLoginState.authToken;
+      state.basicInfo = initialLoginState.basicInfo;
+      state.userDetails = initialLoginState.userDetails;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(postLogin.pending, (state) => {
@@ -55,5 +60,7 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setToken, setBasicInfo } = loginSlice.actions;
+export const {
+  setToken, setBasicInfo, deleteState,
+} = loginSlice.actions;
 export default loginSlice.reducer;

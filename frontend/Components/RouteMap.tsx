@@ -23,7 +23,7 @@ const initialRegion: Region = {
   longitudeDelta: 0.1,
 };
 
-const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) => {
+const RouteMap = ({ toggleMapVisibility }: { toggleMapVisibility: Function }) => {
   const mapView = useRef<MapView>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [visibilitySettings, setVisibilitySettings] = useState(false);

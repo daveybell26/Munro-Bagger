@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
-import { SafeAreaView, Text, View } from 'react-native';
+import {
+  SafeAreaView, Text, View,
+} from 'react-native';
 import { useHistory } from 'react-router-native';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
@@ -38,7 +40,7 @@ const UserProfile = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Header isProfile />
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
           <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />
