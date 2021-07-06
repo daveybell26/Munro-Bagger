@@ -47,6 +47,12 @@ export const getMountainById = async (req: Request, res: Response) => {
           required: false,
           where: { UserId },
         },
+        {
+          attributes: ['latitude', 'longitude'],
+          model: sequelize.models.Route,
+          required: false,
+          where: { MountainId: id },
+        },
 
       ],
     });

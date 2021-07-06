@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(router);
 
 (async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
   app.listen(PORT, () => {
     // eslint-disable-next-line no-console
     console.log(`Listening on http://localhost:${PORT} 🚀`);
