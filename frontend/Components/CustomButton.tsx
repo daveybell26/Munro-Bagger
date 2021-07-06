@@ -1,24 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet, Text, SafeAreaView, TouchableOpacity,
-} from 'react-native';
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 20,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    backgroundColor: '#427AA1',
-    width: 200,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
+import { Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import styles from './styles/customButtonStyles';
 
 const CustomButton = ({ onPress, children }: any) => (
   <TouchableOpacity onPress={onPress}>

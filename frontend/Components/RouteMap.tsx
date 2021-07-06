@@ -1,15 +1,66 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { SafeAreaView } from 'react-native';
-import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+import React, {
+  useRef, useState, useEffect, useMemo,
+} from 'react';
+import {
+  SafeAreaView, View, Platform,
+} from 'react-native';
+import MapView, {
+  Polyline, PROVIDER_GOOGLE, UrlTile, Region, MapTypes,
+} from 'react-native-maps';
+import { Button } from 'react-native-elements';
+import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
+import AppConstants from '../constants/index';
+import DownloadSettings from './DownloadSettings';
 import styles from './styles/mapStyles';
-import NavFooter from './NavFooter';
-import Header from './Header';
 
-const RouteMap = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userLocation, setLocation] = useState<Location.LocationObject>();
+const MAP_TYPE: MapTypes = Platform.OS === 'android' ? 'none' : 'standard';
+
+const initialRegion: Region = {
+  latitude: 56.17,
+  longitude: -4.63301,
+  latitudeDelta: 0.1,
+  longitudeDelta: 0.1,
+};
+
+const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) => {
   const mapView = useRef<MapView>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const [visibilitySettings, setVisibilitySettings] = useState(false);
+  const [mapRegion, setMapRegion] = useState(initialRegion);
+
+  const urlTemplate = useMemo(
+    () => (isOffline
+      ? `${AppConstants.TILE_FOLDER}/{z}/{x}/{y}.png`
+      : `${AppConstants.MAP_URL}/{z}/{x}/{y}.png`),
+    [isOffline],
+  );
+
+  const clearTiles = async () => {
+    try {
+      await FileSystem.deleteAsync(AppConstants.TILE_FOLDER);
+      // eslint-disable-next-line no-alert
+      alert('Deleted all tiles');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(error);
+    }
+  };
+
+  const toggleOffline = () => {
+    setIsOffline(!isOffline);
+  };
+
+  const toggleDownloadSettings = () => {
+    setVisibilitySettings(!visibilitySettings);
+  };
+
+  const onDownloadComplete = () => {
+    setIsOffline(true);
+    setVisibilitySettings(false);
+  };
+
+  const toggleOfflineText = isOffline ? 'Go online' : 'Go offline';
 
   useEffect(() => {
     (async () => {
@@ -17,9 +68,7 @@ const RouteMap = () => {
       if (status !== 'granted') {
         return;
       }
-
-      const location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      await Location.getCurrentPositionAsync({});
     })();
   }, []);
 
@@ -31,60 +80,89 @@ const RouteMap = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
       <SafeAreaView style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          mapType="terrain"
+          mapType={MAP_TYPE}
           ref={mapView}
           onMapReady={() => confineMap()}
-          initialRegion={{
-            latitude: 56.17,
-            longitude: -4.63301,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          }}
+          initialRegion={initialRegion}
           style={styles.map}
           showsUserLocation
+          onRegionChange={setMapRegion}
         >
           <Polyline
+            zIndex={2}
             coordinates={[
 
-              { latitude: 56.149528709339, longitude: -4.6420955523643 },
-              { latitude: 56.152639871854, longitude: -4.6353042229788 },
-              { latitude: 56.158757201152, longitude: -4.6202616563449 },
-              { latitude: 56.164020086746, longitude: -4.6157877749323 },
-              { latitude: 56.169724913977, longitude: -4.6180286319063 },
-              { latitude: 56.178932505124, longitude: -4.6203881658375 },
-              { latitude: 56.187306648661, longitude: -4.6239008342587 },
-              { latitude: 56.18847453615, longitude: -4.6302667415865 },
-              { latitude: 56.19021294627, longitude: -4.6330454213062 },
-              { latitude: 56.191834255138, longitude: -4.6392014707877 },
-              { latitude: 56.189323304818, longitude: -4.6431392256968 },
-              { latitude: 56.18814288478, longitude: -4.645798107291 },
-              { latitude: 56.184030044961, longitude: -4.6468847790002 },
-              { latitude: 56.175351944852, longitude: -4.6429033873697 },
-              { latitude: 56.165058208471, longitude: -4.638812969313 },
-              { latitude: 56.159319824638, longitude: -4.6423653098655 },
-              { latitude: 56.156584238053, longitude: -4.642096903143 },
-              { latitude: 56.152718199784, longitude: -4.6421535127197 },
-              { latitude: 56.149621037603, longitude: -4.6419811255503 },
+              { latitude: 56.151961903, longitude: -4.641430812 },
+              { latitude: 56.151444057, longitude: -4.640429074 },
+              { latitude: 56.151297229, longitude: -4.638889232 },
+              { latitude: 56.151889086, longitude: -4.637480579 },
+              { latitude: 56.152255697, longitude: -4.636096701 },
+              { latitude: 56.153199522, longitude: -4.633987429 },
+              { latitude: 56.153830906, longitude: -4.631776153 },
+              { latitude: 56.154526137, longitude: -4.629730213 },
+              { latitude: 56.154909107, longitude: -4.628629112 },
+              { latitude: 56.155550188, longitude: -4.628069021 },
+              { latitude: 56.156378067, longitude: -4.625065699 },
+              { latitude: 56.156647101, longitude: -4.62403725 },
+              { latitude: 56.15696271, longitude: -4.622931439 },
+              { latitude: 56.15734756, longitude: -4.622796642 },
+              { latitude: 56.158520655, longitude: -4.620460821 },
+              { latitude: 56.160149538, longitude: -4.618880685 },
+              { latitude: 56.160669595, longitude: -4.617667856 },
+              { latitude: 56.161933758, longitude: -4.617391527 },
+              { latitude: 56.163349589, longitude: -4.616320125 },
+              { latitude: 56.164493608, longitude: -4.615350964 },
+              { latitude: 56.165530837, longitude: -4.615179909 },
+              { latitude: 56.166469797, longitude: -4.615404884 },
+              { latitude: 56.167278393, longitude: -4.615419632 },
+              { latitude: 56.167887608, longitude: -4.615299993 },
+              { latitude: 56.169231849, longitude: -4.617606604 },
+              { latitude: 56.171689976, longitude: -4.619304594 },
+              { latitude: 56.172905251, longitude: -4.620273569 },
+              { latitude: 56.175135315, longitude: -4.621070143 },
+              { latitude: 56.177429887, longitude: -4.620944683 },
+              { latitude: 56.17845578, longitude: -4.620249251 },
+              { latitude: 56.178948546, longitude: -4.620323143 },
+              { latitude: 56.17942509, longitude: -4.621161364 },
+              { latitude: 56.180198665, longitude: -4.622825616 },
+              { latitude: 56.181146373, longitude: -4.623696075 },
+              { latitude: 56.182140445, longitude: -4.623441655 },
+              { latitude: 56.183906142, longitude: -4.623884567 },
+              { latitude: 56.185633802, longitude: -4.624002582 },
+              { latitude: 56.186359693, longitude: -4.624737158 },
+              { latitude: 56.186830662, longitude: -4.623721702 },
+              { latitude: 56.186987722, longitude: -4.62373243 },
+              { latitude: 56.187465952, longitude: -4.624490399 },
+              { latitude: 56.187741585, longitude: -4.6263225 },
+              { latitude: 56.187958441, longitude: -4.627747656 },
+              { latitude: 56.188342785, longitude: -4.629748432 },
+              { latitude: 56.187958441, longitude: -4.627747656 },
+              { latitude: 56.188342785, longitude: -4.629748432 },
+              { latitude: 56.188637196, longitude: -4.630695395 },
+              { latitude: 56.189084373, longitude: -4.631854321 },
+              { latitude: 56.189586705, longitude: -4.632533494 },
+              { latitude: 56.190222796, longitude: -4.633262154 },
 
             ]}
-            strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeColors={[
-              '#7F0000',
-              '#00000000', // no color, creates a "long" gradient between the previous and next coordinate
-              '#B24112',
-              '#7F0000',
-              '#E5845C',
-              '#238C23',
-            ]}
-            strokeWidth={6}
+            strokeColor="black"
+            strokeWidth={3}
           />
+          <UrlTile urlTemplate={urlTemplate} zIndex={1} />
         </MapView>
+        <View style={styles.actionContainer}>
+          <Button raised title="Download" onPress={toggleDownloadSettings} />
+          <Button raised title="Clear tiles" onPress={clearTiles} />
+          <Button raised title={toggleOfflineText} onPress={toggleOffline} />
+          <Button raised title="Close Map" onPress={() => toggleMapVisibility()} />
+        </View>
+
+        {visibilitySettings && (
+          <DownloadSettings mapRegion={mapRegion} onFinish={onDownloadComplete} />
+        )}
       </SafeAreaView>
-      <NavFooter />
     </SafeAreaView>
   );
 };
