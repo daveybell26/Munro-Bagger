@@ -31,8 +31,8 @@ const UploadPicture = ({
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getMountains());
-  }, [dispatch]);
+    dispatch(getMountains(userDetails.id));
+  }, [dispatch, userDetails.id]);
 
   const uploadHandler = async () => {
     setLoading(true);
