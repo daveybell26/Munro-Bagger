@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +15,21 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#EBF2FA',
+  },
+  actionContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    padding: 15,
+    paddingTop: Constants.statusBarHeight + 15,
+    zIndex: 999,
+    justifyContent: 'space-around',
+  },
+  button: {
+    backgroundColor: 'white',
+    borderRadius: 10,
   },
 });
 
