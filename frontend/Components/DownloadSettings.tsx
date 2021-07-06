@@ -34,9 +34,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
+const DownloadSettings: FC<Props> = ({
+  mapRegion,
+  onFinish,
+} : {
+  mapRegion: Region,
+  onFinish: Function
+}) => {
   const [numZoomLevels, setZoomLevels] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
+  function calcZoom(longitudeDelta: number) {
+    return Math.round(Math.log(360 / longitudeDelta) / Math.LN2);
+  }
 
   const currentZoom = useMemo(() => {
     const zoom = calcZoom(mapRegion.longitudeDelta);
@@ -51,18 +61,18 @@ const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
 
     const tiles = tileGridForRegion(mapRegion, minZoom, maxZoom);
 
-    // Create directory for tiles
-    // TODO: Batch to speed up
+    // eslint-disable-next-line no-restricted-syntax
     for (const tile of tiles) {
       const folder = `${AppConstants.TILE_FOLDER}/${tile.z}/${tile.x}`;
+      // eslint-disable-next-line no-await-in-loop
       await FileSystem.makeDirectoryAsync(folder, { intermediates: true });
     }
 
-    // Download tiles in batches to avoid excessive promises in flight
     const BATCH_SIZE = 100;
 
     let batch = [];
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const tile of tiles) {
       const fetchUrl = `${AppConstants.MAP_URL}/${tile.z}/${tile.x}/${tile.y}.png`;
       const localLocation = `${AppConstants.TILE_FOLDER}/${tile.z}/${tile.x}/${tile.y}.png`;
@@ -70,6 +80,7 @@ const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
       batch.push(tilePromise);
 
       if (batch.length >= BATCH_SIZE) {
+        // eslint-disable-next-line no-await-in-loop
         await Promise.all(batch);
         batch = [];
       }
@@ -77,6 +88,7 @@ const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
 
     await Promise.all(batch);
 
+    // eslint-disable-next-line no-alert
     alert('Finished downloading tiles, you are now viewing the offline map.');
 
     setIsLoading(false);
@@ -85,9 +97,9 @@ const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
 
   return (
     <Card
-      title="Select number of zoom levels to download"
       containerStyle={styles.container}
     >
+      <Card.Title>Select number of zoom levels to download</Card.Title>
       <Text style={styles.warningMessage}>
         Warning! Selecting a high detail level will take up more space.
       </Text>
@@ -104,13 +116,9 @@ const DownloadSettings: FC<Props> = ({ mapRegion, onFinish }) => {
       />
 
       {isLoading && <ActivityIndicator />}
-      {!isLoading && <Button raised title="Dowload tiles" onPress={fetchTiles} />}
+      {!isLoading && <Button raised title="Download tiles" onPress={fetchTiles} />}
     </Card>
   );
 };
-
-function calcZoom(longitudeDelta: number) {
-  return Math.round(Math.log(360 / longitudeDelta) / Math.LN2);
-}
 
 export default DownloadSettings;
