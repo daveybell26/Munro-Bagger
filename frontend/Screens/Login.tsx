@@ -32,6 +32,7 @@ const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
   const { basicInfo } = useSelector(loginSelector);
+
   const dispatch = useAppDispatch();
 
   const [, result, promptAsync]: any = AuthSession.useAuthRequest(
@@ -43,6 +44,7 @@ const Login = () => {
       extraParams: {
         nonce: 'nonce',
       },
+      prompt: AuthSession.Prompt.Login,
     },
     { authorizationEndpoint },
   );
@@ -87,7 +89,7 @@ const Login = () => {
         </NativeRouter>
       ) : (
         <ImageBackground source={backGroundImage} style={styles.container}>
-          <Header />
+          <Header isProfile={false} />
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <CustomButton onPress={() => promptAsync({ useProxy })}>Login</CustomButton>
           </View>
