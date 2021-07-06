@@ -15,13 +15,11 @@ import {
 } from '../store';
 import styles from './styles/userProfileStyles';
 
-const heroImageUrl = 'https://i.pinimg.com/564x/39/d8/e7/39d8e709ff0a72e0f83ac2decebde7ee.jpg';
-
 const UserProfile = () => {
   const history = useHistory();
   const { pictures } = useSelector(randomUserPicsSelector);
   const { mountainList } = useSelector(allMountainSelector);
-  const { userDetails, authToken } = useSelector(loginSelector);
+  const { userDetails, authToken, basicInfo } = useSelector(loginSelector);
 
   const dispatch = useAppDispatch();
 
@@ -43,9 +41,9 @@ const UserProfile = () => {
       <Header />
       <View style={{ flex: 0 }}>
         <View style={styles.userProfileHeroSection}>
-          <CircularThumbnailImage imageUrl={heroImageUrl} />
+          <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />
           <Text style={globalStyles.header}>
-            Amy Bell
+            {basicInfo.name || 'User'}
           </Text>
           <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
             <MaterialIcons name="photo-camera" size={40} onPress={() => history.push('/camera')} />
