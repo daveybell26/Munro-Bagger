@@ -3,6 +3,7 @@ import {
   StyleSheet, SafeAreaView, Text, View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import LogoutButton from './LogoutButton';
 
 const styles = StyleSheet.create({
   header: {
@@ -26,6 +27,7 @@ export default function Header() {
       <View style={styles.header}>
         <MaterialIcons name="terrain" size={50} />
         <Text style={styles.appName}> bagPics</Text>
+        <LogoutButton />
       </View>
     </SafeAreaView>
   );

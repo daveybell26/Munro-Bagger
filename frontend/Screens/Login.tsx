@@ -31,6 +31,7 @@ const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 const Login = () => {
   const { basicInfo } = useSelector(loginSelector);
+
   const dispatch = useAppDispatch();
 
   const [, result, promptAsync]: any = AuthSession.useAuthRequest(
@@ -42,6 +43,7 @@ const Login = () => {
       extraParams: {
         nonce: 'nonce',
       },
+      prompt: AuthSession.Prompt.Login,
     },
     { authorizationEndpoint },
   );
