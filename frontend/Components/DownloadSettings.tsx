@@ -1,4 +1,4 @@
-import React, { FC, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Text, Slider, ActivityIndicator } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import { Card, Button } from 'react-native-elements';
@@ -7,12 +7,7 @@ import { tileGridForRegion } from '../utilities/TileGrid';
 import AppConstants from '../constants';
 import styles from './styles/downloadSettingsStyles';
 
-type Props = {
-  mapRegion: Region
-  onFinish: () => void
-};
-
-const DownloadSettings: FC<Props> = ({
+const DownloadSettings = ({
   mapRegion,
   onFinish,
 } : {
