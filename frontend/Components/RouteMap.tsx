@@ -36,7 +36,7 @@ const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) 
     [isOffline],
   );
 
-  async function clearTiles() {
+  const clearTiles = async () => {
     try {
       await FileSystem.deleteAsync(AppConstants.TILE_FOLDER);
       // eslint-disable-next-line no-alert
@@ -45,20 +45,20 @@ const RouteMap = ({ toggleMapVisibility } : { toggleMapVisibility : Function }) 
       // eslint-disable-next-line no-console
       console.warn(error);
     }
-  }
+  };
 
-  function toggleOffline() {
+  const toggleOffline = () => {
     setIsOffline(!isOffline);
-  }
+  };
 
-  function toggleDownloadSettings() {
+  const toggleDownloadSettings = () => {
     setVisibilitySettings(!visibilitySettings);
-  }
+  };
 
-  function onDownloadComplete() {
+  const onDownloadComplete = () => {
     setIsOffline(true);
     setVisibilitySettings(false);
-  }
+  };
 
   const toggleOfflineText = isOffline ? 'Go online' : 'Go offline';
 

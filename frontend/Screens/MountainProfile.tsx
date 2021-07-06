@@ -36,14 +36,14 @@ const MountainProfile = () => {
   const { climbedStatusArr } = useSelector(updateClimbedSelector);
   const { wishlistStatusObj } = useSelector(createWishSelector);
   const { wishlistStatusArr } = useSelector(updateWishSelector);
-  const [mapVisibility, setVisibility] = useState(false);
+  const [mapVisibility, setMapVisibility] = useState(false);
 
   useEffect(() => {
     dispatch(getOneMountain({ UserId: userDetails.id, id: +id }));
   }, [climbedStatusObj, climbedStatusArr, wishlistStatusObj, wishlistStatusArr]);
 
   function toggleMapVisibility() {
-    setVisibility(!mapVisibility);
+    setMapVisibility(!mapVisibility);
   }
 
   const changeClimbedStatus = () => (mountain.Statuses.length === 0
@@ -60,18 +60,15 @@ const MountainProfile = () => {
       bool: !mountain.Statuses[0]?.wishlist,
     })));
 
-  const componentToBeRendered = () => {
-    if (mountain.id && mapVisibility) {
-      return (
-        <>
-          <SafeAreaView style={{ flex: 1 }}>
-            <RouteMap toggleMapVisibility={toggleMapVisibility} />
-          </SafeAreaView>
-        </>
-      );
-    }
-    if (mountain.id) {
-      return (
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <Header />
+      {mountain.id && mapVisibility ? (
+        <SafeAreaView style={{ flex: 1 }}>
+          <RouteMap toggleMapVisibility={toggleMapVisibility} />
+        </SafeAreaView>
+      ) : null}
+      {mountain.id && !mapVisibility ? (
         <>
           <View style={styles.imageContainer}>
             <Image
@@ -118,15 +115,7 @@ const MountainProfile = () => {
           </SafeAreaView>
           <ImageGrid list={mountain.Pictures} />
         </>
-      );
-    }
-    return null;
-  };
-
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <Header />
-      {componentToBeRendered()}
+      ) : null}
       <NavFooter />
     </SafeAreaView>
   );

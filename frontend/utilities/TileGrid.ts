@@ -6,25 +6,17 @@ export type Tile = {
   z: number
 };
 
-function degToRad(deg: number): number {
-  return (deg * Math.PI) / 180;
-}
+const degToRad = (deg: number) => (deg * Math.PI) / 180;
 
-function lonToTileX(lon: number, zoom: number): number {
-  return Math.floor(((lon + 180) / 360) * (2 ** zoom));
-}
+const lonToTileX = (lon: number, zoom: number) => Math.floor(((lon + 180) / 360) * (2 ** zoom));
 
-function latToTileY(lat: number, zoom: number): number {
-  return Math.floor(
-    ((1
+const latToTileY = (lat: number, zoom: number) => Math.floor(
+  ((1
       - Math.log(Math.tan(degToRad(lat)) + 1 / Math.cos(degToRad(lat))) / Math.PI)
-      / 2)
+      / 2) * (2 ** zoom),
+);
 
-      * (2 ** zoom),
-  );
-}
-
-function tilesForZoom(region: Region, zoom: number): Tile[] {
+const tilesForZoom = (region: Region, zoom: number) => {
   const minLon = region.longitude - region.longitudeDelta;
   const minLat = region.latitude - region.latitudeDelta;
   const maxLon = region.longitude + region.longitudeDelta;
@@ -44,13 +36,13 @@ function tilesForZoom(region: Region, zoom: number): Tile[] {
   }
 
   return tiles;
-}
+};
 
-export function tileGridForRegion(
+export const tileGridForRegion = (
   region: Region,
   minZoom: number,
   maxZoom: number,
-): Tile[] {
+) => {
   let tiles: Tile[] = [];
 
   for (let zoom = minZoom; zoom <= maxZoom; zoom += 1) {
@@ -59,4 +51,4 @@ export function tileGridForRegion(
   }
 
   return tiles;
-}
+};
