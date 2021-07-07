@@ -10,28 +10,30 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-
+  },
+  userProfileContainer: {
+    flex: 0,
+    flexDirection: 'column',
+    marginHorizontal: 25,
+    marginTop: 20,
   },
   userProfileHeroSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 40,
-    padding: 20,
+    flex: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+  },
+  header: {
+    fontFamily: 'NunitoRegular',
+    fontSize: 27.5,
+    marginVertical: 10,
   },
   userStatsSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 20,
-  },
-  userMunroePics: {
+    margin: 25,
   },
   lineBreaks: {
     borderBottomWidth: 1,
-    marginLeft: 20,
-    marginRight: 20,
+    marginHorizontal: 25,
   },
   progressBar: {
     width: 210,
