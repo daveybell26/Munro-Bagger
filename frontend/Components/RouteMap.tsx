@@ -10,7 +10,7 @@ import MapView, {
 import { Button } from 'react-native-elements';
 import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AppConstants from '../constants/index';
 import DownloadSettings from './DownloadSettings';
 import styles from './styles/mapStyles';
@@ -69,7 +69,9 @@ const RouteMap = ({
     setVisibilitySettings(false);
   };
 
-  const toggleOfflineText = isOffline ? 'Go online' : 'Go offline';
+  const toggleOfflineText = isOffline
+    ? <MaterialCommunityIcons name="access-point-network" size={30} color="black" />
+    : <MaterialCommunityIcons name="access-point-network-off" size={30} color="black" />;
 
   useEffect(() => {
     (async () => {
@@ -112,26 +114,26 @@ const RouteMap = ({
           <Button
             buttonStyle={styles.routeMapButton}
             raised
-            title="Download"
             onPress={toggleDownloadSettings}
+            icon={<MaterialCommunityIcons name="download-box" size={30} color="black" />}
           />
           <Button
             buttonStyle={styles.routeMapButton}
             raised
-            title="Clear tiles"
             onPress={clearTiles}
+            icon={<MaterialCommunityIcons name="delete-empty" size={30} color="black" />}
           />
           <Button
             buttonStyle={styles.routeMapButton}
             raised
-            title={toggleOfflineText}
+            icon={toggleOfflineText}
             onPress={toggleOffline}
           />
           <Button
             buttonStyle={styles.routeMapButton}
             raised
-            title="Close Map"
             onPress={() => toggleMapVisibility()}
+            icon={<MaterialCommunityIcons name="close-box" size={30} color="black" />}
           />
         </View>
 

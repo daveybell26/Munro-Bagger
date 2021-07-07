@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingTop: Constants.statusBarHeight + 15,
     zIndex: 999,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
 
   },
   button: {
