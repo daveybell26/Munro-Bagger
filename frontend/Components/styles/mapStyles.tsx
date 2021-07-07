@@ -33,8 +33,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   routeMapButton: {
-    backgroundColor: 'white',
-    borderRadius: 50,
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 35,
+    height: 50,
+    width: 50,
+    borderWidth: 1,
+    borderColor: 'black',
   },
 });
 

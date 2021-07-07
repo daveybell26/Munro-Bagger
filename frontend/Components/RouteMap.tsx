@@ -2,12 +2,11 @@ import React, {
   useRef, useState, useEffect, useMemo,
 } from 'react';
 import {
-  SafeAreaView, View, Platform,
+  SafeAreaView, View, Platform, TouchableOpacity,
 } from 'react-native';
 import MapView, {
   Polyline, PROVIDER_GOOGLE, UrlTile, Region, MapTypes,
 } from 'react-native-maps';
-import { Button } from 'react-native-elements';
 import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -111,30 +110,26 @@ const RouteMap = ({
           <UrlTile urlTemplate={urlTemplate} zIndex={1} />
         </MapView>
         <View style={styles.actionContainer}>
-          <Button
-            buttonStyle={styles.routeMapButton}
-            raised
-            onPress={toggleDownloadSettings}
-            icon={<MaterialCommunityIcons name="download-box" size={30} color="black" />}
-          />
-          <Button
-            buttonStyle={styles.routeMapButton}
-            raised
-            onPress={clearTiles}
-            icon={<MaterialCommunityIcons name="delete-empty" size={30} color="black" />}
-          />
-          <Button
-            buttonStyle={styles.routeMapButton}
-            raised
-            icon={toggleOfflineText}
-            onPress={toggleOffline}
-          />
-          <Button
-            buttonStyle={styles.routeMapButton}
-            raised
-            onPress={() => toggleMapVisibility()}
-            icon={<MaterialCommunityIcons name="close-box" size={30} color="black" />}
-          />
+          <SafeAreaView style={styles.routeMapButton}>
+            <TouchableOpacity onPress={toggleDownloadSettings}>
+              <MaterialCommunityIcons name="download-box" size={30} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
+          <SafeAreaView style={styles.routeMapButton}>
+            <TouchableOpacity onPress={clearTiles}>
+              <MaterialCommunityIcons name="delete-empty" size={30} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
+          <SafeAreaView style={styles.routeMapButton}>
+            <TouchableOpacity onPress={toggleOffline}>
+              {toggleOfflineText}
+            </TouchableOpacity>
+          </SafeAreaView>
+          <SafeAreaView style={styles.routeMapButton}>
+            <TouchableOpacity onPress={() => toggleMapVisibility()}>
+              <MaterialCommunityIcons name="close-box" size={30} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
         </View>
 
         {visibilitySettings && (
