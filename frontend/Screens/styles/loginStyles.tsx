@@ -2,17 +2,6 @@
 
 import { StyleSheet } from 'react-native';
 
-import * as Font from 'expo-font';
-
-Font.loadAsync({
-  NunitoSemiBold: require('../../assets/fonts/Nunito-SemiBold.ttf'),
-  NunitoExtraBold: require('../../assets/fonts/Nunito-ExtraBold.ttf'),
-  NunitoItalicRegular: require('../../assets/fonts/Nunito-Italic.ttf'),
-  NunitoBold: require('../../assets/fonts/Nunito-Bold.ttf'),
-  NunitoBlack: require('../../assets/fonts/Nunito-Black.ttf'),
-  NunitoRegular: require('../../assets/fonts/Nunito-Regular.ttf'),
-});
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
