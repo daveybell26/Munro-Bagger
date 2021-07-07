@@ -5,25 +5,42 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EBF2FA',
   },
-  title: {
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  imageContainer: {
+  infoContainer: {
     flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginHorizontal: 25,
+    paddingHorizontal: 50,
   },
   info: {
     flex: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
-  routeButton: {
+  infoItem: {
     flex: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  lineBreaks: {
+    borderBottomWidth: 1,
+    marginHorizontal: 25,
+    marginVertical: 10,
+  },
+  mountainName: {
+    fontFamily: 'NunitoBlack',
+    textAlign: 'center',
+    fontSize: 20,
+    marginTop: 5,
+  },
+  mountainHeight: {
+    flex: 0,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 5,
   },
 });
 

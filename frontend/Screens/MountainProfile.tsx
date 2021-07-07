@@ -14,7 +14,6 @@ import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
 import ImageGrid from '../Components/ImageGrid';
 import RouteMap from '../Components/RouteMap';
-import { globalStyles } from './styles/GlobalStyles';
 import {
   createClimbedSelector,
   createWishSelector,
@@ -72,49 +71,57 @@ const MountainProfile = () => {
       ) : null}
       {mountain.id && !mapVisibility ? (
         <>
-          <View style={styles.imageContainer}>
+          <View>
             <Image
               source={{ uri: mountain.imageUrl }}
               style={{ width: '100%', height: 200 }}
             />
+            <Text style={styles.mountainName}>{mountain.name}</Text>
           </View>
-          <Text style={globalStyles.subHeaders}>{mountain.name}</Text>
-          <SafeAreaView style={styles.info}>
-            <Text style={globalStyles.stats}>
-              Elevation:
-              {' '}
+          <View style={styles.mountainHeight}>
+            <Text>
               {mountain.Peak?.elevation}
               m
             </Text>
-            <Text style={globalStyles.stats}>
-              Climbed:
-              {' '}
-            </Text>
-            <Switch
-              trackColor={{ false: 'red', true: 'green' }}
-              ios_backgroundColor="red"
-              onValueChange={() => changeClimbedStatus()}
-              value={mountain.Statuses[0]?.climbed ? mountain.Statuses[0]?.climbed : false}
-            />
-            <Text style={globalStyles.stats}>
-              Wishlist:
-              {' '}
-            </Text>
-            <Switch
-              trackColor={{ false: 'red', true: 'green' }}
-              ios_backgroundColor="red"
-              onValueChange={() => changeWishlistStatus()}
-              value={mountain.Statuses[0]?.wishlist ? mountain.Statuses[0]?.wishlist : false}
-            />
-          </SafeAreaView>
-          <SafeAreaView style={styles.routeButton}>
-            <Pressable onPress={toggleMapVisibility}>
-              <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? 'green' : 'red'} />
-            </Pressable>
-            <Text>
-              Show Route
-            </Text>
-          </SafeAreaView>
+          </View>
+          <View style={styles.lineBreaks} />
+          <View style={styles.infoContainer}>
+            <View style={styles.info}>
+              <View style={styles.infoItem}>
+                <Text>
+                  Climbed:
+                  {' '}
+                </Text>
+                <Switch
+                  trackColor={{ false: 'red', true: 'green' }}
+                  ios_backgroundColor="red"
+                  onValueChange={() => changeClimbedStatus()}
+                  value={mountain.Statuses[0]?.climbed ? mountain.Statuses[0]?.climbed : false}
+                />
+              </View>
+              <View style={styles.infoItem}>
+                <Text>
+                  Wishlist:
+                  {'  '}
+                </Text>
+                <Switch
+                  trackColor={{ false: 'red', true: 'green' }}
+                  ios_backgroundColor="red"
+                  onValueChange={() => changeWishlistStatus()}
+                  value={mountain.Statuses[0]?.wishlist ? mountain.Statuses[0]?.wishlist : false}
+                />
+              </View>
+            </View>
+            <View>
+              <Pressable onPress={toggleMapVisibility} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
+                <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? 'green' : 'red'} />
+                <Text style={{ marginTop: 5 }}>
+                  Show Route
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+          <View style={styles.lineBreaks} />
           <ImageGrid list={mountain.Pictures} />
         </>
       ) : null}
