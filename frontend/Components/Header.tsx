@@ -6,7 +6,7 @@ import styles from './styles/headerStyles';
 
 export default function Header({ isProfile }: { isProfile: boolean }) {
   return (
-    <SafeAreaView style={{ flex: 0 }}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <MaterialIcons name="terrain" size={50} />
         <Text style={styles.appName}> bagPics</Text>
