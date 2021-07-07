@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import {
-  ImageBackground, View, Alert, Platform,
+  ImageBackground, View, Alert, Platform, Image,
 } from 'react-native';
+import { Text } from 'react-native-elements';
 import {
   NativeRouter, Switch, Route,
 } from 'react-router-native';
@@ -23,6 +24,7 @@ import UploadPicture from './UploadPicture';
 import RouteMap from '../Components/RouteMap';
 
 const backGroundImage = require('../assets/background.jpg');
+const munroeIcon = require('../assets/pngtree-mountain-vector-icon-isolated-on-white-background-image_228214.jpeg');
 
 const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
 const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
@@ -90,8 +92,36 @@ const Login = () => {
       ) : (
         <ImageBackground source={backGroundImage} style={styles.container}>
           <Header isProfile={false} />
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <CustomButton onPress={() => promptAsync({ useProxy })}>Login</CustomButton>
+          <View style={{
+            flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', padding: 25, justifyContent: 'space-around', alignItems: 'center',
+          }}
+          >
+            <View>
+              <Text h2 style={styles.textHeader}>
+                Are you a TRUE Munro Bagger?
+              </Text>
+            </View>
+            <View>
+              <Image
+                source={munroeIcon}
+                style={{
+                  width: 150, height: 150, borderRadius: 100,
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.textDescription}>
+                Share, discover and conquer the challenge of climbing every munro in Scotland.
+
+              </Text>
+              <Text style={styles.textDescription}>
+                {'\n'}
+                Are you ready?
+              </Text>
+            </View>
+            <View>
+              <CustomButton onPress={() => promptAsync({ useProxy })}>Login / SignUp</CustomButton>
+            </View>
           </View>
         </ImageBackground>
       )}
