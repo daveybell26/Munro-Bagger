@@ -8,14 +8,8 @@ export default function Header({ isProfile }: { isProfile: boolean }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-
-        <Text style={styles.appName}>
-          Munro
-          {' '}
-          <MaterialIcons name="terrain" size={40} />
-          {' '}
-          Bagger
-        </Text>
+        <MaterialIcons name="terrain" size={50} />
+        <Text style={styles.appName}> bagPics</Text>
         {isProfile ? <LogoutButton /> : null}
       </View>
     </SafeAreaView>
