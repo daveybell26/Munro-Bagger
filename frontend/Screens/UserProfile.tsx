@@ -55,7 +55,7 @@ const UserProfile = () => {
         </View>
         <View style={styles.lineBreaks} />
         <View style={styles.userStatsSection}>
-          <View>
+          <View style={{ flex: 2 }}>
             <Text style={globalStyles.stats}>
               Munros climbed
             </Text>
@@ -69,7 +69,7 @@ const UserProfile = () => {
             <View style={{
               width: `${progressBarPercentageNum}%`,
               height: '100%',
-              backgroundColor: '#2AE0B4',
+              backgroundColor: '#39A939',
             }}
             />
             <Text style={styles.progressText}>
