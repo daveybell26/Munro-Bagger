@@ -63,7 +63,7 @@ const Explore = () => {
         showsHorizontalScrollIndicator={false}
       />
       <View style={styles.lineBreaks} />
-      <Text style={styles.randomMountainHeader}>Pictures of other users</Text>
+      <Text style={styles.randomMountainHeader}>Recent Activity:</Text>
       <FlatList
         data={randomMountainsList}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}

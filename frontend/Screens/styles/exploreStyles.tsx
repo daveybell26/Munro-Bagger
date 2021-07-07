@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   },
   horizontalList: {
     height: '50%',
+    marginTop: 10,
   },
   unclimbedMountainNames: {
     color: 'black',
@@ -45,18 +46,20 @@ const styles = StyleSheet.create({
     color: '#EBF2FA',
     textShadowColor: 'black',
     textShadowRadius: 2,
+    textShadowOffset: { height: 1, width: 1 },
   },
   lineBreaks: {
     borderBottomWidth: 1,
-    // marginLeft: 20,
-    // marginRight: 20,
-    margin: 15,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    marginBottom: 15,
   },
   randomMountainHeader: {
     fontFamily: 'NunitoBlack',
     textAlign: 'center',
     fontSize: 20,
-    marginBottom: 17,
+    marginBottom: 15,
   },
 
 });
