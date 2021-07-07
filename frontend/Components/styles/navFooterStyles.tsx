@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: '#427AA1',
   },
+  iconStyling: {
+    flex: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   selectedFooterText: {
     marginTop: -4,
     color: 'white',
