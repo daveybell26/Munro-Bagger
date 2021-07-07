@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     height: 50,
     width: 50,
+    borderWidth: 1,
+    borderColor: 'black',
   },
 
 });
