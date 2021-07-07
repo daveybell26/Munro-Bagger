@@ -5,34 +5,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EBF2FA',
   },
-  title: {
-    flex: 0,
-    marginTop: '5%',
-    marginBottom: '2%',
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  pictureTitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   horizontalList: {
-    height: '40%',
+    flex: 0,
+    marginVertical: 10,
   },
   unclimbedMountainNames: {
     color: 'black',
     textAlign: 'center',
-    width: 100,
-    justifyContent: 'space-around',
-
+    marginTop: 5,
   },
   view: {
     margin: 10,
     alignItems: 'flex-end',
     width: 100,
+  },
+  randomMountainNames: {
+    position: 'absolute',
+    bottom: 8,
+    right: 16,
+    color: '#EBF2FA',
+    textShadowColor: 'black',
+    textShadowRadius: 2,
+    textShadowOffset: { height: 1, width: 1 },
+  },
+  lineBreaks: {
+    borderBottomWidth: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 15,
+  },
+  randomMountainHeader: {
+    fontFamily: 'NunitoBlack',
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 15,
   },
 });
 

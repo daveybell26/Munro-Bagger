@@ -8,7 +8,6 @@ import { getRandomMountains } from '../store/explore.store';
 import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
-import { globalStyles } from './styles/GlobalStyles';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import {
   randomMountainSelector, unclimbedMountainsSelector, loginSelector, useAppDispatch,
@@ -29,7 +28,7 @@ const Explore = () => {
           source={{ uri }}
           style={{ width: '100%', height: 200 }}
         />
-        <Text style={globalStyles.subHeaders}>{name}</Text>
+        <Text style={styles.randomMountainNames}>{name}</Text>
       </Pressable>
     </View>
   );
@@ -54,23 +53,27 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header isProfile={false} />
-      <Text style={globalStyles.header}>List of unclimbed mountains</Text>
-      <FlatList
-        data={unclimbedMountainsList}
-        horizontal
-        renderItem={({ item }) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.horizontalList}
-        showsHorizontalScrollIndicator={false}
-      />
-      <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
-      <FlatList
-        data={randomMountainsList}
-        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={{ flex: 0 }}>
+        <Header isProfile={false} />
+        <FlatList
+          data={unclimbedMountainsList}
+          horizontal
+          renderItem={({ item }) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          style={styles.horizontalList}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+      <View style={styles.lineBreaks} />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.randomMountainHeader}>Recent Activity</Text>
+        <FlatList
+          data={randomMountainsList}
+          renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
       <NavFooter />
     </SafeAreaView>
   );
