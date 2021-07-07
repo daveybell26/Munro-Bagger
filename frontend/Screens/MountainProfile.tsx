@@ -93,8 +93,8 @@ const MountainProfile = () => {
                   {' '}
                 </Text>
                 <Switch
-                  trackColor={{ false: 'red', true: 'green' }}
-                  ios_backgroundColor="red"
+                  trackColor={{ false: '#D44646', true: '#39A939' }}
+                  ios_backgroundColor="#D44646"
                   onValueChange={() => changeClimbedStatus()}
                   value={mountain.Statuses[0]?.climbed ? mountain.Statuses[0]?.climbed : false}
                 />
@@ -105,8 +105,8 @@ const MountainProfile = () => {
                   {'  '}
                 </Text>
                 <Switch
-                  trackColor={{ false: 'red', true: 'green' }}
-                  ios_backgroundColor="red"
+                  trackColor={{ false: '#D44646', true: '#437AA1' }}
+                  ios_backgroundColor="#D44646"
                   onValueChange={() => changeWishlistStatus()}
                   value={mountain.Statuses[0]?.wishlist ? mountain.Statuses[0]?.wishlist : false}
                 />
@@ -114,7 +114,7 @@ const MountainProfile = () => {
             </View>
             <View>
               <Pressable onPress={toggleMapVisibility} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
-                <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? 'green' : 'red'} />
+                <FontAwesome5 name="route" size={50} color={mountain.Statuses[0]?.climbed ? '#39A939' : '#D44646'} />
                 <Text style={{ marginTop: 5 }}>
                   Show Route
                 </Text>
