@@ -1,17 +1,32 @@
+/* eslint-disable global-require */
+
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBF2FA',
+
+    backgroundColor: 'rgba(0,0,0,0.5)',
+
   },
-  emailInput: {
-    borderWidth: 1,
-    borderColor: '#427AA1',
-    width: 200,
-    margin: 10,
-    padding: 8,
-    backgroundColor: 'white',
+  textHeader: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+
+    // fontFamily: 'NunitoBold',
+    fontSize: 30,
+  },
+  textDescription: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+  },
+  textArea: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+
   },
 });
 
