@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     height: 35,
     alignContent: 'center',
     backgroundColor: '#427AA1',
-    marginBottom: -20,
   },
   buttonLogo: {
     color: 'black',
