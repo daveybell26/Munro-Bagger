@@ -87,37 +87,41 @@ const CameraScreen = () => {
           type={type}
           ratio="16:9"
         >
-          <SafeAreaView style={styles.button}>
-            <TouchableOpacity onPress={imagePicker}>
-              <MaterialIcons name="folder" size={24} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.button}>
-            <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+            style={styles.button}
+            onPress={imagePicker}
+          >
+            <MaterialIcons name="folder" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back,
               );
             }}
-            >
-              <MaterialIcons
-                name="flip-camera-ios"
-                size={24}
-                color="black"
-              />
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.button}>
-            <TouchableOpacity onPress={takePicture}>
-              <MaterialIcons name="photo-camera" size={24} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.button}>
-            <TouchableOpacity onPress={() => history.push('/profile')}>
-              <MaterialIcons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
+          >
+            <MaterialIcons
+              name="flip-camera-ios"
+              size={24}
+              color="black"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={takePicture}
+          >
+            <MaterialIcons name="photo-camera" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => history.push('/profile')}
+          >
+            <MaterialIcons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+
         </Camera>
       )}
     </SafeAreaView>

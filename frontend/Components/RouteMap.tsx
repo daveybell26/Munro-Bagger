@@ -110,26 +110,30 @@ const RouteMap = ({
           <UrlTile urlTemplate={urlTemplate} zIndex={1} />
         </MapView>
         <View style={styles.actionContainer}>
-          <SafeAreaView style={styles.routeMapButton}>
-            <TouchableOpacity onPress={toggleDownloadSettings}>
-              <MaterialCommunityIcons name="download-box" size={30} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.routeMapButton}>
-            <TouchableOpacity onPress={clearTiles}>
-              <MaterialCommunityIcons name="delete-empty" size={30} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.routeMapButton}>
-            <TouchableOpacity onPress={toggleOffline}>
-              {toggleOfflineText}
-            </TouchableOpacity>
-          </SafeAreaView>
-          <SafeAreaView style={styles.routeMapButton}>
-            <TouchableOpacity onPress={() => toggleMapVisibility()}>
-              <MaterialCommunityIcons name="close-box" size={30} color="black" />
-            </TouchableOpacity>
-          </SafeAreaView>
+          <TouchableOpacity
+            style={styles.routeMapButton}
+            onPress={toggleDownloadSettings}
+          >
+            <MaterialCommunityIcons name="download-box" size={30} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.routeMapButton}
+            onPress={clearTiles}
+          >
+            <MaterialCommunityIcons name="delete-empty" size={30} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.routeMapButton}
+            onPress={toggleOffline}
+          >
+            {toggleOfflineText}
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.routeMapButton}
+            onPress={() => toggleMapVisibility()}
+          >
+            <MaterialCommunityIcons name="close-box" size={30} color="black" />
+          </TouchableOpacity>
         </View>
 
         {visibilitySettings && (
