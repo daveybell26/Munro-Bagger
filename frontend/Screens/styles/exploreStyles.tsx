@@ -5,39 +5,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EBF2FA',
   },
-  title: {
-    flex: 0,
-    marginTop: '5%',
-    marginBottom: '2%',
-    width: '100%',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  pictureTitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   horizontalList: {
-    height: '50%',
-    marginTop: 10,
+    flex: 0,
+    marginVertical: 10,
   },
   unclimbedMountainNames: {
     color: 'black',
     textAlign: 'center',
-    width: 100,
-    justifyContent: 'space-around',
-
+    marginTop: 5,
   },
   view: {
     margin: 10,
     alignItems: 'flex-end',
     width: 100,
-  },
-  randomMountainImageContainer: {
-    position: 'relative',
-    marginBottom: 30,
   },
   randomMountainNames: {
     position: 'absolute',
@@ -52,7 +32,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 10,
     marginBottom: 15,
   },
   randomMountainHeader: {
@@ -61,7 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 15,
   },
-
 });
 
 export default styles;

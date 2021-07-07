@@ -22,7 +22,7 @@ const Explore = () => {
   const history = useHistory();
 
   const randomMountainImage = (id: number, name: string, uri: string) => (
-    <View style={styles.randomMountainImageContainer}>
+    <View>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <Image
           source={{ uri }}
@@ -53,23 +53,27 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header isProfile={false} />
-      <FlatList
-        data={unclimbedMountainsList}
-        horizontal
-        renderItem={({ item }) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.horizontalList}
-        showsHorizontalScrollIndicator={false}
-      />
+      <View style={{ flex: 0 }}>
+        <Header isProfile={false} />
+        <FlatList
+          data={unclimbedMountainsList}
+          horizontal
+          renderItem={({ item }) => unclimbedMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          style={styles.horizontalList}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
       <View style={styles.lineBreaks} />
-      <Text style={styles.randomMountainHeader}>Recent Activity:</Text>
-      <FlatList
-        data={randomMountainsList}
-        renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.randomMountainHeader}>Recent Activity</Text>
+        <FlatList
+          data={randomMountainsList}
+          renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
       <NavFooter />
     </SafeAreaView>
   );
