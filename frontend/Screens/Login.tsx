@@ -102,14 +102,6 @@ const Login = () => {
               </Text>
             </View>
             <View>
-              <Image
-                source={munroeIcon}
-                style={{
-                  width: 150, height: 150, borderRadius: 100,
-                }}
-              />
-            </View>
-            <View>
               <Text style={styles.textDescription}>
                 Share, discover and conquer the challenge of climbing every munro in Scotland.
 
