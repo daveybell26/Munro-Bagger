@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  ImageBackground, View, Alert, Platform, Image,
+  ImageBackground, View, Alert, Platform,
 } from 'react-native';
 import { Text } from 'react-native-elements';
 import {
@@ -24,7 +24,6 @@ import UploadPicture from './UploadPicture';
 import RouteMap from '../Components/RouteMap';
 
 const backGroundImage = require('../assets/background.jpg');
-const munroeIcon = require('../assets/pngtree-mountain-vector-icon-isolated-on-white-background-image_228214.jpeg');
 
 const auth0ClientId = 'RltSsAyBOLIi8n3NdmceMK4Sa0KvwS2R';
 const authorizationEndpoint = 'https://dev-l8augku5.eu.auth0.com/authorize';
@@ -100,14 +99,6 @@ const Login = () => {
               <Text h2 style={styles.textHeader}>
                 Are you a TRUE Munro Bagger?
               </Text>
-            </View>
-            <View>
-              <Image
-                source={munroeIcon}
-                style={{
-                  width: 150, height: 150, borderRadius: 100,
-                }}
-              />
             </View>
             <View>
               <Text style={styles.textDescription}>
