@@ -42,20 +42,22 @@ const UserProfile = () => {
     <SafeAreaView style={styles.safeArea}>
       <Header isProfile />
       <View style={{ flex: 0 }}>
-        <View style={styles.userProfileHeroSection}>
-          <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />
-          <Text style={globalStyles.header}>
+        <View style={styles.userProfileContainer}>
+          <View style={styles.userProfileHeroSection}>
+            <CircularThumbnailImage imageUrl={basicInfo.image || userDetails.imageUrl} />
+            <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
+              <MaterialIcons name="photo-camera" size={40} onPress={() => history.push('/camera')} />
+            </View>
+          </View>
+          <Text style={styles.header}>
             {basicInfo.name || 'User'}
           </Text>
-          <View style={{ padding: 10, backgroundColor: '#ddd', borderRadius: 50 }}>
-            <MaterialIcons name="photo-camera" size={40} onPress={() => history.push('/camera')} />
-          </View>
         </View>
         <View style={styles.lineBreaks} />
         <View style={styles.userStatsSection}>
           <View>
             <Text style={globalStyles.stats}>
-              Munroes Climbed:
+              Munros climbed
             </Text>
             <Text style={globalStyles.stats}>
               {numberOfMunroesClimbed}
@@ -63,7 +65,6 @@ const UserProfile = () => {
               {totalMunroes}
             </Text>
           </View>
-          {/* Status bar to be incooperated (dependent on userMunroeStats state) */}
           <View style={styles.progressBar}>
             <View style={{
               width: `${progressBarPercentageNum}%`,
@@ -77,11 +78,6 @@ const UserProfile = () => {
           </View>
         </View>
         <View style={styles.lineBreaks} />
-        <View style={styles.userMunroePics}>
-          <Text style={globalStyles.subHeaders}>
-            Pictures From Mountains Climbed.
-          </Text>
-        </View>
       </View>
       <ImageGrid list={pictures} />
       <NavFooter />
