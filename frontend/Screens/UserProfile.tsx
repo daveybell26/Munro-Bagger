@@ -55,7 +55,7 @@ const UserProfile = () => {
         </View>
         <View style={styles.lineBreaks} />
         <View style={styles.userStatsSection}>
-          <View>
+          <View style={{ flex: 2 }}>
             <Text style={globalStyles.stats}>
               Munros climbed
             </Text>
