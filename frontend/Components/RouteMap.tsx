@@ -10,6 +10,7 @@ import MapView, {
 import { Button } from 'react-native-elements';
 import * as FileSystem from 'expo-file-system';
 import * as Location from 'expo-location';
+import { MaterialIcons } from '@expo/vector-icons';
 import AppConstants from '../constants/index';
 import DownloadSettings from './DownloadSettings';
 import styles from './styles/mapStyles';
@@ -108,10 +109,30 @@ const RouteMap = ({
           <UrlTile urlTemplate={urlTemplate} zIndex={1} />
         </MapView>
         <View style={styles.actionContainer}>
-          <Button raised title="Download" onPress={toggleDownloadSettings} />
-          <Button raised title="Clear tiles" onPress={clearTiles} />
-          <Button raised title={toggleOfflineText} onPress={toggleOffline} />
-          <Button raised title="Close Map" onPress={() => toggleMapVisibility()} />
+          <Button
+            buttonStyle={styles.routeMapButton}
+            raised
+            title="Download"
+            onPress={toggleDownloadSettings}
+          />
+          <Button
+            buttonStyle={styles.routeMapButton}
+            raised
+            title="Clear tiles"
+            onPress={clearTiles}
+          />
+          <Button
+            buttonStyle={styles.routeMapButton}
+            raised
+            title={toggleOfflineText}
+            onPress={toggleOffline}
+          />
+          <Button
+            buttonStyle={styles.routeMapButton}
+            raised
+            title="Close Map"
+            onPress={() => toggleMapVisibility()}
+          />
         </View>
 
         {visibilitySettings && (

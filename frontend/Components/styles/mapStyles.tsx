@@ -22,14 +22,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     flexDirection: 'row',
-    padding: 15,
+    padding: 5,
     paddingTop: Constants.statusBarHeight + 15,
     zIndex: 999,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+
   },
   button: {
     backgroundColor: 'white',
     borderRadius: 10,
+  },
+  routeMapButton: {
+    backgroundColor: '#427AA1',
   },
 });
 
