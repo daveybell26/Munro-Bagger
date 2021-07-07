@@ -69,7 +69,7 @@ const UserProfile = () => {
             <View style={{
               width: `${progressBarPercentageNum}%`,
               height: '100%',
-              backgroundColor: '#2AE0B4',
+              backgroundColor: '#39A939',
             }}
             />
             <Text style={styles.progressText}>
