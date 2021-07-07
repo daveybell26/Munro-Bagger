@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
-    paddingTop: 15,
     width: '100%',
     height: 65,
     flexDirection: 'row',
@@ -14,10 +15,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#427AA1',
   },
   appName: {
-    width: '70%',
     textAlign: 'center',
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  logout: {
+    position: 'absolute',
+    right: 15,
   },
 });
 export default styles;
