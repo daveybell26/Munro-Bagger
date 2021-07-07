@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   horizontalList: {
-    height: '40%',
+    height: '50%',
   },
   unclimbedMountainNames: {
     color: 'black',
@@ -34,6 +34,31 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     width: 100,
   },
+  randomMountainImageContainer: {
+    position: 'relative',
+    marginBottom: 30,
+  },
+  randomMountainNames: {
+    position: 'absolute',
+    bottom: 8,
+    right: 16,
+    color: '#EBF2FA',
+    textShadowColor: 'black',
+    textShadowRadius: 2,
+  },
+  lineBreaks: {
+    borderBottomWidth: 1,
+    // marginLeft: 20,
+    // marginRight: 20,
+    margin: 15,
+  },
+  randomMountainHeader: {
+    fontFamily: 'NunitoBlack',
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 17,
+  },
+
 });
 
 export default styles;

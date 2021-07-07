@@ -8,7 +8,6 @@ import { getRandomMountains } from '../store/explore.store';
 import { getExploreUnclimbedMountains } from '../store/getUnclimbedMountains.store';
 import NavFooter from '../Components/NavFooter';
 import Header from '../Components/Header';
-import { globalStyles } from './styles/GlobalStyles';
 import CircularThumbnailImage from '../Components/CircularThumbnailImage';
 import {
   randomMountainSelector, unclimbedMountainsSelector, loginSelector, useAppDispatch,
@@ -23,13 +22,13 @@ const Explore = () => {
   const history = useHistory();
 
   const randomMountainImage = (id: number, name: string, uri: string) => (
-    <View>
+    <View style={styles.randomMountainImageContainer}>
       <Pressable onPress={() => history.push(`/mountain/${id}`)}>
         <Image
           source={{ uri }}
           style={{ width: '100%', height: 200 }}
         />
-        <Text style={globalStyles.subHeaders}>{name}</Text>
+        <Text style={styles.randomMountainNames}>{name}</Text>
       </Pressable>
     </View>
   );
@@ -55,7 +54,6 @@ const Explore = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header isProfile={false} />
-      <Text style={globalStyles.header}>List of unclimbed mountains</Text>
       <FlatList
         data={unclimbedMountainsList}
         horizontal
@@ -64,7 +62,8 @@ const Explore = () => {
         style={styles.horizontalList}
         showsHorizontalScrollIndicator={false}
       />
-      <Text style={globalStyles.subHeaders}>Pictures of other users</Text>
+      <View style={styles.lineBreaks} />
+      <Text style={styles.randomMountainHeader}>Pictures of other users</Text>
       <FlatList
         data={randomMountainsList}
         renderItem={({ item }) => randomMountainImage(item.id, item.name, item.imageUrl)}
