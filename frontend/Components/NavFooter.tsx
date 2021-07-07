@@ -1,5 +1,7 @@
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import {
+  SafeAreaView, View, Text, TouchableOpacity,
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useHistory, useLocation } from 'react-router-native';
 import styles from './styles/navFooterStyles';
@@ -16,38 +18,51 @@ const NavFooter = () => {
     <SafeAreaView style={{ flex: 0 }}>
       <View style={styles.navFooter}>
         {isOnExploreScreen ? (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="home" size={35} color="white" onPress={() => history.push('/')} />
-            <Text style={styles.selectedFooterText}>Explore</Text>
+
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/')}>
+              <MaterialIcons name="home" size={35} color="white" />
+              <Text style={styles.selectedFooterText}>Explore</Text>
+            </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="home" size={35} onPress={() => history.push('/')} />
-            <Text style={styles.nonSelectedFooterText}>Explore</Text>
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/')}>
+              <MaterialIcons name="home" size={35} />
+              <Text style={styles.nonSelectedFooterText}>Explore</Text>
+            </TouchableOpacity>
           </View>
         )}
 
         {isOnMapScreen ? (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="terrain" size={35} color="white" onPress={() => history.push('/map')} />
-            <Text style={styles.selectedFooterText}>Map</Text>
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/map')}>
+              <MaterialIcons name="terrain" size={35} color="white" />
+              <Text style={styles.selectedFooterText}>Map</Text>
+            </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="terrain" size={35} onPress={() => history.push('/map')} />
-            <Text style={styles.nonSelectedFooterText}>Map</Text>
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/map')}>
+              <MaterialIcons name="terrain" size={35} />
+              <Text style={styles.nonSelectedFooterText}>Map</Text>
+            </TouchableOpacity>
           </View>
         )}
 
         {isOnProfileScreen ? (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="person" size={35} color="white" onPress={() => history.push('/profile')} />
-            <Text style={styles.selectedFooterText}>Profile</Text>
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/profile')}>
+              <MaterialIcons name="person" size={35} color="white" />
+              <Text style={styles.selectedFooterText}>Profile</Text>
+            </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.iconStyling}>
-            <MaterialIcons name="person" size={35} onPress={() => history.push('/profile')} />
-            <Text style={styles.nonSelectedFooterText}>Profile</Text>
+          <View>
+            <TouchableOpacity style={styles.iconStyling} onPress={() => history.push('/profile')}>
+              <MaterialIcons name="person" size={35} />
+              <Text style={styles.nonSelectedFooterText}>Profile</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>
