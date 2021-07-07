@@ -18,7 +18,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   userProfileHeroSection: {
-    flex: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   header: {
     fontFamily: 'NunitoRegular',
