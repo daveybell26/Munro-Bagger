@@ -11,7 +11,7 @@ An app documenting all 282 Scottish Mountains (Munros). Munro Bagger aids climbe
 <p float="left">
 <img src ="img/iphone-12--blue@2x.png" width="25%">
 <img src ="img/iphone-12--blue@2x-2.png" width="25%">
-<img src ="img/iphone-12--blue@2x-3.png" width="25%">
+<img src ="img/iphone-12--blue-1.png" width="25%"> 
 </p>
 
 # Tech Stack
