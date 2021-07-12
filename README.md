@@ -88,4 +88,4 @@ cd backend && npx sequelize-cli db:seed:all
 # Suggested Improvements
 
 - Source mountain profile pictures and routings for all mountains
-- Add unit integration and end to end test suites.
+- Add unit, integration and end to end test suites
