@@ -8,9 +8,11 @@ An app documenting all 282 Scottish Mountains (Munros). Munro Bagger aids climbe
 
 ## Screenshots
 
+<p float="left">
 <img src ="img/iphone-12--blue@2x.png" width="25%">
 <img src ="img/iphone-12--blue@2x-2.png" width="25%">
 <img src ="img/iphone-12--blue@2x-3.png" width="25%">
+</p>
 
 # Tech Stack
 
@@ -19,14 +21,16 @@ An app documenting all 282 Scottish Mountains (Munros). Munro Bagger aids climbe
 - Sequelize (using postgreSQL)
 - Express
 - Node.js
+- TypeScript
 
-## Front_End
+## Front-End
 
 - React Native
 - TypeScript
 - Expo
 - Redux Toolkit
 - Axios
+- Auth0
 
 # Setup
 
@@ -77,11 +81,11 @@ cd backend && npx sequelize-cli db:seed:all
 
 - Complete listing of all 282 Scottish Mountains
 - Topographical data and navigational quality mapping
-- Auth 0 Authentication and Login
-- Cloudanairy Integration to enable photo upload.
+- Auth0 Authentication and Login
+- Cloudanairy Integration to enable photo upload
 - GPX Routing for selected Mountains
 
 # Suggested Improvements
 
 - Source mountain profile pictures and routings for all mountains
-- Deployment to enable full app testing
+- Add unit integration and end to end test suites.
