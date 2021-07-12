@@ -89,3 +89,11 @@ cd backend && npx sequelize-cli db:seed:all
 
 - Source mountain profile pictures and routings for all mountains
 - Add unit, integration and end to end test suites
+
+# Contributors 
+
+- <a href="https://github.com/daveybell26">David Bell</a>
+- <a href="https://github.com/Rankz">Ian Michaels</a>
+- <a href="https://github.com/jonbrook">Jon Brook</a>
+- <a href="https://github.com/KonGkal">Konstantinos Gkalitsas</a>
+- <a href="https://github.com/stekeb">Steffen Keilbach</a>
