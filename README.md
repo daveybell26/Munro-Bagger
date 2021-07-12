@@ -1,10 +1,6 @@
-# Munro Bagger - Thesis Project
+# Munro Bagger
 
-## Codeworks Thesis Project
-
-## Description
-
-An app documenting all 282 Scottish Mountains (Munros). Munro Bagger aids climbers to explore, plan and share their adventures and upload images.
+An app documenting all 282 Scottish Mountains (Munros). Munro Bagger aids climbers to explore, plan and share their adventures and upload images while providing topographical data and navigational quality maps.
 
 ## Screenshots
 
