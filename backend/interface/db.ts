@@ -5,6 +5,7 @@ interface UserInterface {
 }
 
 interface StatusInterface {
+  id:number;
   wishlist: boolean;
   climbed: boolean;
 }
