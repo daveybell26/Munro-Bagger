@@ -25,7 +25,7 @@ const jwtCheck = jwt({
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
-app.use(jwtCheck);
+// app.use(jwtCheck);
 app.use(router);
 
 (async () => {
