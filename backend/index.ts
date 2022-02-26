@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import jwt from 'express-jwt';
-import jwks from 'jwks-rsa';
 import router from './router';
 import sequelize from './models/sequelize';
 
