@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { BACKEND_URL } from '@env';
 
-const baseUrl = "http://192.168.1.118:8080";
+const baseUrl = 'http://192.168.1.118:8080';
 
 export const login = (email: string, jwtToken: string) => axios.post(
   `${baseUrl}/login`, { email }, {
