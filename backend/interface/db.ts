@@ -5,12 +5,12 @@ interface UserInterface {
 }
 
 interface StatusInterface {
-  id:number;
   wishlist: boolean;
   climbed: boolean;
 }
 
 interface MountainInterface {
+  id:number;
   name: string;
   imageUrl: string;
 }
