@@ -20,7 +20,7 @@ module.exports = {
       mountains.map((mountain) => {
         const randomImage = Math.ceil(Math.random() * 1000);
         return {
-          id:mountain.id,
+          id: mountain.id,
           name: mountain.name,
           imageUrl: `https://picsum.photos/id/${randomImage}/200`,
           createdAt: new Date(),
