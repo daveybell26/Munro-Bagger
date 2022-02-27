@@ -1,4 +1,4 @@
-const { mountains, users, routes } = require('../mockData.json');
+const { mountains, users, routes, startPoints} = require('../mockData.json');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -41,6 +41,17 @@ module.exports = {
       })),
       {},
     );
+    await queryInterface.bulkInsert(
+      'Startpoints',
+      startPoints.map((startPoint,i) => ({
+        latitude: startPoint.latitude,
+        longitude: startPoint.longitude,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        MountainId:i+1
+      })),
+      {},
+    );
     const pics = [];
     pics.length = 20000;
     pics.fill(0);
@@ -76,5 +87,6 @@ module.exports = {
     await queryInterface.bulkDelete('Mountains', null, {});
     await queryInterface.bulkDelete('Peaks', null, {});
     await queryInterface.bulkDelete('Pictures', null, {});
+    await queryInterface.bulkDelete('Startpoints', null, {});
   },
 };
