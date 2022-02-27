@@ -7,6 +7,8 @@ import Startpoint from './Startpoint';
 import Route from './Route';
 
 export default class Mountain extends Model implements MountainInterface {
+  public id!: number;
+
   public name!: string;
 
   public imageUrl!: string;

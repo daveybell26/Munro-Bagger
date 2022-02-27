@@ -1,4 +1,4 @@
-const { mountains, users, routes } = require('../mockData.json');
+const { mountains, users, routes, startPoints} = require('../mockData.json');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -20,6 +20,7 @@ module.exports = {
       mountains.map((mountain) => {
         const randomImage = Math.ceil(Math.random() * 1000);
         return {
+          id: mountain.id,
           name: mountain.name,
           imageUrl: `https://picsum.photos/id/${randomImage}/200`,
           createdAt: new Date(),
@@ -37,6 +38,17 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         MountainId: i + 1,
+      })),
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'Startpoints',
+      startPoints.map((startPoint,i) => ({
+        latitude: startPoint.latitude,
+        longitude: startPoint.longitude,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        MountainId:i+1
       })),
       {},
     );
@@ -75,5 +87,6 @@ module.exports = {
     await queryInterface.bulkDelete('Mountains', null, {});
     await queryInterface.bulkDelete('Peaks', null, {});
     await queryInterface.bulkDelete('Pictures', null, {});
+    await queryInterface.bulkDelete('Startpoints', null, {});
   },
 };

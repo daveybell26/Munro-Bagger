@@ -10,6 +10,7 @@ interface StatusInterface {
 }
 
 interface MountainInterface {
+  id:number;
   name: string;
   imageUrl: string;
 }
